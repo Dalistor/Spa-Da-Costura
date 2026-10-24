@@ -1,0 +1,34 @@
+{
+  "schema": 1,
+  "id": "ev-486c20dbe171421382d93bc690655f7d",
+  "contract": "clientes@1",
+  "rule": "CLI-03",
+  "contract_hash": "4bb27419d8bb14722f716fa45b99779e2d2584e7a92f1c0d408e6d97bdf881c8",
+  "method": "test",
+  "command": [
+    "npx",
+    "jest",
+    "__tests__/customers"
+  ],
+  "result": "passed",
+  "exit_code": 0,
+  "at": "2026-10-24T18:53:23.789869+00:00",
+  "revision": "a0a416e34fbbe0b1dc2ef56e335ba28246c1800c",
+  "summary": "Busca por parte do nome sem diferenciar maiúsculas (inclusive acentuadas), busca vazia mostra todos, lista ordenada por nome e sem excluídos",
+  "reference": "Comando executado no checkout; saída exibida no terminal",
+  "files": {
+    "__tests__/customers/customerRepository.test.ts": "09d0baa77781aaf82f47787a1d7dd59ab603ad138ab1a93459e742b81245beba",
+    "src/app/RepositoriesProvider.tsx": "0b8791832dc5e024a06d5bec39c21e18247878abb0e65182f16b4008b1e4bca7",
+    "src/app/navigation/Navigator.tsx": "30572dae4be3b3e1b340c0560f4dca677b0318001b50769f728c8f29eebfef7d",
+    "src/customers/data/sqlCustomerRepository.ts": "98ac463bf0deba8e1a6cd7b6b214443e3d7e6e272aad5b6fc51cffce5876a432",
+    "src/customers/data/sqlMeasurementRepository.ts": "c2b91c31764045aa4aa99ffd2aaf3504dfa352a6596ba3a3de975e942d395ed1",
+    "src/customers/domain/customer.ts": "3ba65dccad8a4bbd63ca2fe8eb9764fa98e0f72ec92cbd2aca9a852edb2f535e",
+    "src/customers/domain/measurement.ts": "3befc7627e8bd0f99d39e232e23e260397b0bf7fc8ccab122613ec5244c78b4b",
+    "src/customers/domain/repositories.ts": "fd8f614e8f5f897a3be0910bd3077b300eeec221d516468805f760a43c9539c6",
+    "src/customers/screens/CustomerDetailScreen.tsx": "47b07eda37adec76232e517709ba858800658d8948891d26f4e8fbfea4604d36",
+    "src/customers/screens/CustomerFormScreen.tsx": "99d2778f9ea21fee07948dcf9041c37db78700417e0e35394d63b93cf6c38322",
+    "src/customers/screens/CustomersScreen.tsx": "7968da40903bae0a974f71bb19e8dc169f4f704dc64bb68c3c50a902ff62ce61",
+    "src/customers/screens/MeasurementFormScreen.tsx": "6c4f503132766a2238fc75127d432d82732fb9dab990173760cded6c27d617a2"
+  },
+  "sources_stable": true
+}

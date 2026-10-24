@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "id": "ev-a0cfa37c8150433a81cd355b015e9c40",
+  "contract": "clientes@1",
+  "rule": "CLI-01",
+  "contract_hash": "4bb27419d8bb14722f716fa45b99779e2d2584e7a92f1c0d408e6d97bdf881c8",
+  "method": "manual",
+  "result": "passed",
+  "at": "2026-10-24T18:53:17.249010+00:00",
+  "revision": "a0a416e34fbbe0b1dc2ef56e335ba28246c1800c",
+  "summary": "Demonstração repetida no build com master/0003: salvar sem nome mostrou 'Informe o nome do cliente.'; 'Joana Prado' com telefone criada e aparece na lista; descrição editada para 'Ajustes de vestido' refletiu no detalhe. Limite: inspeção pela árvore de acessibilidade.",
+  "reference": "Sessão Claude Code f61330bd (2026-10-24), APK release x86_64 após master/0003 no emulador Pixel_API_36, modo avião (airplane_mode_on=1); interação por adb input/uiautomator; capturas em .centaur/evidence/screens/10..13",
+  "files": {
+    ".centaur/evidence/screens/10-excluir-confirmacao.png": "d4632b508f5b4ca1ed5732940a59450fa0a3038cffc87e842e96d84f90c22880",
+    ".centaur/evidence/screens/11-excluida-fora-da-lista.png": "e476938c9cd0e9e9fdc9e9c9e2376dce3ce896422c755421aeda222d5adfcebb",
+    ".centaur/evidence/screens/12-reaberto-joana.png": "6262b005cb82de8152321e8026d201056b49b52314589950603bad6a8b0ba728",
+    ".centaur/evidence/screens/13-busca-joa.png": "c695f74df83d359d73c7f9078ec8c6cf664203fb1f657cfda58f55e7541be3f8",
+    "__tests__/customers/customerRepository.test.ts": "09d0baa77781aaf82f47787a1d7dd59ab603ad138ab1a93459e742b81245beba",
+    "src/app/RepositoriesProvider.tsx": "0b8791832dc5e024a06d5bec39c21e18247878abb0e65182f16b4008b1e4bca7",
+    "src/app/navigation/Navigator.tsx": "30572dae4be3b3e1b340c0560f4dca677b0318001b50769f728c8f29eebfef7d",
+    "src/customers/data/sqlCustomerRepository.ts": "98ac463bf0deba8e1a6cd7b6b214443e3d7e6e272aad5b6fc51cffce5876a432",
+    "src/customers/data/sqlMeasurementRepository.ts": "c2b91c31764045aa4aa99ffd2aaf3504dfa352a6596ba3a3de975e942d395ed1",
+    "src/customers/domain/customer.ts": "3ba65dccad8a4bbd63ca2fe8eb9764fa98e0f72ec92cbd2aca9a852edb2f535e",
+    "src/customers/domain/measurement.ts": "3befc7627e8bd0f99d39e232e23e260397b0bf7fc8ccab122613ec5244c78b4b",
+    "src/customers/domain/repositories.ts": "fd8f614e8f5f897a3be0910bd3077b300eeec221d516468805f760a43c9539c6",
+    "src/customers/screens/CustomerDetailScreen.tsx": "47b07eda37adec76232e517709ba858800658d8948891d26f4e8fbfea4604d36",
+    "src/customers/screens/CustomerFormScreen.tsx": "99d2778f9ea21fee07948dcf9041c37db78700417e0e35394d63b93cf6c38322",
+    "src/customers/screens/CustomersScreen.tsx": "7968da40903bae0a974f71bb19e8dc169f4f704dc64bb68c3c50a902ff62ce61",
+    "src/customers/screens/MeasurementFormScreen.tsx": "6c4f503132766a2238fc75127d432d82732fb9dab990173760cded6c27d617a2"
+  }
+}

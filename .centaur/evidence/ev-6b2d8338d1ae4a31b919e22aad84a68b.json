@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "id": "ev-6b2d8338d1ae4a31b919e22aad84a68b",
+  "contract": "clientes@1",
+  "rule": "CLI-04",
+  "contract_hash": "4bb27419d8bb14722f716fa45b99779e2d2584e7a92f1c0d408e6d97bdf881c8",
+  "method": "test",
+  "command": [
+    "npx",
+    "jest",
+    "__tests__/customers"
+  ],
+  "result": "passed",
+  "exit_code": 0,
+  "at": "2026-10-24T18:48:29.418912+00:00",
+  "revision": "a0a416e34fbbe0b1dc2ef56e335ba28246c1800c",
+  "summary": "Repositório em node:sqlite: excluir marca deleted_at e mantém a linha do cliente; cliente some de lista, leitura e edição, e suas medidas deixam de ser listadas; segunda exclusão não faz nada; medida, pagamento, serviço e venda do cliente continuam no banco.",
+  "reference": "Comando executado no checkout; saída exibida no terminal",
+  "files": {
+    "__tests__/customers/customerRepository.test.ts": "09d0baa77781aaf82f47787a1d7dd59ab603ad138ab1a93459e742b81245beba",
+    "src/customers/data/sqlCustomerRepository.ts": "98ac463bf0deba8e1a6cd7b6b214443e3d7e6e272aad5b6fc51cffce5876a432",
+    "src/customers/data/sqlMeasurementRepository.ts": "c2b91c31764045aa4aa99ffd2aaf3504dfa352a6596ba3a3de975e942d395ed1",
+    "src/customers/domain/repositories.ts": "fd8f614e8f5f897a3be0910bd3077b300eeec221d516468805f760a43c9539c6",
+    "src/customers/screens/CustomerDetailScreen.tsx": "47b07eda37adec76232e517709ba858800658d8948891d26f4e8fbfea4604d36",
+    "src/customers/screens/CustomersScreen.tsx": "7968da40903bae0a974f71bb19e8dc169f4f704dc64bb68c3c50a902ff62ce61"
+  },
+  "sources_stable": true
+}

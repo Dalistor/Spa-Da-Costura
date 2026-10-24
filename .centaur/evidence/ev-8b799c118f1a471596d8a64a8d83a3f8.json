@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "id": "ev-8b799c118f1a471596d8a64a8d83a3f8",
+  "contract": "clientes@1",
+  "rule": "CLI-04",
+  "contract_hash": "4bb27419d8bb14722f716fa45b99779e2d2584e7a92f1c0d408e6d97bdf881c8",
+  "method": "manual",
+  "result": "passed",
+  "at": "2026-10-24T18:48:29.558077+00:00",
+  "revision": "a0a416e34fbbe0b1dc2ef56e335ba28246c1800c",
+  "summary": "Demonstração no emulador (APK release, modo avião): 'Excluir cliente' no detalhe de 'Ana Lima' abriu confirmação; cancelar manteve o cliente; confirmar voltou à lista só com 'Maria Souza' e a busca 'ana' não encontrou ninguém. Limites: o banco do APK release não é legível por adb (não depurável), então a preservação da linha e dos lançamentos foi verificada no teste de repositório; telas de histórico de serviços/produtos e o fluxo de caixa ainda não existem — confirmação nelas fica para financeiro/FIN-04 e servicos.",
+  "reference": "Sessão Claude Code f61330bd (2026-10-24), emulador Pixel_API_36; capturas 10 e 11 em .centaur/evidence/screens/",
+  "files": {
+    ".centaur/evidence/screens/10-excluir-confirmacao.png": "d4632b508f5b4ca1ed5732940a59450fa0a3038cffc87e842e96d84f90c22880",
+    ".centaur/evidence/screens/11-excluida-fora-da-lista.png": "e476938c9cd0e9e9fdc9e9c9e2376dce3ce896422c755421aeda222d5adfcebb",
+    "__tests__/customers/customerRepository.test.ts": "09d0baa77781aaf82f47787a1d7dd59ab603ad138ab1a93459e742b81245beba",
+    "src/customers/data/sqlCustomerRepository.ts": "98ac463bf0deba8e1a6cd7b6b214443e3d7e6e272aad5b6fc51cffce5876a432",
+    "src/customers/data/sqlMeasurementRepository.ts": "c2b91c31764045aa4aa99ffd2aaf3504dfa352a6596ba3a3de975e942d395ed1",
+    "src/customers/domain/repositories.ts": "fd8f614e8f5f897a3be0910bd3077b300eeec221d516468805f760a43c9539c6",
+    "src/customers/screens/CustomerDetailScreen.tsx": "47b07eda37adec76232e517709ba858800658d8948891d26f4e8fbfea4604d36",
+    "src/customers/screens/CustomersScreen.tsx": "7968da40903bae0a974f71bb19e8dc169f4f704dc64bb68c3c50a902ff62ce61"
+  }
+}

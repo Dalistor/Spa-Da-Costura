@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "id": "ev-c8c47ecca54f47c29dd0943c00d405b6",
+  "contract": "sistema@1",
+  "rule": "SIS-03",
+  "contract_hash": "67c2c67a03901dd912c682f243b82af6d943a979e8fe6028c044acee0722c8e6",
+  "method": "manual",
+  "result": "passed",
+  "at": "2026-10-24T18:53:28.420498+00:00",
+  "revision": "a0a416e34fbbe0b1dc2ef56e335ba28246c1800c",
+  "summary": "Inspeção visual no emulador após master/0003: lista, detalhe e confirmação de exclusão com fundo bege, cartões em superfície clara, botões em marrom de destaque e o botão 'Excluir cliente' em vermelho-tijolo do token danger, todos de src/theme/colors.ts (capturas 10–13).",
+  "reference": "Sessão Claude Code f61330bd (2026-10-24), APK release x86_64 após master/0003 no emulador Pixel_API_36, modo avião (airplane_mode_on=1); interação por adb input/uiautomator; capturas em .centaur/evidence/screens/10..13",
+  "files": {
+    ".centaur/evidence/screens/10-excluir-confirmacao.png": "d4632b508f5b4ca1ed5732940a59450fa0a3038cffc87e842e96d84f90c22880",
+    ".centaur/evidence/screens/11-excluida-fora-da-lista.png": "e476938c9cd0e9e9fdc9e9c9e2376dce3ce896422c755421aeda222d5adfcebb",
+    ".centaur/evidence/screens/12-reaberto-joana.png": "6262b005cb82de8152321e8026d201056b49b52314589950603bad6a8b0ba728",
+    ".centaur/evidence/screens/13-busca-joa.png": "c695f74df83d359d73c7f9078ec8c6cf664203fb1f657cfda58f55e7541be3f8",
+    "src/app/navigation/Navigator.tsx": "30572dae4be3b3e1b340c0560f4dca677b0318001b50769f728c8f29eebfef7d",
+    "src/customers/screens/CustomerDetailScreen.tsx": "47b07eda37adec76232e517709ba858800658d8948891d26f4e8fbfea4604d36",
+    "src/customers/screens/CustomerFormScreen.tsx": "99d2778f9ea21fee07948dcf9041c37db78700417e0e35394d63b93cf6c38322",
+    "src/customers/screens/CustomersScreen.tsx": "7968da40903bae0a974f71bb19e8dc169f4f704dc64bb68c3c50a902ff62ce61",
+    "src/customers/screens/MeasurementFormScreen.tsx": "6c4f503132766a2238fc75127d432d82732fb9dab990173760cded6c27d617a2",
+    "src/theme/colors.ts": "73d3645fe4dbacaae1ecd37d025f0a8cd8a1843144e7fa6a5a5fdee6de5dc541",
+    "src/ui/Button.tsx": "f4a2a1c092252cf9942235220c3d437de9438e466dcf4198f891e0f8fd0d332c",
+    "src/ui/EmptyState.tsx": "d7569deaf5ff55b3d31f9f7cb8e9e1b2a98406665dcf3da0967c7f93250830d0",
+    "src/ui/TextField.tsx": "30fda5d2a3b2f0443818f413b4f56e6aff65c8f33314a5a0065b7b4c386ed5b4"
+  }
+}

@@ -61,6 +61,14 @@ export function createCustomerRepository(db: Database): CustomerRepository {
       }
       return { ok: true, customer: { id, ...valid.customer } };
     },
+
+    async remove(id) {
+      const result = await db.execute(
+        `UPDATE customer SET deleted_at = ${NOW}, updated_at = ${NOW} WHERE id = ? AND ${ACTIVE}`,
+        [id],
+      );
+      return result.changes > 0;
+    },
   };
 }
 

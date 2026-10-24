@@ -12,8 +12,14 @@ export interface CustomerRepository {
   get(id: number): Promise<Customer | null>;
   create(input: CustomerInput): Promise<SaveCustomerResult>;
   update(id: number, input: CustomerInput): Promise<SaveCustomerResult>;
+  /**
+   * Soft delete: the customer is only marked as deleted, so its payments,
+   * jobs and sales stay in the database. False when there was nothing to delete.
+   */
+  remove(id: number): Promise<boolean>;
 }
 
+/** Measurements of deleted customers are never returned. */
 export interface MeasurementRepository {
   /** Sorted by key. */
   listFor(customerId: number): Promise<Measurement[]>;

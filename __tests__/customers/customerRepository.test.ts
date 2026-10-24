@@ -100,22 +100,45 @@ describe('customers', () => {
     expect(await customers.get(ana.id)).toEqual(ana);
   });
 
-  test('deleted customers are hidden from list and lookup', async () => {
+  test('deleting a customer hides it and its measurements but keeps every record', async () => {
     const db = await openDatabase();
     const customers = createCustomerRepository(db);
+    const measurements = createMeasurementRepository(db);
     const gone = await createCustomer(db, 'Excluída');
     await createCustomer(db, 'Ativa');
+    await measurements.add(gone.id, { key: 'Cintura', value: '72 cm' });
     await db.execute(
-      "UPDATE customer SET deleted_at = '2026-10-24T00:00:00Z' WHERE id = ?",
+      "INSERT INTO payment (customer_id, amount_cents, date) VALUES (?, 4000, '2026-10-24')",
+      [gone.id],
+    );
+    await db.execute(
+      "INSERT INTO job (customer_id, description, amount_cents, delivery_date) VALUES (?, 'Barra', 3000, '2026-10-24')",
+      [gone.id],
+    );
+    await db.execute(
+      "INSERT INTO product_sale (customer_id, product_name, amount_cents, date) VALUES (?, 'Vestido', 12000, '2026-10-24')",
       [gone.id],
     );
 
+    expect(await customers.remove(gone.id)).toBe(true);
+
     expect((await customers.list()).map(c => c.name)).toEqual(['Ativa']);
     expect(await customers.get(gone.id)).toBeNull();
+    expect(await measurements.listFor(gone.id)).toEqual([]);
     expect(await customers.update(gone.id, { name: 'Volta' })).toEqual({
       ok: false,
       error: 'not-found',
     });
+    expect(await customers.remove(gone.id)).toBe(false);
+    const [row] = await db.query(
+      'SELECT name, deleted_at FROM customer WHERE id = ?',
+      [gone.id],
+    );
+    expect(row.name).toBe('Excluída');
+    expect(row.deleted_at).toMatch(/^\d{4}-\d{2}-\d{2}T/);
+    for (const table of ['measurement', 'payment', 'job', 'product_sale']) {
+      expect(await count(db, table)).toBe(1);
+    }
   });
 
   test('saved customers and measurements survive reopening the database', async () => {

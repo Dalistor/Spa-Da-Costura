@@ -64,6 +64,22 @@ export function CustomerDetailScreen() {
       customerId,
       measurementId: measurement.id,
     });
+  const confirmDeletion = () =>
+    Alert.alert(
+      'Excluir cliente',
+      `Excluir ${customer.name}? O cliente e as medidas deixam de aparecer no app; os pagamentos continuam no caixa.`,
+      [
+        { text: 'Cancelar', style: 'cancel' },
+        {
+          text: 'Excluir',
+          style: 'destructive',
+          onPress: async () => {
+            await customers.remove(customerId);
+            navigation.goBack();
+          },
+        },
+      ],
+    );
   const confirmRemoval = (measurement: Measurement) =>
     Alert.alert(
       'Remover medida',
@@ -129,6 +145,14 @@ export function CustomerDetailScreen() {
           onPress={() => navigation.navigate('MeasurementForm', { customerId })}
         />
       </View>
+
+      <View style={styles.dangerZone}>
+        <Button
+          title="Excluir cliente"
+          variant="danger"
+          onPress={confirmDeletion}
+        />
+      </View>
     </ScrollView>
   );
 }
@@ -165,6 +189,7 @@ const styles = StyleSheet.create({
   muted: { ...typography.body, color: colors.textSecondary },
   spaced: { marginVertical: spacing.sm },
   hint: { ...typography.caption, color: colors.textSecondary },
+  dangerZone: { marginTop: spacing.xl },
   section: {
     ...typography.body,
     fontWeight: '700',

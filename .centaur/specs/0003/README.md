@@ -1,7 +1,7 @@
 # 0003 Excluir cliente por soft delete com confirmação
 
 **Data:** 2026-10-24
-**Status:** Pendente
+**Status:** Em andamento
 **Escopo:** master
 **Responsável:** Diego
 **Contrato:** clientes@1
@@ -41,7 +41,7 @@ Demonstração: excluir um cliente com medidas no emulador → confirmação apa
 ### Task 01 — Soft delete no repositório
 **Regras:** CLI-04
 **Modo:** TDD
-**Responsável:** a atribuir
+**Responsável:** Claude Code (sessão f61330bd, agente único)
 **Arquivos:** `src/customers/domain/`, `src/customers/data/`, `__tests__/customers/` (ampliar o teste de repositório de master/0002)
 **Depende de:** master/0002
 **Verificação:** risco vital: operação irreversível e integridade financeira (apagar fisicamente o cliente ou seus lançamentos; cliente excluído reaparecendo em lista, busca ou detalhe). Proteção existente: RESTRICT impede `DELETE` com pagamentos, mas não prova o soft delete. Lacuna → ampliar o teste de repositório: excluir marca `deleted_at` e mantém a linha; cliente e medidas deixam de aparecer em lista, busca e leitura por ID; pagamento, serviço e venda do cliente continuam no banco.
@@ -51,7 +51,7 @@ Demonstração: excluir um cliente com medidas no emulador → confirmação apa
 ### Task 02 — Confirmação de exclusão no detalhe
 **Regras:** CLI-04
 **Modo:** direto
-**Responsável:** a atribuir
+**Responsável:** Claude Code (sessão f61330bd, agente único)
 **Arquivos:** `src/customers/screens/` (detalhe do cliente)
 **Depende de:** Task 01
 **Verificação:** `npx tsc --noEmit`, `npm run lint`, `npm test`; inspeção no emulador: confirmação aparece, cancelar mantém o cliente, confirmar volta à lista sem ele e a busca não o encontra.
@@ -66,11 +66,15 @@ Demonstração: excluir um cliente com medidas no emulador → confirmação apa
 
 ## Diferença entre plano e resultado
 
-—
+Execução em 2026-10-24, registro [implements/0003](../../implements/0003/README.md).
+- Medidas de clientes excluídos ficam ocultas no próprio repositório de medidas (JOIN com clientes ativos), não só no detalhe.
+- O teste existente "deleted customers are hidden" foi substituído pelo caso de soft delete via repositório (sem novo arquivo).
+- Mudanças em arquivos compartilhados com master/0002 desatualizaram as provas de CLI-01..03 e SIS-01..03: testes e checagens reexecutados e demonstração manual repetida no build novo.
+- Banco do APK release não é legível por adb; preservação de linha e lançamentos provada no teste de repositório (limite registrado na evidência).
 
 ## Checklist de conclusão
-- [ ] Task 01 — Soft delete no repositório
-- [ ] Task 02 — Confirmação de exclusão no detalhe
+- [x] Task 01 — Soft delete no repositório
+- [x] Task 02 — Confirmação de exclusão no detalhe
 
 ## Execução
 $run master/0003

@@ -6,14 +6,17 @@ import {
 } from '../domain';
 import { NOW } from './timestamps';
 
-const COLUMNS = 'id, customer_id, key, value';
+const COLUMNS = 'm.id, m.customer_id, m.key, m.value';
+// Measurements are reached only through customers that were not deleted.
+const OF_ACTIVE_CUSTOMERS =
+  'measurement m JOIN customer c ON c.id = m.customer_id AND c.deleted_at IS NULL';
 
 export function createMeasurementRepository(
   db: Database,
 ): MeasurementRepository {
   const get = async (id: number): Promise<Measurement | null> => {
     const [row] = await db.query(
-      `SELECT ${COLUMNS} FROM measurement WHERE id = ?`,
+      `SELECT ${COLUMNS} FROM ${OF_ACTIVE_CUSTOMERS} WHERE m.id = ?`,
       [id],
     );
     return row ? toMeasurement(row) : null;
@@ -36,7 +39,7 @@ export function createMeasurementRepository(
   return {
     async listFor(customerId) {
       const rows = await db.query(
-        `SELECT ${COLUMNS} FROM measurement WHERE customer_id = ? ORDER BY key COLLATE NOCASE`,
+        `SELECT ${COLUMNS} FROM ${OF_ACTIVE_CUSTOMERS} WHERE m.customer_id = ? ORDER BY m.key COLLATE NOCASE`,
         [customerId],
       );
       return rows.map(toMeasurement);
