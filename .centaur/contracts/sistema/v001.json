@@ -1,0 +1,84 @@
+{
+  "schema": 1,
+  "id": "sistema",
+  "version": 1,
+  "title": "Limites gerais do Spa da Costura",
+  "scope": "master",
+  "status": "draft",
+  "intent": "App Android em React Native CLI para gestão de ateliê de costura, com dados locais em SQLite, sem servidor, e backup por arquivo.",
+  "extends": [],
+  "boundaries": [
+    "Sem servidor, API remota, conta ou login na versão inicial",
+    "Dados do usuário permanecem no aparelho, em SQLite",
+    "Plataforma alvo: somente Android",
+    "React Native CLI (sem Expo)"
+  ],
+  "autonomy": [
+    "Organizar módulos internos mantendo as regras de domínio independentes da UI e do armazenamento",
+    "Escolher o formato do arquivo de backup, desde que contenha todos os dados e seja validado na importação",
+    "Definir os tokens exatos da paleta bege e marrom (decisão delegada ao agente pelo usuário)"
+  ],
+  "decisions": [],
+  "rules": [
+    {
+      "id": "SIS-01",
+      "kind": "non_functional",
+      "description": "O app funciona sem conexão de rede e sem servidor; todos os dados são lidos e gravados localmente em SQLite",
+      "acceptance": [
+        "Com o aparelho em modo avião, cadastrar e consultar dados funciona normalmente",
+        "Nenhuma requisição de rede é feita para ler ou gravar dados do ateliê"
+      ],
+      "depends_on": []
+    },
+    {
+      "id": "SIS-02",
+      "kind": "non_functional",
+      "description": "Dados gravados persistem entre fechamentos e reinícios do app",
+      "acceptance": [
+        "Após fechar o app e reabrir, os registros salvos continuam disponíveis"
+      ],
+      "depends_on": []
+    },
+    {
+      "id": "SIS-03",
+      "kind": "non_functional",
+      "description": "A identidade visual usa uma paleta de tons bege e marrom",
+      "acceptance": [
+        "As cores de fundo, superfície, texto e destaque das telas vêm de tokens da paleta bege e marrom"
+      ],
+      "depends_on": []
+    },
+    {
+      "id": "SIS-04",
+      "description": "Exportar todos os dados do app para um arquivo de backup",
+      "acceptance": [
+        "Gerar backup cria um arquivo que a usuária pode salvar ou compartilhar fora do app",
+        "O arquivo contém clientes, medidas, serviços, produtos, vendas de produtos, pagamentos e despesas",
+        "Clientes excluídos (soft delete) também são incluídos no backup"
+      ],
+      "depends_on": []
+    },
+    {
+      "id": "SIS-05",
+      "description": "Importar um arquivo de backup substituindo todos os dados atuais",
+      "acceptance": [
+        "Antes de importar, o app avisa que todos os dados atuais serão substituídos e pede confirmação",
+        "Após importar um backup gerado pelo app, os dados são exatamente os do arquivo, sem registros anteriores",
+        "Arquivo inválido ou corrompido é recusado com mensagem e os dados atuais permanecem intactos"
+      ],
+      "depends_on": [
+        "sistema/SIS-04"
+      ]
+    }
+  ],
+  "specification": {
+    "actors": [
+      "Costureira"
+    ],
+    "exclusions": [
+      "Servidor, sincronização em nuvem e contas de usuário",
+      "Acesso de clientes ao app",
+      "iOS"
+    ]
+  }
+}

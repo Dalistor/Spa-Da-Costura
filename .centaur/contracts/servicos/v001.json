@@ -1,0 +1,236 @@
+{
+  "schema": 1,
+  "id": "servicos",
+  "version": 1,
+  "title": "Serviços (consertos) e produtos vendidos a clientes",
+  "scope": "master",
+  "status": "draft",
+  "intent": "A costureira registra serviços de costura (consertos) para clientes com status, mantém um catálogo de produtos (peças inteiras) com preço e vende produtos a clientes.",
+  "extends": [],
+  "boundaries": [
+    "Respeitar os limites do contrato sistema (dados locais, sem servidor)",
+    "Valores monetários sem ponto flutuante",
+    "Serviço e produto são conceitos distintos: serviço é um conserto/trabalho; produto é uma peça inteira vendida"
+  ],
+  "autonomy": [
+    "Definir layout das telas de serviços, catálogo e vendas dentro da paleta do sistema"
+  ],
+  "decisions": [],
+  "rules": [
+    {
+      "id": "SRV-01",
+      "description": "Registrar um serviço (conserto) para um cliente com descrição, valor e data de entrega",
+      "acceptance": [
+        "Criar serviço com cliente, descrição e valor maior ou igual a zero grava o serviço no histórico do cliente",
+        "A data de entrega vem preenchida com a data de hoje e pode ser alterada",
+        "Serviço sem descrição ou com valor inválido é recusado"
+      ],
+      "depends_on": [
+        "clientes/CLI-01"
+      ]
+    },
+    {
+      "id": "SRV-02",
+      "description": "Editar e excluir serviços",
+      "acceptance": [
+        "Editar um serviço reflete a mudança na lista e no histórico do cliente",
+        "Excluir um serviço, após confirmação, remove-o da lista e do histórico do cliente"
+      ],
+      "depends_on": [
+        "servicos/SRV-01"
+      ]
+    },
+    {
+      "id": "SRV-03",
+      "description": "Cada serviço tem um status entre Pendente, Pronto e Entregue",
+      "acceptance": [
+        "Serviço novo começa como Pendente",
+        "A usuária muda o status para Pronto ou Entregue e o novo status aparece na lista"
+      ],
+      "depends_on": [
+        "servicos/SRV-01"
+      ]
+    },
+    {
+      "id": "PRD-01",
+      "description": "Cadastrar, editar e excluir produtos (peças inteiras) com nome e preço",
+      "acceptance": [
+        "Salvar produto com nome e preço maior ou igual a zero faz ele aparecer no catálogo",
+        "Produto sem nome ou com preço inválido é recusado",
+        "Excluir um produto já vendido é permitido e as vendas existentes mantêm nome e valor"
+      ],
+      "depends_on": []
+    },
+    {
+      "id": "PRD-02",
+      "description": "Vender (anexar) um produto do catálogo a um cliente, com valor preenchido pelo preço do produto e editável",
+      "acceptance": [
+        "Ao escolher o produto, o valor é preenchido com o preço do catálogo",
+        "A usuária pode alterar o valor antes de salvar e o valor salvo é o informado",
+        "Alterar depois o preço do produto não muda o valor de vendas já registradas",
+        "Editar ou excluir uma venda reflete a mudança no histórico do cliente"
+      ],
+      "depends_on": [
+        "servicos/PRD-01",
+        "clientes/CLI-01"
+      ]
+    },
+    {
+      "id": "SRV-04",
+      "description": "O detalhe do cliente mostra o histórico de serviços e de produtos vendidos",
+      "acceptance": [
+        "Os serviços do cliente aparecem com data de entrega, descrição, valor e status",
+        "Os produtos vendidos ao cliente aparecem com data, nome e valor"
+      ],
+      "depends_on": [
+        "servicos/SRV-01",
+        "servicos/PRD-02"
+      ]
+    }
+  ],
+  "specification": {
+    "actors": [
+      "Costureira"
+    ],
+    "exclusions": [
+      "Controle de estoque de produtos",
+      "Mais de um produto por venda ou quantidade"
+    ],
+    "use_cases": [
+      {
+        "id": "UC-01",
+        "title": "Registrar conserto para um cliente",
+        "actor": "Costureira",
+        "preconditions": [
+          "Cliente cadastrado"
+        ],
+        "main_flow": [
+          "Abrir o cliente",
+          "Escolher novo serviço",
+          "Informar descrição, valor e data de entrega (padrão: hoje)",
+          "Salvar"
+        ],
+        "alternatives": [
+          "Descrição vazia ou valor inválido: indicar o campo e não salvar"
+        ],
+        "postconditions": [
+          "Serviço Pendente registrado no histórico do cliente"
+        ],
+        "rules": [
+          "SRV-01",
+          "SRV-03",
+          "SRV-04"
+        ]
+      },
+      {
+        "id": "UC-02",
+        "title": "Vender produto a um cliente",
+        "actor": "Costureira",
+        "preconditions": [
+          "Cliente e produto cadastrados"
+        ],
+        "main_flow": [
+          "Abrir o cliente",
+          "Escolher anexar produto",
+          "Selecionar produto do catálogo",
+          "Conferir ou alterar o valor preenchido",
+          "Salvar"
+        ],
+        "alternatives": [
+          "Catálogo vazio: orientar o cadastro de produto"
+        ],
+        "postconditions": [
+          "Venda registrada no histórico do cliente com o valor informado"
+        ],
+        "rules": [
+          "PRD-02",
+          "SRV-04"
+        ]
+      }
+    ],
+    "data_model": {
+      "entities": [
+        {
+          "name": "Cliente",
+          "attributes": [
+            "id",
+            "nome"
+          ],
+          "invariants": [
+            "Definido no contrato clientes"
+          ]
+        },
+        {
+          "name": "Servico",
+          "attributes": [
+            "id",
+            "cliente_id",
+            "descricao",
+            "valor",
+            "status",
+            "data_entrega"
+          ],
+          "invariants": [
+            "descrição não vazia",
+            "valor maior ou igual a zero",
+            "status em Pendente, Pronto ou Entregue",
+            "data_entrega padrão é a data de criação"
+          ]
+        },
+        {
+          "name": "Produto",
+          "attributes": [
+            "id",
+            "nome",
+            "preco"
+          ],
+          "invariants": [
+            "nome não vazio",
+            "preço maior ou igual a zero"
+          ]
+        },
+        {
+          "name": "VendaProduto",
+          "attributes": [
+            "id",
+            "cliente_id",
+            "produto_id (opcional)",
+            "nome_produto",
+            "valor",
+            "data"
+          ],
+          "invariants": [
+            "valor maior ou igual a zero",
+            "nome e valor preservados se o produto for excluído ou alterado"
+          ]
+        }
+      ],
+      "relationships": [
+        {
+          "from": "Cliente",
+          "to": "Servico",
+          "cardinality": "1:N",
+          "invariants": [
+            "Todo serviço pertence a um cliente existente"
+          ]
+        },
+        {
+          "from": "Cliente",
+          "to": "VendaProduto",
+          "cardinality": "1:N",
+          "invariants": [
+            "Toda venda pertence a um cliente existente"
+          ]
+        },
+        {
+          "from": "Produto",
+          "to": "VendaProduto",
+          "cardinality": "1:N",
+          "invariants": [
+            "Excluir o produto mantém a venda sem vínculo ao catálogo"
+          ]
+        }
+      ]
+    }
+  }
+}

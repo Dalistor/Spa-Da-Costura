@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "lifecycle": 1,
+  "name": "SpaDaCostura",
+  "collaboration": "individual",
+  "memory": {"backend": "files"},
+  "scopes": {
+    "master": {
+      "code": ".",
+      "specs": ".centaur/specs",
+      "implements": ".centaur/implements",
+      "owner": "Diego"
+    }
+  }
+}
