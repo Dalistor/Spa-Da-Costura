@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "id": "ev-03ef60163335437ca39f7fad573324d1",
+  "contract": "sistema@1",
+  "rule": "SIS-03",
+  "contract_hash": "67c2c67a03901dd912c682f243b82af6d943a979e8fe6028c044acee0722c8e6",
+  "method": "test",
+  "command": [
+    "sh",
+    "-c",
+    "! grep -rnE '#[0-9A-Fa-f]{3,8}([^0-9A-Za-z]|$)|rgba?\\(' src App.tsx --exclude-dir=theme"
+  ],
+  "result": "passed",
+  "exit_code": 0,
+  "at": "2026-10-24T18:45:04.612519+00:00",
+  "revision": "267f798f3dd4630ce97e343f4505dc86953ac08f",
+  "summary": "Checagem automática (reexecutada após master/0002): nenhuma cor literal (#hex/rgb) fora de src/theme, incluindo as telas de clientes e os componentes Button/TextField; cores vêm de src/theme/colors.ts.",
+  "reference": "Comando executado no checkout; saída exibida no terminal",
+  "files": {
+    "src/app/App.tsx": "ee069ee80f047155fa92c3aeb465bca089d1ebbb0095014e39c44fc79367a130",
+    "src/app/navigation/Navigator.tsx": "30572dae4be3b3e1b340c0560f4dca677b0318001b50769f728c8f29eebfef7d",
+    "src/customers/screens/CustomerDetailScreen.tsx": "d27872e0d8d0d2f0a19a0f92234eb174cdd442dccca2de9a43d51ace840053c8",
+    "src/customers/screens/CustomerFormScreen.tsx": "99d2778f9ea21fee07948dcf9041c37db78700417e0e35394d63b93cf6c38322",
+    "src/customers/screens/CustomersScreen.tsx": "7968da40903bae0a974f71bb19e8dc169f4f704dc64bb68c3c50a902ff62ce61",
+    "src/customers/screens/MeasurementFormScreen.tsx": "6c4f503132766a2238fc75127d432d82732fb9dab990173760cded6c27d617a2",
+    "src/theme/colors.ts": "73d3645fe4dbacaae1ecd37d025f0a8cd8a1843144e7fa6a5a5fdee6de5dc541",
+    "src/theme/index.ts": "6c151c2cee0ce18c65f7578a39b851478588040ad3be3466c2c12c20767f715d",
+    "src/ui/Button.tsx": "f4a2a1c092252cf9942235220c3d437de9438e466dcf4198f891e0f8fd0d332c",
+    "src/ui/EmptyState.tsx": "d7569deaf5ff55b3d31f9f7cb8e9e1b2a98406665dcf3da0967c7f93250830d0",
+    "src/ui/TextField.tsx": "30fda5d2a3b2f0443818f413b4f56e6aff65c8f33314a5a0065b7b4c386ed5b4"
+  },
+  "sources_stable": true
+}

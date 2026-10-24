@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "id": "ev-2902cf4793ce46bcab5d33871e1a781b",
+  "contract": "sistema@1",
+  "rule": "SIS-03",
+  "contract_hash": "67c2c67a03901dd912c682f243b82af6d943a979e8fe6028c044acee0722c8e6",
+  "method": "manual",
+  "result": "passed",
+  "at": "2026-10-24T18:45:04.743971+00:00",
+  "revision": "267f798f3dd4630ce97e343f4505dc86953ac08f",
+  "summary": "Inspeção visual no emulador Android 36 após master/0002: lista, formulário e detalhe de clientes com fundo bege, cartões e campos em superfície clara com borda bege, botões em marrom de destaque, textos em marrom escuro e erro em vermelho-tijolo, todos de src/theme/colors.ts (capturas 06, 08 e 09).",
+  "reference": "Sessão Claude Code f61330bd (2026-10-24), APK release no emulador Pixel_API_36; capturas em .centaur/evidence/screens/",
+  "files": {
+    ".centaur/evidence/screens/06-cliente-nome-vazio.png": "22b45b44666042b3cedab15ec3f83114d0aabcceb1bf73ebbef8c4bcb4a6af44",
+    ".centaur/evidence/screens/08-busca-mar.png": "45acbba951b3c8f2808a4b23092b03bc34ad56e599ade7e65a7697d050aa468a",
+    ".centaur/evidence/screens/09-reaberto-cliente-medida.png": "6a87caaddf3159768e5fb83d54e376c7afd22823bf2eb030ea18d34f3884b1c4",
+    "src/app/navigation/Navigator.tsx": "30572dae4be3b3e1b340c0560f4dca677b0318001b50769f728c8f29eebfef7d",
+    "src/customers/screens/CustomerDetailScreen.tsx": "d27872e0d8d0d2f0a19a0f92234eb174cdd442dccca2de9a43d51ace840053c8",
+    "src/customers/screens/CustomerFormScreen.tsx": "99d2778f9ea21fee07948dcf9041c37db78700417e0e35394d63b93cf6c38322",
+    "src/customers/screens/CustomersScreen.tsx": "7968da40903bae0a974f71bb19e8dc169f4f704dc64bb68c3c50a902ff62ce61",
+    "src/customers/screens/MeasurementFormScreen.tsx": "6c4f503132766a2238fc75127d432d82732fb9dab990173760cded6c27d617a2",
+    "src/theme/colors.ts": "73d3645fe4dbacaae1ecd37d025f0a8cd8a1843144e7fa6a5a5fdee6de5dc541",
+    "src/ui/Button.tsx": "f4a2a1c092252cf9942235220c3d437de9438e466dcf4198f891e0f8fd0d332c",
+    "src/ui/EmptyState.tsx": "d7569deaf5ff55b3d31f9f7cb8e9e1b2a98406665dcf3da0967c7f93250830d0",
+    "src/ui/TextField.tsx": "30fda5d2a3b2f0443818f413b4f56e6aff65c8f33314a5a0065b7b4c386ed5b4"
+  }
+}

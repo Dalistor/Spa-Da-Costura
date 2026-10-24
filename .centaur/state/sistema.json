@@ -25,7 +25,7 @@
         }
       ],
       "evidence": [
-        "ev-f549c69f82d64ebab6d40958c2a30138",
+        "ev-1c213a2b9c70411f844ba439827e6236",
         "ev-2415f739fb5f4bd8871bed3b7cc21644"
       ],
       "delivery": {
@@ -65,7 +65,10 @@
         "ev-f3ead6bf12f0405e8624d112818531ab"
       ],
       "delivery": {
-        "stage": "local"
+        "stage": "integrated",
+        "reference": "main local (commit, sem push)",
+        "revision": "267f798",
+        "at": "2026-10-24"
       },
       "specs": [
         "master/0002"
@@ -95,8 +98,8 @@
         }
       ],
       "evidence": [
-        "ev-0b9ecc6162bd4557ae2a08136ab6e394",
-        "ev-0aa4b4cba57f45a185dfdb29e8e39e6c"
+        "ev-03ef60163335437ca39f7fad573324d1",
+        "ev-2902cf4793ce46bcab5d33871e1a781b"
       ],
       "delivery": {
         "stage": "integrated",

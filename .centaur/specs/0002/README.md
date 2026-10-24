@@ -1,7 +1,7 @@
 # 0002 Cadastrar, editar e buscar clientes com medidas
 
 **Data:** 2026-10-24
-**Status:** Em andamento
+**Status:** Concluída
 **Escopo:** master
 **Responsável:** Diego
 **Contrato:** clientes@1
@@ -92,6 +92,7 @@ Execução em 2026-10-24, registro [implements/0002](../../implements/0002/READM
 - Remoção de medida: tocar e segurar no item, com confirmação.
 - Sem migração nova, sem mudança em `android/`; aviso de `act` no teste preexistente de falha ao abrir o banco não foi tocado.
 - Demonstração (2026-10-24): APK release x86_64 no emulador Pixel_API_36, dados limpos, modo avião; todos os critérios observados e dados mantidos após `am force-stop` e reabertura. Evidências de CLI-01..03 (teste + manual) e SIS-02 (manual) correntes; `--ready` ok.
+- Integrada em `main` local (267f798, sem push); `validate-lifecycle.py --complete master/0002` ok.
 
 ## Checklist de conclusão
 - [x] Task 01 — Regras e repositório de clientes e medidas
