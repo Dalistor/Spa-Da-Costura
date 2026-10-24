@@ -29,7 +29,10 @@
         "ev-2415f739fb5f4bd8871bed3b7cc21644"
       ],
       "delivery": {
-        "stage": "local"
+        "stage": "integrated",
+        "reference": "origin/main (github.com/Dalistor/Spa-Da-Costura)",
+        "revision": "e504e41",
+        "at": "2026-10-24"
       },
       "specs": [
         "master/0001"
@@ -73,7 +76,10 @@
         "ev-0aa4b4cba57f45a185dfdb29e8e39e6c"
       ],
       "delivery": {
-        "stage": "local"
+        "stage": "integrated",
+        "reference": "origin/main (github.com/Dalistor/Spa-Da-Costura)",
+        "revision": "e504e41",
+        "at": "2026-10-24"
       },
       "specs": [
         "master/0001"
@@ -113,7 +119,10 @@
         "ev-cf6a9fc9f3594b9bb0118a16f343042a"
       ],
       "delivery": {
-        "stage": "local"
+        "stage": "integrated",
+        "reference": "origin/main (github.com/Dalistor/Spa-Da-Costura)",
+        "revision": "e504e41",
+        "at": "2026-10-24"
       },
       "specs": [
         "master/0001"

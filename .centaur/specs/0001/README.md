@@ -1,7 +1,7 @@
 # 0001 App abre com banco local migrado, tema e rotas
 
 **Data:** 2026-10-24
-**Status:** Em revisão
+**Status:** Concluída
 **Escopo:** master
 **Responsável:** Diego
 **Contrato:** sistema@1
@@ -108,7 +108,7 @@ Execução em 2026-10-24, registro [implements/0001](../../implements/0001/READM
 - `StatusBar` sem `backgroundColor` (removida no RN 0.88).
 - Nenhuma mudança em `android/`.
 - Demonstração (2026-10-24) no emulador Pixel_API_36 (Android 36, x86_64): build debug e release ok; release com JS embutido abre, reabre e navega em modo avião; banco no aparelho com v1 e 7 tabelas, sem reaplicar migração. O APK debug não carrega em modo avião porque busca o JS no Metro pela rede (só desenvolvimento). Capturas em `.centaur/evidence/screens/`.
-- **Pendente para concluir:** integração (commit) não autorizada ainda.
+- Integrada em `main` (e504e41, push para origin em 2026-10-24, autorizado por Diego); `validate-lifecycle.py --complete master/0001` ok.
 
 ## Checklist de conclusão
 - [x] Task 01 — Dependências e esqueleto de pastas
