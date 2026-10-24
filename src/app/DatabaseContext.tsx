@@ -17,7 +17,7 @@ export function DatabaseProvider({
   );
 }
 
-/** Used by the composition code that builds repositories for the screens. */
+/** Used by the composition code (RepositoriesProvider) to build repositories. */
 export function useDatabase(): Database {
   const database = useContext(DatabaseContext);
   if (!database) {

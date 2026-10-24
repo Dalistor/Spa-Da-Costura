@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "id": "ev-f3ead6bf12f0405e8624d112818531ab",
+  "contract": "sistema@1",
+  "rule": "SIS-02",
+  "contract_hash": "67c2c67a03901dd912c682f243b82af6d943a979e8fe6028c044acee0722c8e6",
+  "method": "manual",
+  "result": "passed",
+  "at": "2026-10-24T18:43:02.223481+00:00",
+  "revision": "63154a9f2e66a184fd97837cdada745cfef0dbf0",
+  "summary": "Demonstração no emulador em modo avião: após cadastrar clientes e medidas pela UI, o app foi encerrado (am force-stop, processo ausente) e reaberto; a lista mostrou 'Ana Lima' e 'Maria Souza' e o detalhe manteve telefone, descrição e a medida 'Cintura 74 cm'.",
+  "reference": "Sessão Claude Code f61330bd (2026-10-24), APK release x86_64 com JS embutido instalado no emulador Pixel_API_36 (Android 36) com dados limpos (pm clear), modo avião ligado (airplane_mode_on=1); interação por adb input/uiautomator; capturas em .centaur/evidence/screens/06..09",
+  "files": {
+    ".centaur/evidence/screens/06-cliente-nome-vazio.png": "22b45b44666042b3cedab15ec3f83114d0aabcceb1bf73ebbef8c4bcb4a6af44",
+    ".centaur/evidence/screens/07-medida-repetida.png": "6e404b654e89d4c8d0de3e9ea01c4b89329e3ca18718a540f1286714e7e74805",
+    ".centaur/evidence/screens/08-busca-mar.png": "45acbba951b3c8f2808a4b23092b03bc34ad56e599ade7e65a7697d050aa468a",
+    ".centaur/evidence/screens/09-reaberto-cliente-medida.png": "6a87caaddf3159768e5fb83d54e376c7afd22823bf2eb030ea18d34f3884b1c4",
+    "App.tsx": "3e60bb7f9893bc71b3274b57e0d39c2e7733be2cb7d8a2039fb8c89ba97840e3",
+    "src/app/RepositoriesProvider.tsx": "0b8791832dc5e024a06d5bec39c21e18247878abb0e65182f16b4008b1e4bca7",
+    "src/app/navigation/Navigator.tsx": "30572dae4be3b3e1b340c0560f4dca677b0318001b50769f728c8f29eebfef7d",
+    "src/customers/data/sqlCustomerRepository.ts": "ca675f475fad37062da1c54b08cfce5f22c4340daccb1c367fcfdde94a95ac2d",
+    "src/customers/data/sqlMeasurementRepository.ts": "790a5595150569f4192902982fc2385c764ecc3b03d940e507375962a0712be9",
+    "src/customers/domain/customer.ts": "3ba65dccad8a4bbd63ca2fe8eb9764fa98e0f72ec92cbd2aca9a852edb2f535e",
+    "src/customers/domain/measurement.ts": "3befc7627e8bd0f99d39e232e23e260397b0bf7fc8ccab122613ec5244c78b4b",
+    "src/customers/domain/repositories.ts": "edced0b155d545a0a109866153b1c2b2376f907d04a4baaa1043a8c0aaedd24f",
+    "src/customers/screens/CustomerDetailScreen.tsx": "d27872e0d8d0d2f0a19a0f92234eb174cdd442dccca2de9a43d51ace840053c8",
+    "src/customers/screens/CustomerFormScreen.tsx": "99d2778f9ea21fee07948dcf9041c37db78700417e0e35394d63b93cf6c38322",
+    "src/customers/screens/CustomersScreen.tsx": "7968da40903bae0a974f71bb19e8dc169f4f704dc64bb68c3c50a902ff62ce61",
+    "src/customers/screens/MeasurementFormScreen.tsx": "6c4f503132766a2238fc75127d432d82732fb9dab990173760cded6c27d617a2",
+    "src/database/openAppDatabase.ts": "71a56b09d43aa2e5ce28d8feed513d948de2789dccc7b007f19ad4b564f5d52a"
+  }
+}

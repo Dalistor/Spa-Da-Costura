@@ -1,0 +1,34 @@
+{
+  "schema": 1,
+  "id": "ev-bb51e05352b44c14921a5b2e47ed1a35",
+  "contract": "clientes@1",
+  "rule": "CLI-02",
+  "contract_hash": "4bb27419d8bb14722f716fa45b99779e2d2584e7a92f1c0d408e6d97bdf881c8",
+  "method": "test",
+  "command": [
+    "npx",
+    "jest",
+    "__tests__/customers"
+  ],
+  "result": "passed",
+  "exit_code": 0,
+  "at": "2026-10-24T18:42:44.522444+00:00",
+  "revision": "63154a9f2e66a184fd97837cdada745cfef0dbf0",
+  "summary": "Repositório em node:sqlite: medida adicionada, editada e removida só no seu cliente, chave vazia e repetida (inclusive ao editar) recusadas como resultado do domínio, medida relida após reabrir o arquivo",
+  "reference": "Comando executado no checkout; saída exibida no terminal",
+  "files": {
+    "__tests__/customers/customerRepository.test.ts": "66e68f9b9e98b5cabaa9770a3cfeeece231cce69f796e0252c0cff2e5270a5d0",
+    "src/app/RepositoriesProvider.tsx": "0b8791832dc5e024a06d5bec39c21e18247878abb0e65182f16b4008b1e4bca7",
+    "src/app/navigation/Navigator.tsx": "30572dae4be3b3e1b340c0560f4dca677b0318001b50769f728c8f29eebfef7d",
+    "src/customers/data/sqlCustomerRepository.ts": "ca675f475fad37062da1c54b08cfce5f22c4340daccb1c367fcfdde94a95ac2d",
+    "src/customers/data/sqlMeasurementRepository.ts": "790a5595150569f4192902982fc2385c764ecc3b03d940e507375962a0712be9",
+    "src/customers/domain/customer.ts": "3ba65dccad8a4bbd63ca2fe8eb9764fa98e0f72ec92cbd2aca9a852edb2f535e",
+    "src/customers/domain/measurement.ts": "3befc7627e8bd0f99d39e232e23e260397b0bf7fc8ccab122613ec5244c78b4b",
+    "src/customers/domain/repositories.ts": "edced0b155d545a0a109866153b1c2b2376f907d04a4baaa1043a8c0aaedd24f",
+    "src/customers/screens/CustomerDetailScreen.tsx": "d27872e0d8d0d2f0a19a0f92234eb174cdd442dccca2de9a43d51ace840053c8",
+    "src/customers/screens/CustomerFormScreen.tsx": "99d2778f9ea21fee07948dcf9041c37db78700417e0e35394d63b93cf6c38322",
+    "src/customers/screens/CustomersScreen.tsx": "7968da40903bae0a974f71bb19e8dc169f4f704dc64bb68c3c50a902ff62ce61",
+    "src/customers/screens/MeasurementFormScreen.tsx": "6c4f503132766a2238fc75127d432d82732fb9dab990173760cded6c27d617a2"
+  },
+  "sources_stable": true
+}

@@ -5,6 +5,7 @@ Histórico de todas as implementações realizadas neste projeto.
 | # | Título | Data | Status | Arquivos Afetados |
 |---|--------|------|--------|-------------------|
 | [0001](0001/README.md) | Fundação: banco local migrado, tema e rotas (master/0001) | 2026-10-24 | Concluído | package.json, jest.config.js, App.tsx, src/{app,database,money,theme,ui,customers,jobs,products,finance,backup}, __tests__ |
+| [0002](0002/README.md) | Clientes: cadastro, edição, busca e medidas (master/0002) | 2026-10-24 | Concluído | src/{customers,ui,app}, __tests__/customers |
 
 ---
 

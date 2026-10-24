@@ -4,7 +4,7 @@
   "version": 1,
   "title": "Cadastro de clientes e medidas",
   "scope": "master",
-  "status": "draft",
+  "status": "approved",
   "intent": "A costureira cadastra clientes com nome, telefone e descrição opcionais e medidas livres (chave e valor), consulta e exclui clientes (soft delete) no aparelho.",
   "extends": [],
   "boundaries": [
@@ -134,5 +134,10 @@
         }
       ]
     }
+  },
+  "approval": {
+    "by": "Diego",
+    "at": "2026-10-24",
+    "reference": "Sessão Claude Code ee565174 (2026-10-24): mensagem 'Eu aprovo este contrato' em resposta ao pedido de aprovação de clientes@1"
   }
 }

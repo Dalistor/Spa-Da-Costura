@@ -5,6 +5,7 @@ import { colors } from '../theme';
 import { EmptyState } from '../ui';
 import { DatabaseProvider } from './DatabaseContext';
 import { Navigator } from './navigation/Navigator';
+import { RepositoriesProvider } from './RepositoriesProvider';
 import { useDatabaseStartup } from './useDatabaseStartup';
 
 type Props = {
@@ -30,7 +31,9 @@ export function App({ openDatabase }: Props) {
       )}
       {startup.status === 'ready' && (
         <DatabaseProvider database={startup.database}>
-          <Navigator />
+          <RepositoriesProvider>
+            <Navigator />
+          </RepositoriesProvider>
         </DatabaseProvider>
       )}
     </SafeAreaProvider>

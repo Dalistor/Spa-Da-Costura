@@ -1,0 +1,150 @@
+{
+  "schema": 1,
+  "contract": "clientes@1",
+  "rules": {
+    "CLI-01": {
+      "implementation": "implementada",
+      "sources": [
+        {
+          "path": "src/customers/domain/customer.ts",
+          "start": 1,
+          "end": 62,
+          "role": "Validação do cliente (nome obrigatório, opcionais em branco viram nulo)"
+        },
+        {
+          "path": "src/customers/data/sqlCustomerRepository.ts",
+          "start": 1,
+          "end": 74,
+          "role": "Criar, editar, ler e listar clientes ativos no SQLite"
+        },
+        {
+          "path": "src/customers/screens/CustomerFormScreen.tsx",
+          "start": 1,
+          "end": 111,
+          "role": "Formulário de criar/editar cliente"
+        },
+        {
+          "path": "src/customers/screens/CustomerDetailScreen.tsx",
+          "start": 1,
+          "end": 194,
+          "role": "Detalhe do cliente"
+        },
+        {
+          "path": "__tests__/customers/customerRepository.test.ts",
+          "start": 1,
+          "end": 259,
+          "role": "Testes de repositório"
+        }
+      ],
+      "evidence": [
+        "ev-1d7c2d4821894207a90d728020f0a76a",
+        "ev-bc325ba8897e451ea67dc0d0581a25da"
+      ],
+      "delivery": {
+        "stage": "local"
+      },
+      "specs": [
+        "master/0002"
+      ],
+      "notes": ""
+    },
+    "CLI-02": {
+      "implementation": "implementada",
+      "sources": [
+        {
+          "path": "src/customers/domain/measurement.ts",
+          "start": 1,
+          "end": 30,
+          "role": "Validação da medida (chave obrigatória)"
+        },
+        {
+          "path": "src/customers/data/sqlMeasurementRepository.ts",
+          "start": 1,
+          "end": 99,
+          "role": "Medidas no SQLite; chave repetida vira resultado do domínio"
+        },
+        {
+          "path": "src/customers/screens/MeasurementFormScreen.tsx",
+          "start": 1,
+          "end": 90,
+          "role": "Formulário de medida"
+        },
+        {
+          "path": "src/customers/screens/CustomerDetailScreen.tsx",
+          "start": 1,
+          "end": 194,
+          "role": "Lista, edição e remoção de medidas no detalhe"
+        },
+        {
+          "path": "__tests__/customers/customerRepository.test.ts",
+          "start": 1,
+          "end": 259,
+          "role": "Testes de repositório"
+        }
+      ],
+      "evidence": [
+        "ev-bb51e05352b44c14921a5b2e47ed1a35",
+        "ev-30cb34b1eade483c9fe998c95fbb52df"
+      ],
+      "delivery": {
+        "stage": "local"
+      },
+      "specs": [
+        "master/0002"
+      ],
+      "notes": "Chave comparada após trim, diferenciando maiúsculas (leitura literal; decisão aberta registrada em master/0002)."
+    },
+    "CLI-03": {
+      "implementation": "implementada",
+      "sources": [
+        {
+          "path": "src/customers/domain/customer.ts",
+          "start": 1,
+          "end": 62,
+          "role": "searchByName e ordenação por nome"
+        },
+        {
+          "path": "src/customers/screens/CustomersScreen.tsx",
+          "start": 1,
+          "end": 122,
+          "role": "Lista com busca"
+        },
+        {
+          "path": "src/customers/data/sqlCustomerRepository.ts",
+          "start": 1,
+          "end": 74,
+          "role": "Lista de clientes ativos"
+        },
+        {
+          "path": "__tests__/customers/customerRepository.test.ts",
+          "start": 1,
+          "end": 259,
+          "role": "Testes de busca"
+        }
+      ],
+      "evidence": [
+        "ev-41f0cff59f6847a7a1a82e13dab31851",
+        "ev-660e7e658a724d4e96b229082c415e3d"
+      ],
+      "delivery": {
+        "stage": "local"
+      },
+      "specs": [
+        "master/0002"
+      ],
+      "notes": ""
+    },
+    "CLI-04": {
+      "implementation": "ausente",
+      "sources": [],
+      "evidence": [],
+      "delivery": {
+        "stage": "local"
+      },
+      "specs": [
+        "master/0003"
+      ],
+      "notes": "Leituras já ignoram clientes com deleted_at (master/0002); a exclusão em si é master/0003."
+    }
+  }
+}

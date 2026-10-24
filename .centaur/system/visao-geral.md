@@ -19,7 +19,7 @@ Arquitetura proposta (ainda sem código): regras do domínio independentes da UI
 | Área | Definição | Contrato (rascunho) |
 |---|---|---|
 | Sistema | Dados locais em SQLite, Android, paleta bege/marrom, backup e importação, migrações | [`sistema`](../contracts/sistema/v001.json) (aprovado) |
-| Clientes | Nome; telefone e descrição opcionais; medidas livres (chave e valor); exclusão permitida com histórico | [`clientes`](../contracts/clientes/v001.json) |
+| Clientes | Nome; telefone e descrição opcionais; medidas livres (chave e valor); exclusão permitida com histórico | [`clientes`](../contracts/clientes/v001.json) (aprovado) |
 | Serviços e produtos | Serviço = conserto com status Pendente/Pronto/Entregue; produto = peça inteira do catálogo, vendida ao cliente com valor preenchido e editável | [`servicos`](../contracts/servicos/v001.json) |
 | Financeiro | Pagamentos ligados só ao cliente (aviso se passar do devido); despesas; fluxo de caixa; total pago e devido | [`financeiro`](../contracts/financeiro/v001.json) |
 
@@ -60,7 +60,8 @@ Paleta de cores em tons de **bege e marrom**. Valores exatos (tokens) delegados 
 15. Despesas têm categoria: Taxas, Imposto ou Materiais.
 16. (2026-10-24) Contrato `sistema@1` aprovado, com SIS-06 (migrações sem perda de dados).
 17. (2026-10-24) Identificadores de código em inglês; interface em português.
+18. (2026-10-24) Contrato `clientes@1` aprovado.
 
 ## Lacunas abertas
 
-Nenhuma decisão material aberta nos contratos. Falta aprovar `clientes`, `servicos` e `financeiro`.
+Nenhuma decisão material aberta nos contratos. Falta aprovar `servicos` e `financeiro`.

@@ -40,14 +40,37 @@
       "notes": "Demonstrado no emulador Android 36 em modo avião (release com JS embutido)."
     },
     "SIS-02": {
-      "implementation": "ausente",
-      "sources": [],
-      "evidence": [],
+      "implementation": "implementada",
+      "sources": [
+        {
+          "path": "src/database/openAppDatabase.ts",
+          "start": 1,
+          "end": 47,
+          "role": "Banco SQLite em arquivo no aparelho"
+        },
+        {
+          "path": "src/customers/data/sqlCustomerRepository.ts",
+          "start": 1,
+          "end": 74,
+          "role": "Primeira gravação de dados pela UI"
+        },
+        {
+          "path": "src/customers/data/sqlMeasurementRepository.ts",
+          "start": 1,
+          "end": 99,
+          "role": "Gravação de medidas"
+        }
+      ],
+      "evidence": [
+        "ev-f3ead6bf12f0405e8624d112818531ab"
+      ],
       "delivery": {
         "stage": "local"
       },
-      "specs": [],
-      "notes": "Banco em arquivo persiste (coberto em SIS-06 no Node); demonstração pela UI depende da primeira tela que grava dados (spec de clientes)."
+      "specs": [
+        "master/0002"
+      ],
+      "notes": "Demonstrado no emulador em modo avião com clientes e medidas reais (fechar à força e reabrir)."
     },
     "SIS-03": {
       "implementation": "implementada",

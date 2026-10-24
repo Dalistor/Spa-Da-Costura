@@ -7,7 +7,12 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { CashFlowScreen } from '../../finance';
 import { CatalogScreen } from '../../products';
-import { CustomersScreen } from '../../customers';
+import {
+  CustomerDetailScreen,
+  CustomerFormScreen,
+  CustomersScreen,
+  MeasurementFormScreen,
+} from '../../customers';
 import { JobsScreen } from '../../jobs';
 import { SettingsScreen } from '../../backup';
 import { colors } from '../../theme';
@@ -82,17 +87,17 @@ export function Navigator() {
         <Stack.Group screenOptions={{ headerTintColor: colors.accent }}>
           <Stack.Screen
             name="CustomerDetail"
-            component={PendingScreen}
+            component={CustomerDetailScreen}
             options={{ title: 'Cliente' }}
           />
           <Stack.Screen
             name="CustomerForm"
-            component={PendingScreen}
+            component={CustomerFormScreen}
             options={{ title: 'Cliente' }}
           />
           <Stack.Screen
             name="MeasurementForm"
-            component={PendingScreen}
+            component={MeasurementFormScreen}
             options={{ title: 'Medida' }}
           />
           <Stack.Screen
