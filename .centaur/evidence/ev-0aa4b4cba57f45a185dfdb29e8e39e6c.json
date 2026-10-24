@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "id": "ev-0aa4b4cba57f45a185dfdb29e8e39e6c",
+  "contract": "sistema@1",
+  "rule": "SIS-03",
+  "contract_hash": "67c2c67a03901dd912c682f243b82af6d943a979e8fe6028c044acee0722c8e6",
+  "method": "manual",
+  "result": "passed",
+  "at": "2026-10-24T18:12:52.442883+00:00",
+  "revision": "e6645d3d539e1fd0d403b1627277fe4e4340177f",
+  "summary": "Inspeção visual no emulador Android 36: fundo bege, barra superior e de abas em superfície clara, títulos em marrom escuro e aba ativa em marrom de destaque, todos vindos de src/theme/colors.ts (capturas 02, 04 e 05).",
+  "reference": "Sessão Claude Code ee565174 (2026-10-24), comandos adb no emulador Pixel_API_36; capturas em .centaur/evidence/screens/",
+  "files": {
+    ".centaur/evidence/screens/02-abas.png": "b17fcb05401ca05fb0bbc72b9f2c98ee443afccd7a93a3cd28c302cbc8fd4996",
+    ".centaur/evidence/screens/05-aba-caixa.png": "b3d5a00e1ead886a9b07021aacc9fa9c940ae01b0970c679fdb8171dcd7c51c3",
+    "src/app/navigation/Navigator.tsx": "bf176b376d89456d47c821b4a975ec32586e3dff9663d701c0ceb99acb98cfdb",
+    "src/theme/colors.ts": "73d3645fe4dbacaae1ecd37d025f0a8cd8a1843144e7fa6a5a5fdee6de5dc541",
+    "src/ui/EmptyState.tsx": "d7569deaf5ff55b3d31f9f7cb8e9e1b2a98406665dcf3da0967c7f93250830d0"
+  }
+}

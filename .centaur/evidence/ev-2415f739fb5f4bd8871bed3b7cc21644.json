@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "id": "ev-2415f739fb5f4bd8871bed3b7cc21644",
+  "contract": "sistema@1",
+  "rule": "SIS-01",
+  "contract_hash": "67c2c67a03901dd912c682f243b82af6d943a979e8fe6028c044acee0722c8e6",
+  "method": "manual",
+  "result": "passed",
+  "at": "2026-10-24T18:12:52.438437+00:00",
+  "revision": "e6645d3d539e1fd0d403b1627277fe4e4340177f",
+  "summary": "Demonstração no emulador Android 36 (Pixel_API_36, x86_64): APK release com JS embutido, sem adb reverse, em modo avião (airplane_mode_on=1). O app abriu (Status ok, 2,6 s), foi fechado e reaberto (Status ok, 2,2 s) mostrando as abas, a navegação para Caixa funcionou e o logcat não teve erros. Limite: nenhuma tela grava dados ainda; o APK debug depende do Metro pela rede local, que o modo avião bloqueia (só desenvolvimento).",
+  "reference": "Sessão Claude Code ee565174 (2026-10-24), comandos adb no emulador Pixel_API_36; capturas em .centaur/evidence/screens/",
+  "files": {
+    ".centaur/evidence/screens/02-abas.png": "b17fcb05401ca05fb0bbc72b9f2c98ee443afccd7a93a3cd28c302cbc8fd4996",
+    ".centaur/evidence/screens/03-release-aviao.png": "6cddeaa230b887588ece2a49f18b37e9ed1d03122278bd20ac01f8665ba87290",
+    ".centaur/evidence/screens/04-reaberto-aviao.png": "6cddeaa230b887588ece2a49f18b37e9ed1d03122278bd20ac01f8665ba87290",
+    ".centaur/evidence/screens/05-aba-caixa.png": "b3d5a00e1ead886a9b07021aacc9fa9c940ae01b0970c679fdb8171dcd7c51c3",
+    "App.tsx": "3e60bb7f9893bc71b3274b57e0d39c2e7733be2cb7d8a2039fb8c89ba97840e3",
+    "src/app/useDatabaseStartup.ts": "09a9295a10097f3eda78974522cb2c3bcd388f9f70a4427a012de7fb00775f1b",
+    "src/database/openAppDatabase.ts": "71a56b09d43aa2e5ce28d8feed513d948de2789dccc7b007f19ad4b564f5d52a"
+  }
+}

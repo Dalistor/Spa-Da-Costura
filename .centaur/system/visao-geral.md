@@ -12,13 +12,13 @@ Aplicativo Android para um ateliê de costura gerenciar seu dia a dia: clientes 
 - **Sem servidor:** todos os dados ficam no aparelho, em **SQLite**. Não há conta, login, sincronização nem API remota.
 - **Backup:** exportar os dados para um arquivo e importar a partir dele; a importação **substitui todos os dados** atuais.
 
-Arquitetura proposta (ainda não adotada, sem código): manter as regras do domínio (saldo, fluxo de caixa, validações) independentes da UI e do SQLite. Detalhes serão decididos na primeira spec.
+Arquitetura proposta (ainda sem código): regras do domínio independentes da UI e do SQLite, pacotes por funcionalidade, esquema do banco e rotas em [arquitetura.md](arquitetura.md); primeira realização planejada em [master/0001](../specs/0001/README.md).
 
 ## Funcionalidades e contratos
 
 | Área | Definição | Contrato (rascunho) |
 |---|---|---|
-| Sistema | Dados locais em SQLite, Android, paleta bege/marrom, backup e importação | [`sistema`](../contracts/sistema/v001.json) |
+| Sistema | Dados locais em SQLite, Android, paleta bege/marrom, backup e importação, migrações | [`sistema`](../contracts/sistema/v001.json) (aprovado) |
 | Clientes | Nome; telefone e descrição opcionais; medidas livres (chave e valor); exclusão permitida com histórico | [`clientes`](../contracts/clientes/v001.json) |
 | Serviços e produtos | Serviço = conserto com status Pendente/Pronto/Entregue; produto = peça inteira do catálogo, vendida ao cliente com valor preenchido e editável | [`servicos`](../contracts/servicos/v001.json) |
 | Financeiro | Pagamentos ligados só ao cliente (aviso se passar do devido); despesas; fluxo de caixa; total pago e devido | [`financeiro`](../contracts/financeiro/v001.json) |
@@ -58,7 +58,9 @@ Paleta de cores em tons de **bege e marrom**. Valores exatos (tokens) delegados 
 13. Fluxo de caixa separado **por mês**.
 14. Tokens exatos da paleta bege/marrom: decisão delegada ao agente.
 15. Despesas têm categoria: Taxas, Imposto ou Materiais.
+16. (2026-10-24) Contrato `sistema@1` aprovado, com SIS-06 (migrações sem perda de dados).
+17. (2026-10-24) Identificadores de código em inglês; interface em português.
 
 ## Lacunas abertas
 
-Nenhuma decisão material aberta nos contratos. Falta aprová-los.
+Nenhuma decisão material aberta nos contratos. Falta aprovar `clientes`, `servicos` e `financeiro`.

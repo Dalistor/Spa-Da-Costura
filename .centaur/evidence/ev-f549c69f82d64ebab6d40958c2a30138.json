@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "id": "ev-f549c69f82d64ebab6d40958c2a30138",
+  "contract": "sistema@1",
+  "rule": "SIS-01",
+  "contract_hash": "67c2c67a03901dd912c682f243b82af6d943a979e8fe6028c044acee0722c8e6",
+  "method": "test",
+  "command": [
+    "sh",
+    "-c",
+    "! grep -rnE 'fetch\\(|XMLHttpRequest|WebSocket|axios' src App.tsx && ! grep -nE '\"(axios|apollo|firebase|@supabase)' package.json && npx jest __tests__/App.test.tsx"
+  ],
+  "result": "passed",
+  "exit_code": 0,
+  "at": "2026-10-24T17:24:56.979333+00:00",
+  "revision": "e6645d3d539e1fd0d403b1627277fe4e4340177f",
+  "summary": "Checagem automática: código sem fetch/XMLHttpRequest/WebSocket/axios e sem biblioteca de rede; dados lidos/gravados só pela porta Database sobre SQLite local (op-sqlite no app). Teste do App migra e abre a navegação sem rede. Limite: modo avião não demonstrado em aparelho (sem JDK/emulador).",
+  "reference": "Comando executado no checkout; saída exibida no terminal",
+  "files": {
+    "App.tsx": "3e60bb7f9893bc71b3274b57e0d39c2e7733be2cb7d8a2039fb8c89ba97840e3",
+    "__tests__/App.test.tsx": "d68202f8148208815fbff2f537bdcd3eee44a6ab6975cc6782b770789f9e3c21",
+    "package.json": "b5b827213107d576072f06943afc423b0eea34ed2fb57e3731334c612fde54fc",
+    "src/app/App.tsx": "d5c5fa9879e2e5970e1b680d10911ffb13c5e5a6a24f714556affa8b3288348a",
+    "src/app/useDatabaseStartup.ts": "09a9295a10097f3eda78974522cb2c3bcd388f9f70a4427a012de7fb00775f1b",
+    "src/database/openAppDatabase.ts": "71a56b09d43aa2e5ce28d8feed513d948de2789dccc7b007f19ad4b564f5d52a"
+  },
+  "sources_stable": true
+}

@@ -1,0 +1,124 @@
+{
+  "schema": 1,
+  "contract": "sistema@1",
+  "rules": {
+    "SIS-01": {
+      "implementation": "implementada",
+      "sources": [
+        {
+          "path": "src/database/openAppDatabase.ts",
+          "start": 1,
+          "end": 47,
+          "role": "Adaptador SQLite local (op-sqlite), único acesso aos dados no app"
+        },
+        {
+          "path": "src/app/useDatabaseStartup.ts",
+          "start": 1,
+          "end": 39,
+          "role": "Abre e migra o banco local antes de mostrar o app"
+        },
+        {
+          "path": "App.tsx",
+          "start": 1,
+          "end": 12,
+          "role": "Raiz liga o app ao banco do aparelho"
+        }
+      ],
+      "evidence": [
+        "ev-f549c69f82d64ebab6d40958c2a30138",
+        "ev-2415f739fb5f4bd8871bed3b7cc21644"
+      ],
+      "delivery": {
+        "stage": "local"
+      },
+      "specs": [
+        "master/0001"
+      ],
+      "notes": "Demonstrado no emulador Android 36 em modo avião (release com JS embutido)."
+    },
+    "SIS-02": {
+      "implementation": "ausente",
+      "sources": [],
+      "evidence": [],
+      "delivery": {
+        "stage": "local"
+      },
+      "specs": [],
+      "notes": "Banco em arquivo persiste (coberto em SIS-06 no Node); demonstração pela UI depende da primeira tela que grava dados (spec de clientes)."
+    },
+    "SIS-03": {
+      "implementation": "implementada",
+      "sources": [
+        {
+          "path": "src/theme/colors.ts",
+          "start": 1,
+          "end": 12,
+          "role": "Tokens da paleta bege/marrom"
+        },
+        {
+          "path": "src/app/navigation/Navigator.tsx",
+          "start": 21,
+          "end": 31,
+          "role": "Tema da navegação a partir dos tokens"
+        },
+        {
+          "path": "src/ui/EmptyState.tsx",
+          "start": 1,
+          "end": 37,
+          "role": "Tela base usando os tokens"
+        }
+      ],
+      "evidence": [
+        "ev-0b9ecc6162bd4557ae2a08136ab6e394",
+        "ev-0aa4b4cba57f45a185dfdb29e8e39e6c"
+      ],
+      "delivery": {
+        "stage": "local"
+      },
+      "specs": [
+        "master/0001"
+      ],
+      "notes": "Inspecionado no emulador Android 36."
+    },
+    "SIS-06": {
+      "implementation": "implementada",
+      "sources": [
+        {
+          "path": "src/database/migrate.ts",
+          "start": 1,
+          "end": 50,
+          "role": "Executor de migrações transacional com user_version"
+        },
+        {
+          "path": "src/database/migrations/001_initial_schema.ts",
+          "start": 1,
+          "end": 88,
+          "role": "Esquema v1, relações e restrições"
+        },
+        {
+          "path": "src/database/initializeDatabase.ts",
+          "start": 1,
+          "end": 12,
+          "role": "Ativa foreign_keys e migra"
+        },
+        {
+          "path": "__tests__/database/schema.test.ts",
+          "start": 1,
+          "end": 188,
+          "role": "Testes de migração e restrições"
+        }
+      ],
+      "evidence": [
+        "ev-33228507ad9d4e318f0e5e608ea74687",
+        "ev-cf6a9fc9f3594b9bb0118a16f343042a"
+      ],
+      "delivery": {
+        "stage": "local"
+      },
+      "specs": [
+        "master/0001"
+      ],
+      "notes": "Testado em node:sqlite e conferido no banco do emulador (op-sqlite): v1 criada uma vez e preservada ao reabrir."
+    }
+  }
+}

@@ -4,7 +4,7 @@
   "version": 1,
   "title": "Limites gerais do Spa da Costura",
   "scope": "master",
-  "status": "draft",
+  "status": "approved",
   "intent": "App Android em React Native CLI para gestão de ateliê de costura, com dados locais em SQLite, sem servidor, e backup por arquivo.",
   "extends": [],
   "boundaries": [
@@ -69,6 +69,18 @@
       "depends_on": [
         "sistema/SIS-04"
       ]
+    },
+    {
+      "id": "SIS-06",
+      "kind": "non_functional",
+      "description": "O esquema do banco local é versionado e atualizado por migrações sequenciais, sem perda dos dados existentes ao atualizar o app",
+      "acceptance": [
+        "Abrir o app pela primeira vez cria o esquema completo com relações entre cliente, medidas, serviços, vendas de produtos e pagamentos",
+        "Reabrir o app não reaplica migrações já executadas nem apaga registros",
+        "Uma migração que falha não deixa o banco em estado parcial: os dados e a versão anteriores permanecem",
+        "O banco recusa registros órfãos (medida, serviço, venda ou pagamento sem cliente existente)"
+      ],
+      "depends_on": []
     }
   ],
   "specification": {
@@ -80,5 +92,10 @@
       "Acesso de clientes ao app",
       "iOS"
     ]
+  },
+  "approval": {
+    "by": "Diego",
+    "at": "2026-10-24",
+    "reference": "Sessão de planejamento da spec master/0001 (Claude Code, 2026-10-24): resposta 'Aprovar sistema@1' à pergunta de aprovação do contrato, incluindo SIS-06"
   }
 }

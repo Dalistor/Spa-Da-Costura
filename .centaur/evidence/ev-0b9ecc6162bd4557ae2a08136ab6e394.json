@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "id": "ev-0b9ecc6162bd4557ae2a08136ab6e394",
+  "contract": "sistema@1",
+  "rule": "SIS-03",
+  "contract_hash": "67c2c67a03901dd912c682f243b82af6d943a979e8fe6028c044acee0722c8e6",
+  "method": "test",
+  "command": [
+    "sh",
+    "-c",
+    "! grep -rnE '#[0-9A-Fa-f]{3,8}([^0-9A-Za-z]|$)|rgba?\\(' src App.tsx --exclude-dir=theme"
+  ],
+  "result": "passed",
+  "exit_code": 0,
+  "at": "2026-10-24T17:24:54.027818+00:00",
+  "revision": "e6645d3d539e1fd0d403b1627277fe4e4340177f",
+  "summary": "Checagem automática: nenhuma cor literal (#hex/rgb) fora de src/theme; fundo, superfície, texto e destaque das telas e da navegação vêm de src/theme/colors.ts (tons bege/marrom). Limite: aparência não inspecionada em aparelho.",
+  "reference": "Comando executado no checkout; saída exibida no terminal",
+  "files": {
+    "src/app/App.tsx": "d5c5fa9879e2e5970e1b680d10911ffb13c5e5a6a24f714556affa8b3288348a",
+    "src/app/navigation/Navigator.tsx": "bf176b376d89456d47c821b4a975ec32586e3dff9663d701c0ceb99acb98cfdb",
+    "src/theme/colors.ts": "73d3645fe4dbacaae1ecd37d025f0a8cd8a1843144e7fa6a5a5fdee6de5dc541",
+    "src/theme/index.ts": "6c151c2cee0ce18c65f7578a39b851478588040ad3be3466c2c12c20767f715d",
+    "src/ui/EmptyState.tsx": "d7569deaf5ff55b3d31f9f7cb8e9e1b2a98406665dcf3da0967c7f93250830d0"
+  },
+  "sources_stable": true
+}

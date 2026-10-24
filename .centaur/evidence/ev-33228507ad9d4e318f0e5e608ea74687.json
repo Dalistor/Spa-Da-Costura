@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "id": "ev-33228507ad9d4e318f0e5e608ea74687",
+  "contract": "sistema@1",
+  "rule": "SIS-06",
+  "contract_hash": "67c2c67a03901dd912c682f243b82af6d943a979e8fe6028c044acee0722c8e6",
+  "method": "test",
+  "command": [
+    "npx",
+    "jest",
+    "__tests__/database"
+  ],
+  "result": "passed",
+  "exit_code": 0,
+  "at": "2026-10-24T17:24:53.831298+00:00",
+  "revision": "e6645d3d539e1fd0d403b1627277fe4e4340177f",
+  "summary": "Jest com node:sqlite: banco vazio chega à v1 com as 7 tabelas e FKs ativas; reabrir o arquivo não reaplica nem apaga; migração com erro faz rollback mantendo versão e dados; banco mais novo é recusado; FKs recusam medida/serviço/venda/pagamento órfãos; cliente com pagamento não é apagado fisicamente. Limite: roda no SQLite do Node; o adaptador op-sqlite do aparelho não foi exercitado (sem JDK/emulador).",
+  "reference": "Comando executado no checkout; saída exibida no terminal",
+  "files": {
+    "__tests__/database/schema.test.ts": "a7db39c1f85d0b42c112b0a11021adfaf5a2cc4420878f4be501ed6e228e9e9d",
+    "__tests__/support/nodeSqliteDatabase.ts": "9552026caef26244ac2f7866bf1375964765df6571d80d397d2e82bdaaf022a7",
+    "jest.config.js": "e911b7746dffa0fae978909afeca10c62db6bc4b177197b60d6c24f5c9906fc1",
+    "src/database/Database.ts": "6c32adfc74ea0421b273dd0421ea9fa6c06a80040bd9234fcf4e9b333c514a2c",
+    "src/database/index.ts": "370ccad22684a4c0ffb04e3f92bf300572230b5721acda9b6fe1f2cf292e10b5",
+    "src/database/initializeDatabase.ts": "0ab929a66facadcc05d5677fb5cf6cef3e50185cfdbf8fd312d5f9ef263b8974",
+    "src/database/migrate.ts": "35fd86412e3b00264c55c084a611464b3787cb841789e6493f3d70baf5e2889b",
+    "src/database/migrations/001_initial_schema.ts": "2393b5dfe11929e2e147fb2cd1170b71f0296c3a2f418d35fe4cd7a66ce56fdd",
+    "src/database/migrations/index.ts": "4aee2efdd155ae05c4ce20769b9fc54a6299220158ef8b87c24519212eb5c5dd",
+    "src/database/openAppDatabase.ts": "71a56b09d43aa2e5ce28d8feed513d948de2789dccc7b007f19ad4b564f5d52a"
+  },
+  "sources_stable": true
+}

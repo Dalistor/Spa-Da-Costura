@@ -1,7 +1,7 @@
 # Spa da Costura
 
 ## Visão Geral
-App Android em React Native CLI para gerenciar um ateliê de costura: clientes e medidas livres, serviços (consertos), produtos (peças) vendidos a clientes, pagamentos, despesas e saldo por cliente. Sem servidor: dados locais em SQLite, com backup/importação por arquivo (importar substitui tudo). Scaffold React Native 0.88 (TypeScript) criado; funcionalidades ainda não implementadas. Detalhes e lacunas em [.centaur/system/visao-geral.md](.centaur/system/visao-geral.md).
+App Android em React Native CLI para gerenciar um ateliê de costura: clientes e medidas livres, serviços (consertos), produtos (peças) vendidos a clientes, pagamentos, despesas e saldo por cliente. Sem servidor: dados locais em SQLite, com backup/importação por arquivo (importar substitui tudo). Fundação implementada (banco SQLite migrado, tema, navegação); funcionalidades ainda não implementadas. Camadas, esquema e rotas em [arquitetura.md](.centaur/system/arquitetura.md). Detalhes e lacunas em [.centaur/system/visao-geral.md](.centaur/system/visao-geral.md).
 
 ## Recuperação de contexto
 Priorize busca e símbolos do editor. Graphify é opcional para relações amplas; consulte `.centaur/graphify/graph.json` pelo adaptador da skill apenas quando útil. Confirme fontes atuais. Não indexe automaticamente após mudanças. Decisões e documentação gerada ficam em `.centaur/`; código e testes comprovam comportamento.
@@ -12,7 +12,7 @@ Backend `files` (em `.centaur/workspace.json`): registros em `.centaur/implement
 ## Contratos e realização
 Contratos em `.centaur/contracts/<id>/vNNN.json` definem o comportamento desejado e a autonomia. Estado em `.centaur/state/` e evidências em `.centaur/evidence/` registram a realização; o ciclo normativo de `graphify` define formatos e gates. Contratos aprovados são versionados, não reescritos. Antes de editar, consultar apenas as regras e limites pertinentes. Checklist de spec não comprova comportamento. Consulte specs, fontes e evidências diretamente no terminal. Apresente resultado, validação e próxima ação com links; detalhes ficam nos registros.
 
-Contratos atuais (rascunho): [sistema](.centaur/contracts/sistema/v001.json), [clientes](.centaur/contracts/clientes/v001.json), [servicos](.centaur/contracts/servicos/v001.json), [financeiro](.centaur/contracts/financeiro/v001.json).
+Contratos atuais: [sistema](.centaur/contracts/sistema/v001.json) (aprovado); rascunho: [clientes](.centaur/contracts/clientes/v001.json), [servicos](.centaur/contracts/servicos/v001.json), [financeiro](.centaur/contracts/financeiro/v001.json).
 
 ## Comandos essenciais
 Na raiz, com Node >= 22.11 e npm:
@@ -26,13 +26,13 @@ Na raiz, com Node >= 22.11 e npm:
 ## Arquitetura de Camadas
 - App React Native CLI (sem Expo), somente Android, sem servidor; dados persistidos localmente em SQLite.
 - Proibido: chamadas de rede para ler ou gravar dados do ateliê, contas/login ou backend remoto, salvo nova versão do contrato `sistema`.
-- Direção proposta (não adotada): regras de domínio (saldo, histórico, validações) independentes da UI e do armazenamento local.
+- Regras de domínio independentes da UI e do armazenamento; SQL só em `src/database` e nos `data/` das funcionalidades; esquema muda só por nova migração em `src/database/migrations` (nunca editar uma já publicada). Detalhes em [arquitetura.md](.centaur/system/arquitetura.md).
 
 ## Testes
 Jest (preset `@react-native/jest-preset`), testes em `__tests__/`. Pontos vitais: persistência local dos dados (sem perda após reinício), backup/importação sem perda nem corrupção, cálculos financeiros (total pago/devido, fluxo de caixa) e integridade das relações cliente → medidas/serviços/pagamentos. Reutilize testes existentes; teste novo só para falha concreta em ponto vital sem proteção suficiente. Para mudanças de UI de baixo impacto, use verificação proporcional.
 
 ## Vocabulário e Idioma do Código
-Domínio e textos da interface em português. Idioma dos identificadores de código a definir na primeira spec. Termos do domínio (Cliente, Medida, Serviço, Produto, Venda de produto, Pagamento, Despesa, Total devido) em [visao-geral.md](.centaur/system/visao-geral.md#vocabulário); consulte antes de nomear código.
+Domínio e textos da interface em português; identificadores de código em inglês (glossário em [arquitetura.md](.centaur/system/arquitetura.md#idioma)). Termos do domínio (Cliente, Medida, Serviço, Produto, Venda de produto, Pagamento, Despesa, Total devido) em [visao-geral.md](.centaur/system/visao-geral.md#vocabulário); consulte antes de nomear código.
 
 ## Regras e Restrições
 - Paleta visual em tons de bege e marrom, por tokens centralizados (valores exatos a critério do agente).

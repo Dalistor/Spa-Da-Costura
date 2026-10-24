@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "id": "ev-cf6a9fc9f3594b9bb0118a16f343042a",
+  "contract": "sistema@1",
+  "rule": "SIS-06",
+  "contract_hash": "67c2c67a03901dd912c682f243b82af6d943a979e8fe6028c044acee0722c8e6",
+  "method": "manual",
+  "result": "passed",
+  "at": "2026-10-24T18:12:52.444755+00:00",
+  "revision": "e6645d3d539e1fd0d403b1627277fe4e4340177f",
+  "summary": "No aparelho emulado: a primeira abertura (debug) criou databases/spa-da-costura.db com user_version 1, 7 tabelas e FKs (RESTRICT para customer, SET NULL para product). Depois de duas aberturas da release em modo avião, o arquivo seguia com user_version 1, 7 tabelas e o mesmo horário de modificação (14:57), sem reaplicar a migração. Leitura feita copiando o arquivo via run-as e consultando no node:sqlite.",
+  "reference": "Sessão Claude Code ee565174 (2026-10-24), comandos adb no emulador Pixel_API_36; capturas em .centaur/evidence/screens/",
+  "files": {
+    "__tests__/database/schema.test.ts": "a7db39c1f85d0b42c112b0a11021adfaf5a2cc4420878f4be501ed6e228e9e9d",
+    "src/database/initializeDatabase.ts": "0ab929a66facadcc05d5677fb5cf6cef3e50185cfdbf8fd312d5f9ef263b8974",
+    "src/database/migrate.ts": "35fd86412e3b00264c55c084a611464b3787cb841789e6493f3d70baf5e2889b",
+    "src/database/migrations/001_initial_schema.ts": "2393b5dfe11929e2e147fb2cd1170b71f0296c3a2f418d35fe4cd7a66ce56fdd"
+  }
+}
