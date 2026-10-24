@@ -1,7 +1,7 @@
 # Spa da Costura
 
 ## Visão Geral
-App Android em React Native CLI para gerenciar um ateliê de costura: clientes e medidas livres, serviços (consertos), produtos (peças) vendidos a clientes, pagamentos, despesas e saldo por cliente. Sem servidor: dados locais em SQLite, com backup/importação por arquivo (importar substitui tudo). Fundação implementada (banco SQLite migrado, tema, navegação); funcionalidades ainda não implementadas. Camadas, esquema e rotas em [arquitetura.md](.centaur/system/arquitetura.md). Detalhes e lacunas em [.centaur/system/visao-geral.md](.centaur/system/visao-geral.md).
+App Android em React Native CLI para gerenciar um ateliê de costura: clientes e medidas livres, serviços (consertos), produtos (peças) vendidos a clientes, pagamentos, despesas e saldo por cliente. Sem servidor: dados locais em SQLite, com backup/importação por arquivo (importar substitui tudo). Fundação (banco SQLite migrado, tema, navegação) e clientes com medidas (cadastro, busca, soft delete) implementados; serviços, produtos, financeiro e backup ainda não. Camadas, esquema e rotas em [arquitetura.md](.centaur/system/arquitetura.md). Detalhes e lacunas em [.centaur/system/visao-geral.md](.centaur/system/visao-geral.md).
 
 ## Recuperação de contexto
 Priorize busca e símbolos do editor. Graphify é opcional para relações amplas; consulte `.centaur/graphify/graph.json` pelo adaptador da skill apenas quando útil. Confirme fontes atuais. Não indexe automaticamente após mudanças. Decisões e documentação gerada ficam em `.centaur/`; código e testes comprovam comportamento.

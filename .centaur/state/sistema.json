@@ -67,7 +67,7 @@
       "delivery": {
         "stage": "integrated",
         "reference": "main local (commit, sem push)",
-        "revision": "267f798",
+        "revision": "388c7fe",
         "at": "2026-10-24"
       },
       "specs": [

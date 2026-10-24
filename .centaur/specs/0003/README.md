@@ -1,7 +1,7 @@
 # 0003 Excluir cliente por soft delete com confirmação
 
 **Data:** 2026-10-24
-**Status:** Em andamento
+**Status:** Concluída
 **Escopo:** master
 **Responsável:** Diego
 **Contrato:** clientes@1
@@ -71,6 +71,7 @@ Execução em 2026-10-24, registro [implements/0003](../../implements/0003/READM
 - O teste existente "deleted customers are hidden" foi substituído pelo caso de soft delete via repositório (sem novo arquivo).
 - Mudanças em arquivos compartilhados com master/0002 desatualizaram as provas de CLI-01..03 e SIS-01..03: testes e checagens reexecutados e demonstração manual repetida no build novo.
 - Banco do APK release não é legível por adb; preservação de linha e lançamentos provada no teste de repositório (limite registrado na evidência).
+- Integrada em `main` local (388c7fe, sem push); `validate-lifecycle.py --complete master/0003` ok.
 
 ## Checklist de conclusão
 - [x] Task 01 — Soft delete no repositório
