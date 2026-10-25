@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "id": "ev-b5f927346f574a34960f7efa11a6181e",
+  "contract": "financeiro@1",
+  "rule": "FIN-01",
+  "contract_hash": "b98633ccf23c45d533f425ea118eb6dc261ecf3e0f115158ca1d8163093f64e1",
+  "method": "manual",
+  "result": "passed",
+  "at": "2026-10-25T11:43:03.257411+00:00",
+  "revision": "8168deb30e37f34e5d8f39f01351e8e0cd756cab",
+  "summary": "Demonstração em 'Lucia Ramos' (serviço R$ 100,00 + venda R$ 50,00): 'Registrar pagamento' abriu com data 25/10/2026; '0' e 'abc' recusados com erro junto ao valor; R$ 40,00 gravado; R$ 140,00 mostrou 'Pagamento acima do devido' (deve R$ 110,00), Cancelar não gravou e Gravar gravou; pagamento editado de R$ 140,00 para R$ 110,00 sem aviso; pagamento de R$ 90,00 excluído após confirmação; pagamentos mantidos após reiniciar.",
+  "reference": "Sessão Claude Code 3b466626 (2026-10-25), APK release x86_64 de master/0007 no emulador Pixel_API_36, modo avião (airplane_mode_on=1), data do aparelho 2026-10-25; capturas 39–49 em .centaur/evidence/screens/",
+  "files": {
+    ".centaur/evidence/screens/39-devido-150.png": "ea53dfb54b1d24b25a6096b63ced7968eebc087f4246ae56e29d7e7b1090f44e",
+    ".centaur/evidence/screens/40-pagamento-zero.png": "9039c3f53a0572e559d0e6ea7c36b7402f9c7f523a48a3cd0b694d3ce9e5a480",
+    ".centaur/evidence/screens/41-pagamento-abc.png": "78b7452574b3f1d36cec608136e6cfa690a47d7ff9b5e55969341cb683bcfc4d",
+    ".centaur/evidence/screens/42-pago-40-devido-110.png": "c354fc9135dcba558193300176554c725a396c514533ad0d416357cf950f44ad",
+    ".centaur/evidence/screens/43-confirmar-exclusao-pagamento.png": "1e5ef365b3339a5dd3e49c2fb32aa482f802ce0c10c7c65490fc5fa418bc070f",
+    ".centaur/evidence/screens/44-aviso-acima-do-devido.png": "4ec2ea3a780573040411903449d1711cf48fffb4dcd84bd597626b2295bb4aa5",
+    ".centaur/evidence/screens/45-cancelar-nao-grava.png": "0aada5f7da0390ceac4c3fd9872e9f32e9e98e36a44f2ea9f0e545de035666f0",
+    ".centaur/evidence/screens/46-credito-30.png": "1d7c7356a0247b3439aac862541657e5eb930b039cb14ef788e41f6456e3f382",
+    ".centaur/evidence/screens/47-editado-sem-credito.png": "29ea68c24b46f6a78a0e4e001102e3f4869f4a0649c3e7a23d5628c9c4f7c915",
+    ".centaur/evidence/screens/48-apos-excluir-servico.png": "18e7bfee5ffd6f354aa136448e39bf5473cf1d39eb8e6405605365d599c0a31f",
+    ".centaur/evidence/screens/49-pagamentos-apos-reinicio.png": "18e7bfee5ffd6f354aa136448e39bf5473cf1d39eb8e6405605365d599c0a31f",
+    "__tests__/finance/paymentRepository.test.ts": "3a7cab91d86325975b7da9d0de58870e3ba28132c495e42b1af58a155f6c54f1",
+    "src/finance/data/sqlPaymentRepository.ts": "6a19b87c2d227febb894d10eef8f2b4900cf6a12f8096c5d033fb67ebe03f713",
+    "src/finance/domain/balance.ts": "86e3e63f0ecc723dec8e20c75a295521f8d59eb052c10cfd5e27ba1758a8ec55",
+    "src/finance/domain/payment.ts": "9efcc0c75efebe3a8482deb7c941c2a18d4972611a6dd1e72d4c67ace438c64a",
+    "src/finance/screens/CustomerPaymentsSection.tsx": "5d512177120637623db0ab94583773340fa3c206777b503e167f28b2e3711924",
+    "src/finance/screens/PaymentFormScreen.tsx": "04161a78e184703f9a8fa89964f140833e976267746caff584452b7bf546fb01",
+    "src/ui/DateField.tsx": "5bddd493caba4499f5aaf1ae6eea56bfb77e33a7c40e74a55143854ae3d8ae45"
+  }
+}

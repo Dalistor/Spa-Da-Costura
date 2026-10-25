@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "id": "ev-366f6158b19c4238afd16eebb7148b5a",
+  "contract": "financeiro@1",
+  "rule": "FIN-04",
+  "contract_hash": "b98633ccf23c45d533f425ea118eb6dc261ecf3e0f115158ca1d8163093f64e1",
+  "method": "test",
+  "command": [
+    "npx",
+    "jest",
+    "__tests__/finance/cashFlow.test.ts"
+  ],
+  "result": "passed",
+  "exit_code": 0,
+  "at": "2026-10-25T12:24:36.681584+00:00",
+  "revision": "fd2e190469d6fa95f72d65ba987cbace2b1eeeec",
+  "summary": "Outubro soma só pagamentos e despesas de 01/10 e 31/10 (fora 30/09 e 01/11), inclusive pagamentos de cliente excluído; saldo negativo quando as saídas superam as entradas; mês anterior/seguinte na virada de ano e nome 'Outubro de 2026'",
+  "reference": "Comando executado no checkout; saída exibida no terminal",
+  "files": {
+    "__tests__/finance/cashFlow.test.ts": "af057e6a2ef247be70860fedca079686fda68ce04408fcca7b13f85dcd53ec8d",
+    "src/calendar/businessMonth.ts": "0f6521b7c11e4174adbdf4b48e658875f7a58a93bc28e73fceb4693657203d5a",
+    "src/finance/data/monthRange.ts": "8607f0b126f9c432b2715fe51f1cc727b5010cab6892c3391d1486c1208f9010",
+    "src/finance/data/sqlCashFlowRepository.ts": "a0bc09c784a9b3c799577d58f809ffebdff2c1fa385b304bd1007b7a1388cc2d",
+    "src/finance/domain/cashFlow.ts": "6eedfaa786f3a8c6f7654658d76ff6a71c320a9176fd56a85578c72c91c1992f",
+    "src/finance/screens/CashFlowScreen.tsx": "3da9cb53742de77e3349503ee7ac58cc2b0a5159316df2c01b6a43ceda9a3a9e"
+  },
+  "sources_stable": true
+}

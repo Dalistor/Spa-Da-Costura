@@ -1,7 +1,7 @@
 # 0007 Pagamentos do cliente com total pago, devido e crédito
 
 **Data:** 2026-10-24
-**Status:** Pendente
+**Status:** Concluída
 **Escopo:** master
 **Responsável:** Diego
 **Contrato:** financeiro@1
@@ -80,11 +80,15 @@ Demonstração: APK release em modo avião → em um cliente sem histórico, reg
 
 ## Diferença entre plano e resultado
 
-—
+- **Roteiro da demonstração corrigido.** O plano dizia que um pagamento de R$ 90,00 depois de R$ 40,00 passaria do devido de R$ 150,00, chegando a "Crédito R$ 30,00". Isso estava errado: 40 + 90 = 130, abaixo de 150. O app gravou sem aviso, como deve, e esse pagamento foi excluído na demonstração. O aviso foi demonstrado com R$ 140,00, que passa do devido em R$ 30,00: "Pago R$ 180,00 · Devido R$ 0,00 · Crédito R$ 30,00". Depois o pagamento foi editado para R$ 110,00, sem aviso e sem crédito. O aceite do contrato não mudou.
+- O resumo Pago/Devido/Crédito fica logo abaixo dos dados do cliente. A seção "Pagamentos" vem depois de "Produtos vendidos".
+- `PaymentRepository.totalsFor` devolve cobranças (serviços + vendas) e pagamentos, somados em SQL sobre `INTEGER`. O cálculo de pago, devido e crédito e a regra do aviso (`exceedsAmountDue`) ficam no domínio.
+- Para não repetir a regressão, as evidências compartilhadas (clientes, serviços, sistema) foram reemitidas uma vez só, no build da master/0008. FIN-01 e FIN-03 têm provas próprias do build da 0007, capturas 39–49.
+- Integração: commit `8168deb` no `main` local, sem push.
 
 ## Checklist de conclusão
-- [ ] Task 01 — Regras de pagamento e saldo do cliente
-- [ ] Task 02 — Pagamentos e saldo no detalhe do cliente
+- [x] Task 01 — Regras de pagamento e saldo do cliente
+- [x] Task 02 — Pagamentos e saldo no detalhe do cliente
 
 ## Execução
 $run master/0007

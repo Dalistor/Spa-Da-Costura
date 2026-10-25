@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "id": "ev-1c4a571ab2cc4166b9b646c98925c034",
+  "contract": "financeiro@1",
+  "rule": "FIN-02",
+  "contract_hash": "b98633ccf23c45d533f425ea118eb6dc261ecf3e0f115158ca1d8163093f64e1",
+  "method": "manual",
+  "result": "passed",
+  "at": "2026-10-25T12:25:58.232083+00:00",
+  "revision": "fd2e190469d6fa95f72d65ba987cbace2b1eeeec",
+  "summary": "Demonstração: 'Nova despesa' sem categoria mostrou 'Escolha a categoria.' e com valor 'abc' mostrou 'Informe um valor maior que zero, como 35,00.' (capturas 51–52); 'Linha e botoes', Materiais, R$ 35,00 apareceu na lista com 'Materiais · 25/10/2026'; despesa de imposto editada para 'Imposto MEI' R$ 76,00 e excluída após confirmação (capturas 55, 58); despesas mantidas após reiniciar.",
+  "reference": "Sessão Claude Code 3b466626 (2026-10-25), APK release x86_64 de master/0008 (fd2e190) no emulador Pixel_API_36, modo avião (airplane_mode_on=1), data do aparelho 2026-10-25; capturas 50–58 e 68–69 em .centaur/evidence/screens/",
+  "files": {
+    ".centaur/evidence/screens/50-caixa-outubro.png": "7e77dcabf59c48375c5c1f197f1fb8b94dd840d9d05997d6cfd15860ca1e3093",
+    ".centaur/evidence/screens/51-despesa-sem-categoria.png": "9463afce9a9932cdf2d328ec5b50e267b908324004138318d7c806638799fc8d",
+    ".centaur/evidence/screens/52-despesa-valor-abc.png": "9b74b68fe67fec887ef9fb85e4818f03976435db096f52d77ce66d33b4935c4b",
+    ".centaur/evidence/screens/53-caixa-com-despesa.png": "f28f840a6c71120d28734dc8f59306f17fc116029a14fe6a73952acf92a0de0b",
+    ".centaur/evidence/screens/54-novembro-imposto.png": "b6dd1baf7531e87b0c0d5b9c99ade0784d2027e23951df031d835c335f733e93",
+    ".centaur/evidence/screens/55-despesa-editada.png": "3224ebf32305a178ccabecc5d3a66e27e71b064ae7379cc4b85a4a506a55a9bd",
+    ".centaur/evidence/screens/56-caixa-apos-excluir-cliente.png": "b31abd857fef20ca4b10ee85ec4a29734e3c4ef59a2867e8c2fed3fb45d35432",
+    ".centaur/evidence/screens/57-janeiro-2027.png": "b3054651179640b4d46a483036b0ad9d1567fee131aa96e3ede8d7c7c843d9d0",
+    ".centaur/evidence/screens/58-confirmar-exclusao-despesa.png": "82693c476d9b68ed9c4c91619491695c7f5a2be666602415700321e682f83fca",
+    ".centaur/evidence/screens/59-cliente-editado.png": "841c544e6edfd76f040f0de6c72394d38eb364e386db13ad2c32babff8ec20fe",
+    ".centaur/evidence/screens/68-caixa-apos-excluir-joana.png": "8ce2da70d9775991f952ba2c32622588d3854d7380c7b8f22d28efd340acb448",
+    ".centaur/evidence/screens/69-caixa-apos-reinicio.png": "9c52e8f4da54b752297d5104b71e48e902a203fbe50a5e55964cd8d7c6af0c7f",
+    "__tests__/finance/cashFlow.test.ts": "af057e6a2ef247be70860fedca079686fda68ce04408fcca7b13f85dcd53ec8d",
+    "src/finance/data/sqlExpenseRepository.ts": "887c5e8ef5e7ef1f12e05efeda37deb5b7a19953b4923a532267fff4b0ee2ece",
+    "src/finance/domain/expense.ts": "76ee2cffa0c0e718792ed6a0bbc5ad05163f520669778f6970b84b89b9920acc",
+    "src/finance/screens/CashFlowScreen.tsx": "3da9cb53742de77e3349503ee7ac58cc2b0a5159316df2c01b6a43ceda9a3a9e",
+    "src/finance/screens/CategorySelector.tsx": "5d935e284062301415c867baed0a656b21062b85d8f420a9330b7f523a1fa92a",
+    "src/finance/screens/ExpenseFormScreen.tsx": "55ce339db8597965808996d9de66cfbb1d4695ebd5e3fe76dcbffbca3e851169"
+  }
+}

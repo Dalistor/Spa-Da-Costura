@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "id": "ev-3ba3fede11764c45b8aafe1ea051b9ce",
+  "contract": "financeiro@1",
+  "rule": "FIN-02",
+  "contract_hash": "b98633ccf23c45d533f425ea118eb6dc261ecf3e0f115158ca1d8163093f64e1",
+  "method": "test",
+  "command": [
+    "npx",
+    "jest",
+    "__tests__/finance/cashFlow.test.ts"
+  ],
+  "result": "passed",
+  "exit_code": 0,
+  "at": "2026-10-25T12:24:33.231608+00:00",
+  "revision": "fd2e190469d6fa95f72d65ba987cbace2b1eeeec",
+  "summary": "Despesa válida grava descrição, categoria e valor em centavos inteiros; sem categoria, sem descrição, com valor 'abc' ou '0' é recusada sem gravar; edição e exclusão refletem na lista do mês, em ordem de data",
+  "reference": "Comando executado no checkout; saída exibida no terminal",
+  "files": {
+    "__tests__/finance/cashFlow.test.ts": "af057e6a2ef247be70860fedca079686fda68ce04408fcca7b13f85dcd53ec8d",
+    "src/finance/data/sqlExpenseRepository.ts": "887c5e8ef5e7ef1f12e05efeda37deb5b7a19953b4923a532267fff4b0ee2ece",
+    "src/finance/domain/expense.ts": "76ee2cffa0c0e718792ed6a0bbc5ad05163f520669778f6970b84b89b9920acc",
+    "src/finance/screens/CashFlowScreen.tsx": "3da9cb53742de77e3349503ee7ac58cc2b0a5159316df2c01b6a43ceda9a3a9e",
+    "src/finance/screens/CategorySelector.tsx": "5d935e284062301415c867baed0a656b21062b85d8f420a9330b7f523a1fa92a",
+    "src/finance/screens/ExpenseFormScreen.tsx": "55ce339db8597965808996d9de66cfbb1d4695ebd5e3fe76dcbffbca3e851169"
+  },
+  "sources_stable": true
+}

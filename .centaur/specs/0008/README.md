@@ -1,7 +1,7 @@
 # 0008 Despesas do ateliê e caixa por mês
 
 **Data:** 2026-10-24
-**Status:** Pendente
+**Status:** Concluída
 **Escopo:** master
 **Responsável:** Diego
 **Contrato:** financeiro@1
@@ -83,11 +83,17 @@ Demonstração: APK release em modo avião → Caixa em outubro/2026 com as entr
 
 ## Diferença entre plano e resultado
 
-—
+- Mês de negócio em `src/calendar/businessMonth.ts`: `monthOf`, `previousMonth`, `nextMonth`, `formatBusinessMonth`. As somas e a lista do mês usam `date BETWEEN 'YYYY-MM-01' AND 'YYYY-MM-31'`, que aproveita o índice de data.
+- `CashFlowRepository.totalsFor` soma `payment` sem juntar com `customer`, então pagamentos de clientes excluídos continuam contando. O teste e a demonstração confirmaram isso com duas clientes excluídas.
+- Saldo negativo aparece em vermelho, com o token `danger`.
+- `PendingScreen` foi removido: era o espaço reservado das rotas `PaymentForm` e `ExpenseForm`, que agora têm telas.
+- Na demonstração, a descrição foi digitada sem acento ("Linha e botoes"), porque o `adb input` não digita acentos. O teste grava "Linha e botões".
+- Regressão completa no mesmo build (capturas 50–69). Evidências reemitidas para CLI-01..04, SRV-01..05, PRD-01/02 e SIS-01/02/03.
+- Integração: commit `fd2e190` no `main` local, sem push.
 
 ## Checklist de conclusão
-- [ ] Task 01 — Regras de despesa e resumo do mês
-- [ ] Task 02 — Aba Caixa e formulário de despesa
+- [x] Task 01 — Regras de despesa e resumo do mês
+- [x] Task 02 — Aba Caixa e formulário de despesa
 
 ## Execução
 $run master/0008

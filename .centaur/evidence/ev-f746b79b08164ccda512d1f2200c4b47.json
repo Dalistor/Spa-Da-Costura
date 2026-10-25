@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "id": "ev-f746b79b08164ccda512d1f2200c4b47",
+  "contract": "financeiro@1",
+  "rule": "FIN-01",
+  "contract_hash": "b98633ccf23c45d533f425ea118eb6dc261ecf3e0f115158ca1d8163093f64e1",
+  "method": "test",
+  "command": [
+    "npx",
+    "jest",
+    "__tests__/finance/paymentRepository.test.ts"
+  ],
+  "result": "passed",
+  "exit_code": 0,
+  "at": "2026-10-25T11:42:34.871577+00:00",
+  "revision": "256f8d3f5158db91f25466dc2effac456cdf1bfe",
+  "summary": "Pagamento válido grava valor em centavos inteiros e data; '0', '-5', vazio, 'abc' e data inválida são recusados sem gravar; edição e exclusão afetam só o pagamento escolhido; o aviso de pagamento acima do devido acerta os limites e desconsidera o valor antigo na edição",
+  "reference": "Comando executado no checkout; saída exibida no terminal",
+  "files": {
+    "__tests__/finance/paymentRepository.test.ts": "3a7cab91d86325975b7da9d0de58870e3ba28132c495e42b1af58a155f6c54f1",
+    "src/finance/data/sqlPaymentRepository.ts": "6a19b87c2d227febb894d10eef8f2b4900cf6a12f8096c5d033fb67ebe03f713",
+    "src/finance/domain/balance.ts": "86e3e63f0ecc723dec8e20c75a295521f8d59eb052c10cfd5e27ba1758a8ec55",
+    "src/finance/domain/payment.ts": "9efcc0c75efebe3a8482deb7c941c2a18d4972611a6dd1e72d4c67ace438c64a",
+    "src/finance/screens/CustomerPaymentsSection.tsx": "5d512177120637623db0ab94583773340fa3c206777b503e167f28b2e3711924",
+    "src/finance/screens/PaymentFormScreen.tsx": "04161a78e184703f9a8fa89964f140833e976267746caff584452b7bf546fb01",
+    "src/ui/DateField.tsx": "5bddd493caba4499f5aaf1ae6eea56bfb77e33a7c40e74a55143854ae3d8ae45"
+  },
+  "sources_stable": true
+}

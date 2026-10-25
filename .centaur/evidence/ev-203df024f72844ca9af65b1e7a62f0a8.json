@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "id": "ev-203df024f72844ca9af65b1e7a62f0a8",
+  "contract": "servicos@1",
+  "rule": "PRD-02",
+  "contract_hash": "5648d07ee1746a922da05202d203f865a0d93ab9d32fcd4ce23e00b6ecd2005a",
+  "method": "test",
+  "command": [
+    "npx",
+    "jest",
+    "__tests__/products"
+  ],
+  "result": "passed",
+  "exit_code": 0,
+  "at": "2026-10-25T12:25:41.825710+00:00",
+  "revision": "fd2e190469d6fa95f72d65ba987cbace2b1eeeec",
+  "summary": "Venda grava o valor informado (320,00 com preço 350,00) e copia o nome; peça ausente/inexistente, valor 'abc' e data fora de YYYY-MM-DD recusados sem gravar; mudar preço ou excluir o produto não altera a venda; editar (inclusive trocando a peça) e excluir afetam só a venda escolhida.",
+  "reference": "Comando executado no checkout; saída exibida no terminal",
+  "files": {
+    "__tests__/products/productRepository.test.ts": "c5bc9358d22234406a184e402cee2469b47b109b99420ea8b3e815892399932d",
+    "__tests__/support/nodeSqliteDatabase.ts": "9552026caef26244ac2f7866bf1375964765df6571d80d397d2e82bdaaf022a7",
+    "src/database/migrations/001_initial_schema.ts": "2393b5dfe11929e2e147fb2cd1170b71f0296c3a2f418d35fe4cd7a66ce56fdd",
+    "src/money/cents.ts": "5d3b4a93dd10feafc4c7085eadec2cdd3bd4567bd91297a9317009deb82c8b79",
+    "src/products/data/index.ts": "8a46ed1d159c37b3c4680d6a9c2920247b570011046e5fb7cfc1c7a6db6e1857",
+    "src/products/data/sqlProductSaleRepository.ts": "516d299952365f2092947ad4d0d97b327183f65bc40d009b95da6eee1d552f0f",
+    "src/products/domain/index.ts": "95000901d73eb71e2b1cc5156db9138fae87e84736d39cca4ec20d05c497770c",
+    "src/products/domain/productSale.ts": "99cd5c47146d0a1e5ff605a98e0fd7b74b9753336ac630d2f4834af0e77ca964",
+    "src/products/domain/repositories.ts": "d38edaff22ae6016dd9786346e7f99408a9a08fb9089189c3259ecada15d8732",
+    "src/products/index.ts": "281f7a855ecf220ad8c04b431942eb2c8382e3067de228f8c05adbd803f7f37f",
+    "src/products/screens/ProductPicker.tsx": "bf8519db9312798d04a813cd3d2e619bde68bfce1e88e809f4f8a99cb8b910e7",
+    "src/products/screens/ProductSaleFormScreen.tsx": "01c865510be0478309f885d0c72b6e8881a18e1c66dfee130da75fecadec5a2d",
+    "src/ui/DateField.tsx": "5bddd493caba4499f5aaf1ae6eea56bfb77e33a7c40e74a55143854ae3d8ae45"
+  },
+  "sources_stable": true
+}

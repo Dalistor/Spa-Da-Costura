@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "id": "ev-5edfb520a4d149219f6a460165df873e",
+  "contract": "sistema@1",
+  "rule": "SIS-01",
+  "contract_hash": "67c2c67a03901dd912c682f243b82af6d943a979e8fe6028c044acee0722c8e6",
+  "method": "test",
+  "command": [
+    "sh",
+    "-c",
+    "! grep -rnE 'fetch\\(|XMLHttpRequest|WebSocket|axios' src App.tsx && ! grep -nE '\"(axios|apollo|firebase|@supabase)' package.json && npx jest __tests__/App.test.tsx"
+  ],
+  "result": "passed",
+  "exit_code": 0,
+  "at": "2026-10-25T12:25:00.365901+00:00",
+  "revision": "fd2e190469d6fa95f72d65ba987cbace2b1eeeec",
+  "summary": "Checagem automática (após master/0006): código sem fetch/XMLHttpRequest/WebSocket/axios e sem biblioteca de rede (o seletor de data é um diálogo nativo local); dados de clientes e serviços lidos/gravados só pela porta Database sobre SQLite local.",
+  "reference": "Comando executado no checkout; saída exibida no terminal",
+  "files": {
+    "App.tsx": "3e60bb7f9893bc71b3274b57e0d39c2e7733be2cb7d8a2039fb8c89ba97840e3",
+    "__tests__/App.test.tsx": "14ffae35039f9752abfd6e2fd91d9a3d23376844a756cc901f4b693ea8090f9d",
+    "package.json": "c03329780e4ad4b5fbe452e29decf54658affa689e1a1cc57bca34c9d5c43e83",
+    "src/app/App.tsx": "ee069ee80f047155fa92c3aeb465bca089d1ebbb0095014e39c44fc79367a130",
+    "src/app/RepositoriesProvider.tsx": "dc80cbdd8e57558cc04b46ef7012c78048116ee07766f9a76ed8c854f1a59c27",
+    "src/app/useDatabaseStartup.ts": "09a9295a10097f3eda78974522cb2c3bcd388f9f70a4427a012de7fb00775f1b",
+    "src/customers/data/sqlCustomerRepository.ts": "fa7265cb79caa3537362e16971daa39f0dfaa50d566a8a7dcc1e7390246a6bee",
+    "src/customers/data/sqlMeasurementRepository.ts": "f043faef7503b93a3be650d2ae7208df96bb13df49769c25de15218672fa4328",
+    "src/database/openAppDatabase.ts": "71a56b09d43aa2e5ce28d8feed513d948de2789dccc7b007f19ad4b564f5d52a",
+    "src/database/sqlNow.ts": "2906b09a8d4cd03e555d63da97ccad5165caba72138a7dfe45582c707c65e3a2",
+    "src/jobs/data/sqlJobRepository.ts": "d6707b805352f37ea557ac32f387b68476778bc96a02fd68148aa3eb4078f0d1",
+    "src/jobs/screens/CustomerJobsSection.tsx": "507b87390eed3c56f6f1bec84747a4e2354c30246df38b4c282a0dd0269a3a4e",
+    "src/jobs/screens/JobFormScreen.tsx": "c3be83150d62b3aae88351253d1053dabf28c093d30e466384615aee4b6c723c",
+    "src/jobs/screens/JobSummary.tsx": "e984683b888308131adb45a3163413a3f297b1cb0f81b825e036a22b718de317",
+    "src/jobs/screens/JobsScreen.tsx": "51b9065bfef30d75c1ecf1ad2b7f9ceca96fdb3702910bf6856e60affdbb381e",
+    "src/jobs/screens/StatusSelector.tsx": "c6baf01a07d2bab17027c6a9d452390e20492efb0665f4f05e30eae45b7a3ed4",
+    "src/ui/DateField.tsx": "5bddd493caba4499f5aaf1ae6eea56bfb77e33a7c40e74a55143854ae3d8ae45"
+  },
+  "sources_stable": true
+}

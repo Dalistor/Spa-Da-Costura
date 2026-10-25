@@ -1,0 +1,226 @@
+{
+  "schema": 1,
+  "contract": "financeiro@1",
+  "rules": {
+    "FIN-01": {
+      "implementation": "implementada",
+      "sources": [
+        {
+          "path": "src/finance/domain/payment.ts",
+          "start": 1,
+          "end": 39,
+          "role": "Pagamento: valor maior que zero e data"
+        },
+        {
+          "path": "src/finance/domain/balance.ts",
+          "start": 1,
+          "end": 39,
+          "role": "Aviso de pagamento acima do devido"
+        },
+        {
+          "path": "src/finance/data/sqlPaymentRepository.ts",
+          "start": 1,
+          "end": 91,
+          "role": "Gravação, edição e exclusão de pagamentos"
+        },
+        {
+          "path": "src/finance/screens/PaymentFormScreen.tsx",
+          "start": 1,
+          "end": 168,
+          "role": "Formulário com aviso e confirmação"
+        },
+        {
+          "path": "src/finance/screens/CustomerPaymentsSection.tsx",
+          "start": 1,
+          "end": 93,
+          "role": "Pagamentos no detalhe do cliente"
+        },
+        {
+          "path": "src/ui/DateField.tsx",
+          "start": 1,
+          "end": 66,
+          "role": "Data do pagamento"
+        },
+        {
+          "path": "__tests__/finance/paymentRepository.test.ts",
+          "start": 1,
+          "end": 188,
+          "role": "Testes"
+        }
+      ],
+      "evidence": [
+        "ev-f746b79b08164ccda512d1f2200c4b47",
+        "ev-b5f927346f574a34960f7efa11a6181e"
+      ],
+      "delivery": {
+        "stage": "integrated",
+        "reference": "main local (commit, sem push)",
+        "revision": "8168deb",
+        "at": "2026-10-25"
+      },
+      "specs": [
+        "master/0007"
+      ],
+      "notes": ""
+    },
+    "FIN-03": {
+      "implementation": "implementada",
+      "sources": [
+        {
+          "path": "src/finance/domain/balance.ts",
+          "start": 1,
+          "end": 39,
+          "role": "Cálculo de pago, devido e crédito"
+        },
+        {
+          "path": "src/finance/data/sqlPaymentRepository.ts",
+          "start": 1,
+          "end": 91,
+          "role": "Totais de cobranças e pagamentos do cliente"
+        },
+        {
+          "path": "src/finance/screens/CustomerBalanceSection.tsx",
+          "start": 1,
+          "end": 62,
+          "role": "Resumo Pago/Devido/Crédito"
+        },
+        {
+          "path": "src/customers/screens/CustomerDetailScreen.tsx",
+          "start": 1,
+          "end": 223,
+          "role": "Detalhe do cliente com saldo"
+        },
+        {
+          "path": "__tests__/finance/paymentRepository.test.ts",
+          "start": 1,
+          "end": 188,
+          "role": "Testes"
+        }
+      ],
+      "evidence": [
+        "ev-e2c648a0a61a4505861ff96e58eee290",
+        "ev-feecfc43c5b048fa8136ead03c747021"
+      ],
+      "delivery": {
+        "stage": "integrated",
+        "reference": "main local (commit, sem push)",
+        "revision": "8168deb",
+        "at": "2026-10-25"
+      },
+      "specs": [
+        "master/0007"
+      ],
+      "notes": ""
+    },
+    "FIN-02": {
+      "implementation": "implementada",
+      "sources": [
+        {
+          "path": "src/finance/domain/expense.ts",
+          "start": 1,
+          "end": 71,
+          "role": "Despesa: descrição, categoria, valor e data"
+        },
+        {
+          "path": "src/finance/data/sqlExpenseRepository.ts",
+          "start": 1,
+          "end": 79,
+          "role": "Gravação, edição, exclusão e lista do mês"
+        },
+        {
+          "path": "src/finance/screens/ExpenseFormScreen.tsx",
+          "start": 1,
+          "end": 161,
+          "role": "Formulário de despesa"
+        },
+        {
+          "path": "src/finance/screens/CategorySelector.tsx",
+          "start": 1,
+          "end": 49,
+          "role": "Escolha entre Taxas, Imposto e Materiais"
+        },
+        {
+          "path": "src/finance/screens/CashFlowScreen.tsx",
+          "start": 1,
+          "end": 218,
+          "role": "Lista de despesas do mês"
+        },
+        {
+          "path": "__tests__/finance/cashFlow.test.ts",
+          "start": 1,
+          "end": 194,
+          "role": "Testes"
+        }
+      ],
+      "evidence": [
+        "ev-3ba3fede11764c45b8aafe1ea051b9ce",
+        "ev-1c4a571ab2cc4166b9b646c98925c034"
+      ],
+      "delivery": {
+        "stage": "integrated",
+        "reference": "main local (commit, sem push)",
+        "revision": "fd2e190",
+        "at": "2026-10-25"
+      },
+      "specs": [
+        "master/0008"
+      ],
+      "notes": ""
+    },
+    "FIN-04": {
+      "implementation": "implementada",
+      "sources": [
+        {
+          "path": "src/finance/domain/cashFlow.ts",
+          "start": 1,
+          "end": 19,
+          "role": "Saldo do mês"
+        },
+        {
+          "path": "src/finance/data/sqlCashFlowRepository.ts",
+          "start": 1,
+          "end": 24,
+          "role": "Entradas e saídas do mês, inclusive de clientes excluídos"
+        },
+        {
+          "path": "src/finance/data/monthRange.ts",
+          "start": 1,
+          "end": 7,
+          "role": "Limites do mês"
+        },
+        {
+          "path": "src/calendar/businessMonth.ts",
+          "start": 1,
+          "end": 50,
+          "role": "Mês anterior/seguinte e nome do mês"
+        },
+        {
+          "path": "src/finance/screens/CashFlowScreen.tsx",
+          "start": 1,
+          "end": 218,
+          "role": "Aba Caixa com navegação entre meses"
+        },
+        {
+          "path": "__tests__/finance/cashFlow.test.ts",
+          "start": 1,
+          "end": 194,
+          "role": "Testes"
+        }
+      ],
+      "evidence": [
+        "ev-366f6158b19c4238afd16eebb7148b5a",
+        "ev-eedda43070f64bd78890cb8579fc8190"
+      ],
+      "delivery": {
+        "stage": "integrated",
+        "reference": "main local (commit, sem push)",
+        "revision": "fd2e190",
+        "at": "2026-10-25"
+      },
+      "specs": [
+        "master/0008"
+      ],
+      "notes": ""
+    }
+  }
+}
