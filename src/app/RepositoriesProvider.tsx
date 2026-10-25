@@ -1,4 +1,5 @@
 import { useMemo, type ReactNode } from 'react';
+import { BackupServiceProvider, createBackupService } from '../backup';
 import {
   CustomerRepositoriesProvider,
   createCustomerRepository,
@@ -18,7 +19,7 @@ import {
 } from '../products';
 import { useDatabase } from './DatabaseContext';
 
-/** Builds each feature's repositories on the local database and hands them to its screens. */
+/** Builds each feature's repositories and the backup on the local database and hands them to its screens. */
 export function RepositoriesProvider({ children }: { children: ReactNode }) {
   const database = useDatabase();
   const customerRepositories = useMemo(
@@ -47,13 +48,19 @@ export function RepositoriesProvider({ children }: { children: ReactNode }) {
     }),
     [database],
   );
+  const backupService = useMemo(
+    () => createBackupService(database),
+    [database],
+  );
 
   return (
     <CustomerRepositoriesProvider repositories={customerRepositories}>
       <JobRepositoryProvider repository={jobRepository}>
         <ProductRepositoriesProvider repositories={productRepositories}>
           <FinanceRepositoriesProvider repositories={financeRepositories}>
-            {children}
+            <BackupServiceProvider service={backupService}>
+              {children}
+            </BackupServiceProvider>
           </FinanceRepositoriesProvider>
         </ProductRepositoriesProvider>
       </JobRepositoryProvider>
