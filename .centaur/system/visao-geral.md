@@ -21,7 +21,7 @@ Arquitetura proposta (ainda sem código): regras do domínio independentes da UI
 | Sistema | Dados locais em SQLite, Android, paleta bege/marrom, backup e importação, migrações | [`sistema`](../contracts/sistema/v001.json) (aprovado) |
 | Clientes | Nome; telefone e descrição opcionais; medidas livres (chave e valor); exclusão permitida com histórico | [`clientes`](../contracts/clientes/v002.json) (aprovado, v2) |
 | Serviços e produtos | Serviço = conserto com status Pendente/Pronto/Entregue; produto = peça inteira do catálogo, vendida ao cliente com valor preenchido e editável | [`servicos`](../contracts/servicos/v001.json) (aprovado) |
-| Financeiro | Pagamentos ligados só ao cliente (aviso se passar do devido); despesas; fluxo de caixa; total pago e devido | [`financeiro`](../contracts/financeiro/v001.json) |
+| Financeiro | Pagamentos ligados só ao cliente (aviso se passar do devido); despesas; fluxo de caixa; total pago e devido | [`financeiro`](../contracts/financeiro/v001.json) (aprovado) |
 
 ## Design
 
@@ -67,4 +67,4 @@ Paleta de cores em tons de **bege e marrom**. Valores exatos (tokens) delegados 
 
 ## Lacunas abertas
 
-Nenhuma decisão material aberta nos contratos. Falta aprovar `financeiro`.
+Nenhuma decisão material aberta nos contratos; todos aprovados.

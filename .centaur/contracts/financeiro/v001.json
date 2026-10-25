@@ -4,7 +4,7 @@
   "version": 1,
   "title": "Pagamentos, despesas e saldo dos clientes",
   "scope": "master",
-  "status": "draft",
+  "status": "approved",
   "intent": "A costureira registra pagamentos de clientes e despesas do ateliê, vê o fluxo de caixa e, em cada cliente, quanto ele deve e quanto já pagou.",
   "extends": [],
   "boundaries": [
@@ -154,5 +154,10 @@
         }
       ]
     }
+  },
+  "approval": {
+    "by": "Diego",
+    "at": "2026-10-24",
+    "reference": "Sessão Claude Code 3b466626 (2026-10-24): mensagem 'Pode aprovar' em resposta à proposta de aprovar o rascunho financeiro@1 (FIN-01 a FIN-04)"
   }
 }
