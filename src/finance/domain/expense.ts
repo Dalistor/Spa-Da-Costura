@@ -1,10 +1,12 @@
 import { isBusinessDate, type BusinessDate } from '../../calendar';
 import { parseCents, type Cents } from '../../money';
 
+// `fees` (Taxas) is no longer offered (financeiro@2); it stays readable so
+// expenses saved before keep showing in lists and totals.
 export type ExpenseCategory = 'fees' | 'tax' | 'materials';
 
+/** Categories the seamstress can pick for a new or edited expense. */
 export const EXPENSE_CATEGORIES: readonly ExpenseCategory[] = [
-  'fees',
   'tax',
   'materials',
 ];

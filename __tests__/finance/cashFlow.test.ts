@@ -88,6 +88,7 @@ describe('expenses', () => {
 
   test.each([
     [{ category: null }, 'category-required'],
+    [{ category: 'fees' }, 'category-required'],
     [{ description: '  ' }, 'description-required'],
     [{ amount: 'abc' }, 'amount-invalid'],
     [{ amount: '0' }, 'amount-invalid'],
@@ -163,8 +164,8 @@ describe('cash flow', () => {
     const { expenses, cashFlow } = await setup();
     const saved = expense(
       await expenses.create({
-        description: 'Taxa da maquininha',
-        category: 'fees',
+        description: 'Imposto MEI',
+        category: 'tax',
         amount: '12',
         date: '2026-10-31',
       }),
@@ -172,8 +173,8 @@ describe('cash flow', () => {
 
     expect(
       await expenses.update(saved.id, {
-        description: 'Taxa da maquininha',
-        category: 'fees',
+        description: 'Imposto MEI',
+        category: 'tax',
         amount: '15',
         date: '2026-11-01',
       }),
