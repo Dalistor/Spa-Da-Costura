@@ -53,7 +53,10 @@
         "ev-c5dc7d0abf7e40119517a2704100a0f6"
       ],
       "delivery": {
-        "stage": "local"
+        "stage": "integrated",
+        "reference": "main local (commit, sem push)",
+        "revision": "05741ae",
+        "at": "2026-10-24"
       },
       "specs": [
         "master/0005"
@@ -99,7 +102,10 @@
         "ev-a2f92daaf0824d0d9fce008f9718f3ca"
       ],
       "delivery": {
-        "stage": "local"
+        "stage": "integrated",
+        "reference": "main local (commit, sem push)",
+        "revision": "05741ae",
+        "at": "2026-10-24"
       },
       "specs": [
         "master/0005"
@@ -139,7 +145,10 @@
         "ev-6db19ebb0be54870acbac5070028ad57"
       ],
       "delivery": {
-        "stage": "local"
+        "stage": "integrated",
+        "reference": "main local (commit, sem push)",
+        "revision": "05741ae",
+        "at": "2026-10-24"
       },
       "specs": [
         "master/0005"
@@ -206,7 +215,10 @@
         "ev-7331ac367f334eb093071d492931c48b"
       ],
       "delivery": {
-        "stage": "local"
+        "stage": "integrated",
+        "reference": "main local (commit, sem push)",
+        "revision": "05741ae",
+        "at": "2026-10-24"
       },
       "specs": [
         "master/0005"
