@@ -4,7 +4,7 @@
 **Status:** Concluída
 **Escopo:** master
 **Responsável:** Diego
-**Contrato:** clientes@1
+**Contrato:** clientes@2
 **Regras:** CLI-04
 **Spec mestre:** —
 **Specs filhas:** —
@@ -72,6 +72,8 @@ Execução em 2026-10-24, registro [implements/0003](../../implements/0003/READM
 - Mudanças em arquivos compartilhados com master/0002 desatualizaram as provas de CLI-01..03 e SIS-01..03: testes e checagens reexecutados e demonstração manual repetida no build novo.
 - Banco do APK release não é legível por adb; preservação de linha e lançamentos provada no teste de repositório (limite registrado na evidência).
 - Integrada em `main` local (388c7fe, sem push); `validate-lifecycle.py --complete master/0003` ok.
+
+- Planejada e entregue sob `clientes@1`; vínculo atualizado para `clientes@2` após [master/0004](../0004/README.md), que reemitiu as evidências das regras desta spec.
 
 ## Checklist de conclusão
 - [x] Task 01 — Soft delete no repositório

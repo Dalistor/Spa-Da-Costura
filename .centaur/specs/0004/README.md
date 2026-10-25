@@ -1,7 +1,7 @@
 # 0004 Chave de medida sem diferenciar maiúsculas e minúsculas
 
 **Data:** 2026-10-24
-**Status:** Em andamento
+**Status:** Concluída
 **Escopo:** master
 **Responsável:** Claude Code (sessão f61330bd, agente único)
 **Contrato:** clientes@2
@@ -68,6 +68,7 @@ Execução em 2026-10-24, registro [implements/0004](../../implements/0004/READM
 - A igualdade de chave virou regra de domínio (`isSameKey`), usada pelo repositório.
 - Emulador ficou sem memória durante a demonstração (perda de teclas via adb); reiniciado e demonstração repetida. Medidas de teste criadas pelo erro foram removidas pelo próprio app.
 - Também reverificados SIS-01, SIS-02 e SIS-06 (fontes afetadas pela migração).
+- Integrada e enviada a `origin/main` (f637043, push autorizado por Diego); `validate-lifecycle.py --complete master/0004` ok.
 
 ## Checklist de conclusão
 - [x] Task 01 — Chave única sem diferenciar maiúsculas e migração 002

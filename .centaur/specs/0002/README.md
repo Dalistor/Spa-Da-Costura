@@ -4,7 +4,7 @@
 **Status:** Concluída
 **Escopo:** master
 **Responsável:** Diego
-**Contrato:** clientes@1
+**Contrato:** clientes@2
 **Regras:** CLI-01, CLI-02, CLI-03
 **Spec mestre:** —
 **Specs filhas:** —
@@ -93,6 +93,8 @@ Execução em 2026-10-24, registro [implements/0002](../../implements/0002/READM
 - Sem migração nova, sem mudança em `android/`; aviso de `act` no teste preexistente de falha ao abrir o banco não foi tocado.
 - Demonstração (2026-10-24): APK release x86_64 no emulador Pixel_API_36, dados limpos, modo avião; todos os critérios observados e dados mantidos após `am force-stop` e reabertura. Evidências de CLI-01..03 (teste + manual) e SIS-02 (manual) correntes; `--ready` ok.
 - Integrada em `main` local (267f798, sem push); `validate-lifecycle.py --complete master/0002` ok.
+
+- Planejada e entregue sob `clientes@1`; vínculo atualizado para `clientes@2` após [master/0004](../0004/README.md), que reemitiu as evidências das regras desta spec.
 
 ## Checklist de conclusão
 - [x] Task 01 — Regras e repositório de clientes e medidas
