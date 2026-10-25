@@ -1,0 +1,163 @@
+{
+  "schema": 1,
+  "id": "financeiro",
+  "version": 2,
+  "title": "Pagamentos, despesas e saldo dos clientes",
+  "scope": "master",
+  "status": "approved",
+  "intent": "A costureira registra pagamentos de clientes e despesas do ateliê, vê o fluxo de caixa e, em cada cliente, quanto ele deve e quanto já pagou.",
+  "extends": [],
+  "boundaries": [
+    "Respeitar os limites do contrato sistema (dados locais, sem servidor)",
+    "Valores monetários sem ponto flutuante",
+    "Pagamento é vinculado apenas ao cliente, não a um serviço ou venda específica"
+  ],
+  "autonomy": [
+    "Definir layout das telas financeiras dentro da paleta do sistema"
+  ],
+  "decisions": [],
+  "rules": [
+    {
+      "id": "FIN-01",
+      "description": "Registrar, editar e excluir pagamentos de um cliente, inclusive parciais",
+      "acceptance": [
+        "Registrar pagamento com valor maior que zero e data o associa ao cliente",
+        "Pagamento com valor zero, negativo ou vazio é recusado",
+        "Pagamento que deixa o total pago acima do devido mostra um aviso, mas é gravado se a usuária confirmar"
+      ],
+      "depends_on": [
+        "clientes/CLI-01"
+      ]
+    },
+    {
+      "id": "FIN-02",
+      "description": "Registrar, editar e excluir despesas do ateliê, cada uma com categoria Imposto ou Materiais",
+      "acceptance": [
+        "Despesa com descrição, categoria, valor maior que zero e data aparece na lista de despesas com sua categoria",
+        "A categoria é escolhida entre Imposto e Materiais; Taxas não é mais oferecida",
+        "Despesa sem categoria ou com valor inválido é recusada"
+      ],
+      "depends_on": []
+    },
+    {
+      "id": "FIN-03",
+      "description": "O detalhe do cliente mostra o total pago, o total devido e o crédito quando pagou a mais",
+      "acceptance": [
+        "Total pago é a soma dos pagamentos do cliente",
+        "Total devido é a soma dos valores dos serviços e dos produtos vendidos ao cliente menos o total pago, quando positivo",
+        "Cliente com serviço de 100,00, produto vendido de 50,00 e pagamento de 40,00 mostra pago 40,00 e devido 110,00",
+        "Cliente com cobranças de 100,00 e pagamentos de 130,00 mostra devido 0,00 e crédito 30,00",
+        "Os totais se atualizam ao incluir, editar ou excluir serviços, vendas e pagamentos"
+      ],
+      "depends_on": [
+        "financeiro/FIN-01",
+        "servicos/SRV-01",
+        "servicos/PRD-02"
+      ]
+    },
+    {
+      "id": "FIN-04",
+      "description": "Mostrar o fluxo de caixa separado por mês, com entradas (pagamentos), saídas (despesas) e saldo",
+      "acceptance": [
+        "Cada mês mostra a soma dos pagamentos, a soma das despesas e o saldo (entradas menos saídas) com data naquele mês",
+        "A usuária navega entre os meses",
+        "Pagamentos de clientes excluídos continuam contando no mês em que foram feitos"
+      ],
+      "depends_on": [
+        "financeiro/FIN-01",
+        "financeiro/FIN-02"
+      ]
+    }
+  ],
+  "specification": {
+    "actors": [
+      "Costureira"
+    ],
+    "exclusions": [
+      "Integração bancária, maquininha ou emissão de nota fiscal",
+      "Vínculo de pagamento a serviço ou venda específica"
+    ],
+    "use_cases": [
+      {
+        "id": "UC-01",
+        "title": "Registrar pagamento de cliente",
+        "actor": "Costureira",
+        "preconditions": [
+          "Cliente cadastrado"
+        ],
+        "main_flow": [
+          "Abrir o cliente",
+          "Escolher registrar pagamento",
+          "Informar valor e data",
+          "Salvar"
+        ],
+        "alternatives": [
+          "Valor inválido: indicar o campo e não salvar",
+          "Valor acima do devido: avisar e permitir confirmar"
+        ],
+        "postconditions": [
+          "Pagamento gravado e totais pago/devido do cliente atualizados"
+        ],
+        "rules": [
+          "FIN-01",
+          "FIN-03"
+        ]
+      }
+    ],
+    "data_model": {
+      "entities": [
+        {
+          "name": "Cliente",
+          "attributes": [
+            "id",
+            "nome"
+          ],
+          "invariants": [
+            "Definido no contrato clientes"
+          ]
+        },
+        {
+          "name": "Pagamento",
+          "attributes": [
+            "id",
+            "cliente_id",
+            "valor",
+            "data"
+          ],
+          "invariants": [
+            "valor maior que zero"
+          ]
+        },
+        {
+          "name": "Despesa",
+          "attributes": [
+            "id",
+            "descricao",
+            "categoria",
+            "valor",
+            "data"
+          ],
+          "invariants": [
+            "valor maior que zero",
+            "categoria nova em Imposto ou Materiais"
+          ]
+        }
+      ],
+      "relationships": [
+        {
+          "from": "Cliente",
+          "to": "Pagamento",
+          "cardinality": "1:N",
+          "invariants": [
+            "Todo pagamento pertence a um cliente, mesmo que excluído (soft delete)"
+          ]
+        }
+      ]
+    }
+  },
+  "approval": {
+    "by": "Diego",
+    "at": "2026-10-25",
+    "reference": "Sessão Claude Code 3b466626 (2026-10-25): mensagem 'No tipo de despesa, tira a categoria de taxa'"
+  }
+}

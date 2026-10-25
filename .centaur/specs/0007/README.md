@@ -4,7 +4,7 @@
 **Status:** Concluída
 **Escopo:** master
 **Responsável:** Diego
-**Contrato:** financeiro@1
+**Contrato:** financeiro@2
 **Regras:** FIN-01, FIN-03
 **Spec mestre:** —
 **Specs filhas:** —
@@ -85,6 +85,7 @@ Demonstração: APK release em modo avião → em um cliente sem histórico, reg
 - `PaymentRepository.totalsFor` devolve cobranças (serviços + vendas) e pagamentos, somados em SQL sobre `INTEGER`. O cálculo de pago, devido e crédito e a regra do aviso (`exceedsAmountDue`) ficam no domínio.
 - Para não repetir a regressão, as evidências compartilhadas (clientes, serviços, sistema) foram reemitidas uma vez só, no build da master/0008. FIN-01 e FIN-03 têm provas próprias do build da 0007, capturas 39–49.
 - Integração: commit `8168deb` no `main` local, sem push.
+- Planejada e entregue sob `financeiro@1`; vínculo atualizado para `financeiro@2` após [master/0010](../0010/README.md), que reemitiu as evidências das regras desta spec.
 
 ## Checklist de conclusão
 - [x] Task 01 — Regras de pagamento e saldo do cliente

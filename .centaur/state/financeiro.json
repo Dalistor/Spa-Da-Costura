@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "contract": "financeiro@1",
+  "contract": "financeiro@2",
   "rules": {
     "FIN-01": {
       "implementation": "implementada",
@@ -14,13 +14,13 @@
         {
           "path": "src/finance/domain/balance.ts",
           "start": 1,
-          "end": 39,
+          "end": 51,
           "role": "Aviso de pagamento acima do devido"
         },
         {
           "path": "src/finance/data/sqlPaymentRepository.ts",
           "start": 1,
-          "end": 91,
+          "end": 112,
           "role": "Gravação, edição e exclusão de pagamentos"
         },
         {
@@ -32,34 +32,35 @@
         {
           "path": "src/finance/screens/CustomerPaymentsSection.tsx",
           "start": 1,
-          "end": 93,
+          "end": 63,
           "role": "Pagamentos no detalhe do cliente"
         },
         {
           "path": "src/ui/DateField.tsx",
           "start": 1,
-          "end": 66,
+          "end": 67,
           "role": "Data do pagamento"
         },
         {
           "path": "__tests__/finance/paymentRepository.test.ts",
           "start": 1,
-          "end": 188,
+          "end": 238,
           "role": "Testes"
         }
       ],
       "evidence": [
-        "ev-f746b79b08164ccda512d1f2200c4b47",
-        "ev-b5f927346f574a34960f7efa11a6181e"
+        "ev-adc32227cca1451692eb388d84e37e8b",
+        "ev-a84ad2a8ffe74ba6b9321b664e36d7bc"
       ],
       "delivery": {
         "stage": "integrated",
         "reference": "origin/main (github.com/Dalistor/Spa-Da-Costura)",
-        "revision": "8168deb",
+        "revision": "af5fd41",
         "at": "2026-10-25"
       },
       "specs": [
-        "master/0007"
+        "master/0007",
+        "master/0010"
       ],
       "notes": ""
     },
@@ -69,46 +70,47 @@
         {
           "path": "src/finance/domain/balance.ts",
           "start": 1,
-          "end": 39,
+          "end": 51,
           "role": "Cálculo de pago, devido e crédito"
         },
         {
           "path": "src/finance/data/sqlPaymentRepository.ts",
           "start": 1,
-          "end": 91,
+          "end": 112,
           "role": "Totais de cobranças e pagamentos do cliente"
         },
         {
           "path": "src/finance/screens/CustomerBalanceSection.tsx",
           "start": 1,
-          "end": 62,
+          "end": 66,
           "role": "Resumo Pago/Devido/Crédito"
         },
         {
           "path": "src/customers/screens/CustomerDetailScreen.tsx",
           "start": 1,
-          "end": 223,
+          "end": 232,
           "role": "Detalhe do cliente com saldo"
         },
         {
           "path": "__tests__/finance/paymentRepository.test.ts",
           "start": 1,
-          "end": 188,
+          "end": 238,
           "role": "Testes"
         }
       ],
       "evidence": [
-        "ev-e2c648a0a61a4505861ff96e58eee290",
-        "ev-feecfc43c5b048fa8136ead03c747021"
+        "ev-b5f2636f334e4340b60ffd26e259204a",
+        "ev-dc4c0fedd04e4d6dbb05321e19137a81"
       ],
       "delivery": {
         "stage": "integrated",
         "reference": "origin/main (github.com/Dalistor/Spa-Da-Costura)",
-        "revision": "8168deb",
+        "revision": "af5fd41",
         "at": "2026-10-25"
       },
       "specs": [
-        "master/0007"
+        "master/0007",
+        "master/0010"
       ],
       "notes": ""
     },
@@ -118,7 +120,7 @@
         {
           "path": "src/finance/domain/expense.ts",
           "start": 1,
-          "end": 71,
+          "end": 73,
           "role": "Despesa: descrição, categoria, valor e data"
         },
         {
@@ -136,34 +138,35 @@
         {
           "path": "src/finance/screens/CategorySelector.tsx",
           "start": 1,
-          "end": 49,
+          "end": 52,
           "role": "Escolha entre Taxas, Imposto e Materiais"
         },
         {
           "path": "src/finance/screens/CashFlowScreen.tsx",
           "start": 1,
-          "end": 218,
+          "end": 158,
           "role": "Lista de despesas do mês"
         },
         {
           "path": "__tests__/finance/cashFlow.test.ts",
           "start": 1,
-          "end": 194,
+          "end": 195,
           "role": "Testes"
         }
       ],
       "evidence": [
-        "ev-3ba3fede11764c45b8aafe1ea051b9ce",
-        "ev-1c4a571ab2cc4166b9b646c98925c034"
+        "ev-a561fa80fefd48699f5307f488c6b1a3",
+        "ev-9d6748c0511b491c9536f3e725401310"
       ],
       "delivery": {
         "stage": "integrated",
         "reference": "origin/main (github.com/Dalistor/Spa-Da-Costura)",
-        "revision": "fd2e190",
+        "revision": "af5fd41",
         "at": "2026-10-25"
       },
       "specs": [
-        "master/0008"
+        "master/0008",
+        "master/0010"
       ],
       "notes": ""
     },
@@ -191,34 +194,41 @@
         {
           "path": "src/calendar/businessMonth.ts",
           "start": 1,
-          "end": 50,
+          "end": 62,
           "role": "Mês anterior/seguinte e nome do mês"
         },
         {
           "path": "src/finance/screens/CashFlowScreen.tsx",
           "start": 1,
-          "end": 218,
+          "end": 158,
           "role": "Aba Caixa com navegação entre meses"
+        },
+        {
+          "path": "src/finance/screens/MonthSummaryCard.tsx",
+          "start": 1,
+          "end": 62,
+          "role": "Entradas, saídas e saldo do mês"
         },
         {
           "path": "__tests__/finance/cashFlow.test.ts",
           "start": 1,
-          "end": 194,
+          "end": 195,
           "role": "Testes"
         }
       ],
       "evidence": [
-        "ev-366f6158b19c4238afd16eebb7148b5a",
-        "ev-eedda43070f64bd78890cb8579fc8190"
+        "ev-d2653365c5ce41fe951b828ac196fbcd",
+        "ev-352f785eced8437a991ac32c0f53b56e"
       ],
       "delivery": {
         "stage": "integrated",
         "reference": "origin/main (github.com/Dalistor/Spa-Da-Costura)",
-        "revision": "fd2e190",
+        "revision": "af5fd41",
         "at": "2026-10-25"
       },
       "specs": [
-        "master/0008"
+        "master/0008",
+        "master/0010"
       ],
       "notes": ""
     }

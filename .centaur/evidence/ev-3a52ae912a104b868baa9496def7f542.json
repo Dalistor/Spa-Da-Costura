@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "id": "ev-3a52ae912a104b868baa9496def7f542",
+  "contract": "sistema@1",
+  "rule": "SIS-03",
+  "contract_hash": "67c2c67a03901dd912c682f243b82af6d943a979e8fe6028c044acee0722c8e6",
+  "method": "test",
+  "command": [
+    "sh",
+    "-c",
+    "! grep -rnE '#[0-9A-Fa-f]{3,8}([^0-9A-Za-z]|$)|rgba?\\(' src App.tsx --exclude-dir=theme"
+  ],
+  "result": "passed",
+  "exit_code": 0,
+  "at": "2026-10-25T15:39:57.733359+00:00",
+  "revision": "af5fd4185e78d0bc175a52c0207fabfd86221679",
+  "summary": "Checagem automática (após master/0006): nenhuma cor literal fora de src/theme, incluindo as telas e componentes de serviços.",
+  "reference": "Comando executado no checkout; saída exibida no terminal",
+  "files": {
+    "src/app/App.tsx": "ee069ee80f047155fa92c3aeb465bca089d1ebbb0095014e39c44fc79367a130",
+    "src/app/navigation/Navigator.tsx": "b47ccd904d82ff8ab7d191af22f33081f785de6b1cbfd0a704361a97df95fa95",
+    "src/customers/screens/CustomerDetailScreen.tsx": "ca7d7907ede185569a8ddbe71e7543787c022b461342b1e3b1db22a51de64a4d",
+    "src/customers/screens/CustomerFormScreen.tsx": "392b8ccda16e70f240e75dc85a3aee02c5a9c484a6ecd369c0f43e2ca535c734",
+    "src/customers/screens/CustomersScreen.tsx": "8ddad10ed07adbfd04650d02769c6ac79d6472716b2656d2ed047dec5e842841",
+    "src/customers/screens/MeasurementFormScreen.tsx": "a8f3e1abc41eda40df1947fc0d91a1149b27165d3751b23c8d3aabef9b74a139",
+    "src/jobs/data/sqlJobRepository.ts": "d6707b805352f37ea557ac32f387b68476778bc96a02fd68148aa3eb4078f0d1",
+    "src/jobs/screens/CustomerJobsSection.tsx": "d32e60b85e59597b155ff234ee284fa0b3056841084f0ebd0fe4f8050cb8e617",
+    "src/jobs/screens/JobFormScreen.tsx": "2f731736464859a1c6d0f27c903264fcf3a2b55b091f566627f997ee81a8c6aa",
+    "src/jobs/screens/JobSummary.tsx": "bb9737fe71e0ac4f7ebb0f7e2f6d8b694557b65df2d9be7fa51038f0fad2fb75",
+    "src/jobs/screens/JobsScreen.tsx": "c36fbb1fc66f6a1317587d46c80351aa614fac2367c582ecd296e1ac074c83ea",
+    "src/jobs/screens/StatusSelector.tsx": "9a18ef03e869d2a80e417ddc3af1fd723fad5859ce4649d6b71fa338187b86fd",
+    "src/theme/colors.ts": "2292b7b8787544beebad69defeda6ee317b9133390a72bcd4bfce551599c96d5",
+    "src/theme/index.ts": "f63c6fa931fa5fd25ce87456f26eebd9ec13cda03a40681d78149d4498805798",
+    "src/ui/Button.tsx": "47aff0ec1c41281ffef24133f923251176494d0531676f16866628a96268c6c5",
+    "src/ui/DateField.tsx": "e743c49c8fb29f0c7a2cabe33718786fbb7170db7159c5c40ddd358edb469dad",
+    "src/ui/EmptyState.tsx": "e4c1e5ff75eeb627c319a39a05644377511d6bd969da53c96f0cc4622841d2d2",
+    "src/ui/TextField.tsx": "0546f7efd1274d4eb64afc733b82d2f29e8513a3ff05ab58fea728978cd88179"
+  },
+  "sources_stable": true
+}

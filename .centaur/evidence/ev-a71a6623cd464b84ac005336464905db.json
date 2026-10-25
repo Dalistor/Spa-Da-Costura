@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "id": "ev-a71a6623cd464b84ac005336464905db",
+  "contract": "sistema@1",
+  "rule": "SIS-04",
+  "contract_hash": "67c2c67a03901dd912c682f243b82af6d943a979e8fe6028c044acee0722c8e6",
+  "method": "test",
+  "command": [
+    "npx",
+    "jest",
+    "__tests__/backup"
+  ],
+  "result": "passed",
+  "exit_code": 0,
+  "at": "2026-10-25T15:40:01.758152+00:00",
+  "revision": "af5fd4185e78d0bc175a52c0207fabfd86221679",
+  "summary": "Exportação em node:sqlite: banco com todas as tabelas, cliente excluído, venda de produto excluído e despesa volta idêntico ao ser importado, com ids, deleted_at e centavos inteiros",
+  "reference": "Comando executado no checkout; saída exibida no terminal",
+  "files": {
+    "__tests__/backup/backup.test.ts": "92364db265d17462b4816efdaf1921678351d3de7185338685cffde8a9dc9950",
+    "android/app/src/main/java/com/spadacostura/BackupFileModule.kt": "7db3cc3e08253a9b8d005913377eacf91894540840ece5c9f9aed3113e8947de",
+    "src/app/RepositoriesProvider.tsx": "1eff4b9446a87e3a278df6593e04f8eca119da9fd8c0a827d81b4296735dfb9a",
+    "src/backup/data/backupFile.ts": "31b75b756afa29762817d8aac6f2d924db296c4440ff2f2d6759cfa6c3ee7ca2",
+    "src/backup/domain/backup.ts": "3fe45b65923eba23e530e75e967762f0dc764023d0e2c60c9b52785b792225ea",
+    "src/backup/files/deviceFiles.ts": "b172fc00e9728b6dfae548940ea1b83227e2d862b8bc1ff0f8e4b5fa8b8c14a4",
+    "src/backup/screens/SettingsScreen.tsx": "13a65b6a759507ff828f30476ab4f33460b024e85c2daa435413e513b508840f"
+  },
+  "sources_stable": true
+}

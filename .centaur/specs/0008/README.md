@@ -4,7 +4,7 @@
 **Status:** Concluída
 **Escopo:** master
 **Responsável:** Diego
-**Contrato:** financeiro@1
+**Contrato:** financeiro@2
 **Regras:** FIN-02, FIN-04
 **Spec mestre:** —
 **Specs filhas:** —
@@ -90,6 +90,7 @@ Demonstração: APK release em modo avião → Caixa em outubro/2026 com as entr
 - Na demonstração, a descrição foi digitada sem acento ("Linha e botoes"), porque o `adb input` não digita acentos. O teste grava "Linha e botões".
 - Regressão completa no mesmo build (capturas 50–69). Evidências reemitidas para CLI-01..04, SRV-01..05, PRD-01/02 e SIS-01/02/03.
 - Integração: commit `fd2e190` no `main` local, sem push.
+- Planejada e entregue sob `financeiro@1`; vínculo atualizado para `financeiro@2` após [master/0010](../0010/README.md), que reemitiu as evidências das regras desta spec.
 
 ## Checklist de conclusão
 - [x] Task 01 — Regras de despesa e resumo do mês

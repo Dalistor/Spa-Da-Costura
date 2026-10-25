@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "id": "ev-44b410a297e840d99de1cf6aaa7abfcc",
+  "contract": "servicos@1",
+  "rule": "SRV-04",
+  "contract_hash": "5648d07ee1746a922da05202d203f865a0d93ab9d32fcd4ce23e00b6ecd2005a",
+  "method": "test",
+  "command": [
+    "npx",
+    "jest",
+    "__tests__/products",
+    "__tests__/jobs"
+  ],
+  "result": "passed",
+  "exit_code": 0,
+  "at": "2026-10-25T15:40:47.115782+00:00",
+  "revision": "af5fd4185e78d0bc175a52c0207fabfd86221679",
+  "summary": "Lista de vendas do cliente traz só as dele, da mais recente para a mais antiga, com data, nome e valor; serviços do cliente cobertos em __tests__/jobs.",
+  "reference": "Comando executado no checkout; saída exibida no terminal",
+  "files": {
+    "__tests__/products/productRepository.test.ts": "c5bc9358d22234406a184e402cee2469b47b109b99420ea8b3e815892399932d",
+    "__tests__/support/nodeSqliteDatabase.ts": "9552026caef26244ac2f7866bf1375964765df6571d80d397d2e82bdaaf022a7",
+    "src/customers/screens/CustomerDetailScreen.tsx": "ca7d7907ede185569a8ddbe71e7543787c022b461342b1e3b1db22a51de64a4d",
+    "src/database/migrations/001_initial_schema.ts": "2393b5dfe11929e2e147fb2cd1170b71f0296c3a2f418d35fe4cd7a66ce56fdd",
+    "src/jobs/screens/CustomerJobsSection.tsx": "d32e60b85e59597b155ff234ee284fa0b3056841084f0ebd0fe4f8050cb8e617",
+    "src/money/cents.ts": "5d3b4a93dd10feafc4c7085eadec2cdd3bd4567bd91297a9317009deb82c8b79",
+    "src/products/data/index.ts": "8a46ed1d159c37b3c4680d6a9c2920247b570011046e5fb7cfc1c7a6db6e1857",
+    "src/products/data/sqlProductSaleRepository.ts": "516d299952365f2092947ad4d0d97b327183f65bc40d009b95da6eee1d552f0f",
+    "src/products/domain/index.ts": "95000901d73eb71e2b1cc5156db9138fae87e84736d39cca4ec20d05c497770c",
+    "src/products/domain/repositories.ts": "d38edaff22ae6016dd9786346e7f99408a9a08fb9089189c3259ecada15d8732",
+    "src/products/index.ts": "281f7a855ecf220ad8c04b431942eb2c8382e3067de228f8c05adbd803f7f37f",
+    "src/products/screens/CustomerProductSalesSection.tsx": "b8673a5db1a04de051853b8d9e2d2d1b1c0caf4069670dc0d362fc1802fcedc0"
+  },
+  "sources_stable": true
+}

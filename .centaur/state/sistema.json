@@ -25,14 +25,14 @@
         }
       ],
       "evidence": [
-        "ev-4cb171c30a424facabb0d064661e7af1",
-        "ev-465124a719d14a5cb6b6433a217869cc"
+        "ev-31c906386ac54e23a9dcc1a8de9b5b27",
+        "ev-f60685a54b604ece96680ff8ed5f2c4e"
       ],
       "delivery": {
         "stage": "integrated",
         "reference": "origin/main (github.com/Dalistor/Spa-Da-Costura)",
-        "revision": "e504e41",
-        "at": "2026-10-24"
+        "revision": "af5fd41",
+        "at": "2026-10-25"
       },
       "specs": [
         "master/0001"
@@ -62,13 +62,13 @@
         }
       ],
       "evidence": [
-        "ev-bf2130b133a342e1b4eb6038523998b4"
+        "ev-a2ca685d7feb4ada8089fa767f5e259a"
       ],
       "delivery": {
         "stage": "integrated",
         "reference": "origin/main (github.com/Dalistor/Spa-Da-Costura)",
-        "revision": "f637043",
-        "at": "2026-10-24"
+        "revision": "af5fd41",
+        "at": "2026-10-25"
       },
       "specs": [
         "master/0002"
@@ -81,7 +81,7 @@
         {
           "path": "src/theme/colors.ts",
           "start": 1,
-          "end": 12,
+          "end": 20,
           "role": "Tokens da paleta bege/marrom"
         },
         {
@@ -93,19 +93,19 @@
         {
           "path": "src/ui/EmptyState.tsx",
           "start": 1,
-          "end": 37,
+          "end": 44,
           "role": "Tela base usando os tokens"
         }
       ],
       "evidence": [
-        "ev-6afb43abc37c4dec9b14a92dca8e69a9",
-        "ev-16af19788fbd48aba650d8e8925fffbe"
+        "ev-3a52ae912a104b868baa9496def7f542",
+        "ev-378bd81d7dd94cd296243b356e653508"
       ],
       "delivery": {
         "stage": "integrated",
         "reference": "origin/main (github.com/Dalistor/Spa-Da-Costura)",
-        "revision": "e504e41",
-        "at": "2026-10-24"
+        "revision": "af5fd41",
+        "at": "2026-10-25"
       },
       "specs": [
         "master/0001"
@@ -130,7 +130,7 @@
         {
           "path": "src/backup/screens/SettingsScreen.tsx",
           "start": 1,
-          "end": 114,
+          "end": 132,
           "role": "Gerar backup na aba Ajustes"
         },
         {
@@ -159,13 +159,13 @@
         }
       ],
       "evidence": [
-        "ev-648694b4e05543668dc171783e53f015",
-        "ev-9665f0f41ae54b57a775fe7316f8718e"
+        "ev-a71a6623cd464b84ac005336464905db",
+        "ev-d7495b380d114208b5053934752c177d"
       ],
       "delivery": {
         "stage": "integrated",
         "reference": "origin/main (github.com/Dalistor/Spa-Da-Costura)",
-        "revision": "06cc8b0",
+        "revision": "af5fd41",
         "at": "2026-10-25"
       },
       "specs": [
@@ -191,7 +191,7 @@
         {
           "path": "src/backup/screens/SettingsScreen.tsx",
           "start": 1,
-          "end": 114,
+          "end": 132,
           "role": "Importar backup com aviso e confirmação"
         },
         {
@@ -220,13 +220,13 @@
         }
       ],
       "evidence": [
-        "ev-2b3b6482ad9f415a8c2ab01a0bde505a",
-        "ev-86e48a9ee50c48c784aa67057ca46c29"
+        "ev-f4dc06a456964cc3b9e515a2e8279957",
+        "ev-9602fe259bd648cb837db362083e8e59"
       ],
       "delivery": {
         "stage": "integrated",
         "reference": "origin/main (github.com/Dalistor/Spa-Da-Costura)",
-        "revision": "06cc8b0",
+        "revision": "af5fd41",
         "at": "2026-10-25"
       },
       "specs": [

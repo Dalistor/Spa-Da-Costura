@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "id": "ev-b5f2636f334e4340b60ffd26e259204a",
+  "contract": "financeiro@2",
+  "rule": "FIN-03",
+  "contract_hash": "d8553bb7533541dc06173ad881de4b63f52f79700482c1bd2cd62f99bb633baa",
+  "method": "test",
+  "command": [
+    "npx",
+    "jest",
+    "__tests__/finance/paymentRepository.test.ts"
+  ],
+  "result": "passed",
+  "exit_code": 0,
+  "at": "2026-10-25T15:42:13.627467+00:00",
+  "revision": "af5fd4185e78d0bc175a52c0207fabfd86221679",
+  "summary": "Saldo: 100+50 com pagamento de 40 dá pago 40 e devido 110; cobranças 100 e pagamentos 130 dão devido 0 e crédito 30; os totais em SQLite somam só serviços, vendas e pagamentos do cliente e acompanham edição e exclusão de pagamento",
+  "reference": "Comando executado no checkout; saída exibida no terminal",
+  "files": {
+    "__tests__/finance/paymentRepository.test.ts": "6d2d62b3571ef2f9623816afd052737651790aad55db7f0a1cf3ed91f64aae21",
+    "src/customers/screens/CustomerDetailScreen.tsx": "ca7d7907ede185569a8ddbe71e7543787c022b461342b1e3b1db22a51de64a4d",
+    "src/finance/data/sqlPaymentRepository.ts": "c510fc19ed5ba3965f75e0d1ac4a4620bd658bd21218e793a42953a4c6943757",
+    "src/finance/domain/balance.ts": "15b473336307eaae318d277044180a76fc87b18c2fedf9068ae6581490bd1c7f",
+    "src/finance/screens/CustomerBalanceSection.tsx": "b628a6c9af5b508bd226ed7367bb24655e31bd90880e08d71ac4e0cb101d2634"
+  },
+  "sources_stable": true
+}

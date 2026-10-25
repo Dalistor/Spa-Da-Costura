@@ -26,7 +26,7 @@
         {
           "path": "src/customers/screens/CustomerDetailScreen.tsx",
           "start": 1,
-          "end": 218,
+          "end": 232,
           "role": "Detalhe do cliente"
         },
         {
@@ -37,14 +37,14 @@
         }
       ],
       "evidence": [
-        "ev-d5baa8b9a1f64dcca18d8d88fa8b12e0",
-        "ev-63f2f74d02b84c0bb21665285992a881"
+        "ev-0ba7f0df60834e5485379ea885cc3ba0",
+        "ev-0f86c6d4e9224cae9d38b126026fb31b"
       ],
       "delivery": {
         "stage": "integrated",
         "reference": "origin/main (github.com/Dalistor/Spa-Da-Costura)",
-        "revision": "f637043",
-        "at": "2026-10-24"
+        "revision": "af5fd41",
+        "at": "2026-10-25"
       },
       "specs": [
         "master/0002",
@@ -76,7 +76,7 @@
         {
           "path": "src/customers/screens/CustomerDetailScreen.tsx",
           "start": 1,
-          "end": 218,
+          "end": 232,
           "role": "Lista, edição e remoção de medidas no detalhe"
         },
         {
@@ -93,14 +93,14 @@
         }
       ],
       "evidence": [
-        "ev-51d3f42389f4461f8bf92aab37dd3160",
-        "ev-eec41be8aad5477c9115a581fe73268a"
+        "ev-3a12afcb7645477a8b205d12d4049d04",
+        "ev-294abc6f99ab471d8122c3b310871c65"
       ],
       "delivery": {
         "stage": "integrated",
         "reference": "origin/main (github.com/Dalistor/Spa-Da-Costura)",
-        "revision": "f637043",
-        "at": "2026-10-24"
+        "revision": "af5fd41",
+        "at": "2026-10-25"
       },
       "specs": [
         "master/0002",
@@ -120,7 +120,7 @@
         {
           "path": "src/customers/screens/CustomersScreen.tsx",
           "start": 1,
-          "end": 121,
+          "end": 127,
           "role": "Lista com busca"
         },
         {
@@ -137,14 +137,14 @@
         }
       ],
       "evidence": [
-        "ev-b4f3910d22b04072a53243ec8ebe1817",
-        "ev-1c6cb94a70ea4872a7ccec0a1a46c4a9"
+        "ev-aeeab02e5cc04ad0acded09a31ba94a7",
+        "ev-071b886e32fe49f69986dd70ed549420"
       ],
       "delivery": {
         "stage": "integrated",
         "reference": "origin/main (github.com/Dalistor/Spa-Da-Costura)",
-        "revision": "f637043",
-        "at": "2026-10-24"
+        "revision": "af5fd41",
+        "at": "2026-10-25"
       },
       "specs": [
         "master/0002",
@@ -170,7 +170,7 @@
         {
           "path": "src/customers/screens/CustomerDetailScreen.tsx",
           "start": 1,
-          "end": 218,
+          "end": 232,
           "role": "Excluir cliente com confirmação"
         },
         {
@@ -181,14 +181,14 @@
         }
       ],
       "evidence": [
-        "ev-5b4f4afe3e98436dabbeb6fc6aa54dfa",
-        "ev-f899ddde79ef4398b1508c3e68291335"
+        "ev-1d8edf5cb81f49aba7aed5f91372aa4b",
+        "ev-b8094db31e794742b2e8201732eded80"
       ],
       "delivery": {
         "stage": "integrated",
         "reference": "origin/main (github.com/Dalistor/Spa-Da-Costura)",
-        "revision": "f637043",
-        "at": "2026-10-24"
+        "revision": "af5fd41",
+        "at": "2026-10-25"
       },
       "specs": [
         "master/0003",
