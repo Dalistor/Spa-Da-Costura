@@ -119,7 +119,7 @@ export function JobFormScreen() {
       />
       {jobId ? (
         <View style={styles.status}>
-          <Text style={styles.label}>Status</Text>
+          <Text style={styles.label}>Situação</Text>
           <StatusSelector value={status} onChange={setStatus} />
         </View>
       ) : null}

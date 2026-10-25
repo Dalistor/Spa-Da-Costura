@@ -28,7 +28,7 @@ export function AmountsDueSection() {
             {formatCents(totalAmountDue(amounts))}
           </Text>
           <Text style={styles.muted}>
-            {amounts.length === 0 ? 'Ninguém está devendo' : `de ${debtors}`}
+            {amounts.length === 0 ? 'Ninguém está devendo' : `${debtors} devendo`}
           </Text>
         </View>
         {amounts.map(amount => (

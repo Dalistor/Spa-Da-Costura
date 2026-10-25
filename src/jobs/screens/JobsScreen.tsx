@@ -22,7 +22,7 @@ export function JobsScreen() {
     return (
       <EmptyState
         title="Nenhum serviço ainda"
-        message="Registre um serviço a partir do cadastro do cliente."
+        message="Para criar um serviço, abra a ficha do cliente e toque em Novo serviço."
       />
     );
   }

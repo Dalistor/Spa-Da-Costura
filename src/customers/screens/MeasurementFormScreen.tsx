@@ -60,7 +60,7 @@ export function MeasurementFormScreen() {
       keyboardShouldPersistTaps="handled"
     >
       <TextField
-        label="Medida *"
+        label="Nome da medida *"
         placeholder="Ex.: Cintura"
         value={form.key}
         onChangeText={key => {
@@ -71,7 +71,7 @@ export function MeasurementFormScreen() {
         autoCapitalize="sentences"
       />
       <TextField
-        label="Valor"
+        label="Tamanho"
         placeholder="Ex.: 72 cm"
         value={form.value}
         onChangeText={value => setForm(current => ({ ...current, value }))}

@@ -42,7 +42,7 @@ export function ProductSaleFormScreen() {
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
-    navigation.setOptions({ title: saleId ? 'Editar venda' : 'Vender produto' });
+    navigation.setOptions({ title: saleId ? 'Editar venda' : 'Nova venda' });
     if (!saleId) {
       return;
     }

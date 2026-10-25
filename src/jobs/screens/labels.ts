@@ -3,7 +3,7 @@ import type { JobError, JobStatus } from '../domain';
 export const STATUSES: readonly JobStatus[] = ['pending', 'ready', 'delivered'];
 
 export const statusLabels: Record<JobStatus, string> = {
-  pending: 'Pendente',
+  pending: 'A fazer',
   ready: 'Pronto',
   delivered: 'Entregue',
 };

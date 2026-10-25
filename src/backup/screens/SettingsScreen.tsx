@@ -44,7 +44,7 @@ export function SettingsScreen() {
       const result = await backup.import(text);
       if (result.ok) {
         Alert.alert(
-          'Backup importado',
+          'Backup restaurado',
           'Os dados do arquivo foram restaurados.',
         );
       } else {
@@ -59,12 +59,12 @@ export function SettingsScreen() {
         return;
       }
       Alert.alert(
-        'Importar backup',
+        'Restaurar backup',
         'Todos os dados atuais serão substituídos pelos do arquivo. Deseja continuar?',
         [
           { text: 'Cancelar', style: 'cancel' },
           {
-            text: 'Importar',
+            text: 'Restaurar',
             style: 'destructive',
             onPress: () => replaceAll(text),
           },
@@ -78,20 +78,20 @@ export function SettingsScreen() {
         Backup dos dados
       </Text>
       <View style={styles.section}>
-        <Text style={styles.title}>Gerar backup</Text>
+        <Text style={styles.title}>Salvar backup</Text>
         <Text style={styles.message}>
           Salva todos os dados do ateliê em um arquivo, que você pode guardar no
           aparelho, no Drive ou enviar para outro celular.
         </Text>
-        <Button title="Gerar backup" onPress={generate} disabled={busy} />
+        <Button title="Salvar backup" onPress={generate} disabled={busy} />
       </View>
       <View style={styles.section}>
-        <Text style={styles.title}>Importar backup</Text>
+        <Text style={styles.title}>Restaurar backup</Text>
         <Text style={styles.message}>
-          Substitui todos os dados atuais pelos de um arquivo de backup.
+          Traz de volta os dados de um arquivo de backup. Tudo o que está no app agora é substituído.
         </Text>
         <Button
-          title="Importar backup"
+          title="Restaurar backup"
           variant="secondary"
           onPress={restore}
           disabled={busy}

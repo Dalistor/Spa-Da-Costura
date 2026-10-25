@@ -1,7 +1,6 @@
 import {
   DefaultTheme,
   NavigationContainer,
-  useNavigation,
   type Theme,
 } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -28,7 +27,7 @@ import { SettingsScreen } from '../../backup';
 import { HomeScreen } from '../../home';
 import { colors, radius, spacing, typography } from '../../theme';
 import { BrandMark, Icon, type IconName } from '../../ui';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import type { RootStackParamList, TabParamList } from './routes';
 
 const Tab = createBottomTabNavigator<TabParamList>();
@@ -86,11 +85,7 @@ function Tabs() {
       <Tab.Screen
         name="Home"
         component={HomeScreen}
-        options={{
-          title: 'Início',
-          headerRight: SettingsButton,
-          tabBarIcon: tabIcons.Home,
-        }}
+        options={{ title: 'Início', tabBarIcon: tabIcons.Home }}
       />
       <Tab.Screen
         name="Customers"
@@ -192,20 +187,6 @@ function TabHeaderMark() {
   );
 }
 
-function SettingsButton() {
-  const navigation = useNavigation();
-  return (
-    <Pressable
-      accessibilityRole="button"
-      accessibilityLabel="Ajustes"
-      onPress={() => navigation.navigate('Settings')}
-      style={({ pressed }) => [styles.headerButton, pressed && styles.pressed]}
-    >
-      <Icon name="settings" color={colors.textPrimary} />
-    </Pressable>
-  );
-}
-
 function TabIcon({ name, focused }: { name: IconName; focused: boolean }) {
   return (
     <View style={[styles.iconPill, focused && styles.iconPillFocused]}>
@@ -233,15 +214,6 @@ function TabLabel({
 
 const styles = StyleSheet.create({
   mark: { marginLeft: spacing.gutter - 2, marginRight: spacing.xs },
-  headerButton: {
-    width: 48,
-    height: 48,
-    marginRight: spacing.sm,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: radius.pill,
-  },
-  pressed: { backgroundColor: colors.surfaceMuted },
   tabBar: {
     backgroundColor: colors.surface,
     borderTopColor: colors.border,

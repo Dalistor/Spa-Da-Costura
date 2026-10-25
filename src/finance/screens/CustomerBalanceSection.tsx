@@ -19,9 +19,9 @@ export function CustomerBalanceSection({ customerId }: { customerId: number }) {
 
   return (
     <Card style={styles.card}>
-      <Total label="Devido" cents={amountDue} highlighted={amountDue > 0} />
-      <Total label="Pago" cents={totalPaid} divided />
-      {credit > 0 ? <Total label="Crédito" cents={credit} divided /> : null}
+      <Total label="Devendo" cents={amountDue} highlighted={amountDue > 0} />
+      <Total label="Já pagou" cents={totalPaid} divided />
+      {credit > 0 ? <Total label="Saldo a favor" cents={credit} divided /> : null}
     </Card>
   );
 }

@@ -38,7 +38,7 @@ export function PaymentFormScreen() {
 
   useEffect(() => {
     navigation.setOptions({
-      title: paymentId ? 'Editar pagamento' : 'Registrar pagamento',
+      title: paymentId ? 'Editar pagamento' : 'Novo pagamento',
     });
     if (!paymentId) {
       return;
@@ -88,13 +88,13 @@ export function PaymentFormScreen() {
       paidCents: totals.paidCents - savedCents,
     });
     Alert.alert(
-      'Pagamento acima do devido',
-      `O cliente deve ${formatCents(
+      'Pagamento maior que a dívida',
+      `O cliente está devendo ${formatCents(
         amountDue,
-      )}. Com este pagamento, o total pago passa do devido e a diferença fica como crédito. Gravar mesmo assim?`,
+      )}. Com este pagamento, ele paga a mais e a diferença fica como saldo a favor. Salvar mesmo assim?`,
       [
         { text: 'Cancelar', style: 'cancel' },
-        { text: 'Gravar', onPress: persist },
+        { text: 'Salvar', onPress: persist },
       ],
     );
   };

@@ -26,7 +26,7 @@ export function CustomerProductSalesSection({
     <Section
       title="Produtos vendidos"
       action={{
-        label: 'Vender',
+        label: 'Nova venda',
         onPress: () => navigation.navigate('ProductSaleForm', { customerId }),
       }}
     >

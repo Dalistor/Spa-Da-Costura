@@ -1,15 +1,14 @@
-import { ScrollView, StyleSheet, View } from 'react-native';
-import { AmountsDueSection, CurrentMonthPanel } from '../../finance';
+import { ScrollView, StyleSheet } from 'react-native';
+import { AmountsDueSection } from '../../finance';
 import { UpcomingDeliveriesSection } from '../../jobs';
 import { colors, spacing } from '../../theme';
+import { SystemShortcuts } from './SystemShortcuts';
 
-/** The atelier at a glance: the month's balance, what is due to deliver and who owes. */
+/** The way into every area of the app, with what is due to deliver and who owes. */
 export function HomeScreen() {
   return (
     <ScrollView style={styles.screen} contentContainerStyle={styles.content}>
-      <View>
-        <CurrentMonthPanel />
-      </View>
+      <SystemShortcuts />
       <UpcomingDeliveriesSection />
       <AmountsDueSection />
     </ScrollView>

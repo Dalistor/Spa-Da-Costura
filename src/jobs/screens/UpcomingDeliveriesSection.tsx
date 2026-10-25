@@ -6,6 +6,7 @@ import { colors, spacing, typography } from '../../theme';
 import { Card, Pill, Section, useFocusedLoad } from '../../ui';
 import { isLate, type JobListItem } from '../domain';
 import { useJobRepository } from './JobRepository';
+import { statusLabels } from './labels';
 
 const SHOWN = 4;
 
@@ -93,9 +94,9 @@ function DeliveryRow({
       {late ? (
         <Pill label="Atrasado" tone="danger" />
       ) : job.status === 'ready' ? (
-        <Pill label="Pronto" tone="accent" />
+        <Pill label={statusLabels.ready} tone="accent" />
       ) : (
-        <Pill label="Pendente" />
+        <Pill label={statusLabels.pending} />
       )}
     </Pressable>
   );

@@ -125,7 +125,7 @@ export function CustomerDetailScreen() {
       <Section
         title="Medidas"
         action={{
-          label: 'Adicionar',
+          label: 'Nova medida',
           onPress: () => navigation.navigate('MeasurementForm', { customerId }),
         }}
       >

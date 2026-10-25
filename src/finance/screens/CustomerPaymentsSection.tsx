@@ -26,7 +26,7 @@ export function CustomerPaymentsSection({
     <Section
       title="Pagamentos"
       action={{
-        label: 'Registrar',
+        label: 'Novo pagamento',
         onPress: () => navigation.navigate('PaymentForm', { customerId }),
       }}
     >
