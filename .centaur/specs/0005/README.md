@@ -91,7 +91,7 @@ Execução em 2026-10-24, registro [implements/0005](../../implements/0005/READM
 - `useFocusedLoad` movido para `src/ui` e passou a devolver `reload`; `SQL_NOW` centralizado em `src/database` (remove duplicação em `customers/data`).
 - Mudanças em telas e dados de clientes exigiram repetir a demonstração de CLI-01..04 e reemitir SIS-01, 02, 03 e 06.
 - SRV-04 fica parcial (serviços no detalhe; produtos na próxima spec).
-- Integrada em `main` local (05741ae, sem push); `validate-lifecycle.py --complete master/0005` ok.
+- Integrada em `main` (05741ae) e enviada a `origin/main` (push autorizado por Diego: "Sim, pode fazer"); `validate-lifecycle.py --complete master/0005` ok.
 
 ## Checklist de conclusão
 - [x] Task 01 — Regras e repositório de serviços
