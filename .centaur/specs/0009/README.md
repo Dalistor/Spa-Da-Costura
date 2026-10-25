@@ -167,7 +167,7 @@ Demonstração no APK release em modo avião:
   - O caixa de outubro voltou a 200,00 / 35,00 / 165,00 e o saldo da Maria a Pago 0,00 / Devido 110,00.
   - Um `.json` truncado e um `notas.txt` foram recusados, sem mudar os dados.
   - Depois de reiniciar, um novo backup trouxe tabelas idênticas às do arquivo importado.
-- **Integração:** commit `06cc8b0` no `main` local, sem push.
+- **Integração:** commit `06cc8b0`, enviado ao `origin/main` em 2026-10-25.
 
 ## Checklist de conclusão
 - [x] Task 01 — Exportar e importar todos os dados com validação

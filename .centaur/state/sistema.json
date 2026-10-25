@@ -164,7 +164,7 @@
       ],
       "delivery": {
         "stage": "integrated",
-        "reference": "main local",
+        "reference": "origin/main (github.com/Dalistor/Spa-Da-Costura)",
         "revision": "06cc8b0",
         "at": "2026-10-25"
       },
@@ -225,7 +225,7 @@
       ],
       "delivery": {
         "stage": "integrated",
-        "reference": "main local",
+        "reference": "origin/main (github.com/Dalistor/Spa-Da-Costura)",
         "revision": "06cc8b0",
         "at": "2026-10-25"
       },

@@ -24,5 +24,4 @@
 - **Regressão (capturas 81–89):** clientes, medidas, busca, exclusão, serviços, status, catálogo e venda. As evidências de CLI, SRV, PRD e SIS-01/02 foram reemitidas.
 
 ## Pendências
-- Push não autorizado ainda.
 - Converter backups de versões antigas do esquema fica para a próxima migração.
