@@ -1,4 +1,5 @@
 export {
+  isLate,
   validateJob,
   type Job,
   type JobError,

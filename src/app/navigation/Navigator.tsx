@@ -1,10 +1,12 @@
 import {
   DefaultTheme,
   NavigationContainer,
+  useNavigation,
   type Theme,
 } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import {
   CashFlowScreen,
   ExpenseFormScreen,
@@ -23,7 +25,10 @@ import {
 } from '../../customers';
 import { JobFormScreen, JobsScreen } from '../../jobs';
 import { SettingsScreen } from '../../backup';
-import { colors } from '../../theme';
+import { HomeScreen } from '../../home';
+import { colors, radius, spacing, typography } from '../../theme';
+import { BrandMark, Icon, type IconName } from '../../ui';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import type { RootStackParamList, TabParamList } from './routes';
 
 const Tab = createBottomTabNavigator<TabParamList>();
@@ -42,41 +47,70 @@ const navigationTheme: Theme = {
   },
 };
 
+/** The tab bar's icon renderer for one tab, defined once outside render. */
+function tabIcon(name: IconName) {
+  return ({ focused }: { focused: boolean }) => (
+    <TabIcon name={name} focused={focused} />
+  );
+}
+
+const tabIcons = {
+  Home: tabIcon('home'),
+  Customers: tabIcon('customers'),
+  Jobs: tabIcon('jobs'),
+  CashFlow: tabIcon('cashflow'),
+  Catalog: tabIcon('catalog'),
+} satisfies Record<keyof TabParamList, unknown>;
+
 function Tabs() {
+  const { bottom } = useSafeAreaInsets();
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarActiveTintColor: colors.accent,
-        tabBarInactiveTintColor: colors.textSecondary,
-        tabBarIcon: () => null,
-        tabBarIconStyle: { display: 'none' },
-        tabBarLabelStyle: { fontSize: 14 },
+        headerStyle: { backgroundColor: colors.background },
+        headerShadowVisible: false,
+        headerTitleAlign: 'left',
+        headerTitleStyle: {
+          ...typography.screenTitle,
+          color: colors.textPrimary,
+        },
+        headerLeft: TabHeaderMark,
+        tabBarStyle: [
+          styles.tabBar,
+          { height: 68 + bottom, paddingBottom: spacing.sm + bottom },
+        ],
+        tabBarItemStyle: styles.tabItem,
+        tabBarLabel: TabLabel,
       }}
     >
       <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          title: 'Início',
+          headerRight: SettingsButton,
+          tabBarIcon: tabIcons.Home,
+        }}
+      />
+      <Tab.Screen
         name="Customers"
         component={CustomersScreen}
-        options={{ title: 'Clientes' }}
+        options={{ title: 'Clientes', tabBarIcon: tabIcons.Customers }}
       />
       <Tab.Screen
         name="Jobs"
         component={JobsScreen}
-        options={{ title: 'Serviços' }}
-      />
-      <Tab.Screen
-        name="Catalog"
-        component={CatalogScreen}
-        options={{ title: 'Catálogo' }}
+        options={{ title: 'Serviços', tabBarIcon: tabIcons.Jobs }}
       />
       <Tab.Screen
         name="CashFlow"
         component={CashFlowScreen}
-        options={{ title: 'Caixa' }}
+        options={{ title: 'Caixa', tabBarIcon: tabIcons.CashFlow }}
       />
       <Tab.Screen
-        name="Settings"
-        component={SettingsScreen}
-        options={{ title: 'Ajustes' }}
+        name="Catalog"
+        component={CatalogScreen}
+        options={{ title: 'Catálogo', tabBarIcon: tabIcons.Catalog }}
       />
     </Tab.Navigator>
   );
@@ -91,7 +125,14 @@ export function Navigator() {
           component={Tabs}
           options={{ headerShown: false }}
         />
-        <Stack.Group screenOptions={{ headerTintColor: colors.accent }}>
+        <Stack.Group
+          screenOptions={{
+            headerTintColor: colors.textPrimary,
+            headerStyle: { backgroundColor: colors.background },
+            headerShadowVisible: false,
+            headerTitleStyle: typography.section,
+          }}
+        >
           <Stack.Screen
             name="CustomerDetail"
             component={CustomerDetailScreen}
@@ -132,8 +173,89 @@ export function Navigator() {
             component={ExpenseFormScreen}
             options={{ title: 'Despesa' }}
           />
+          <Stack.Screen
+            name="Settings"
+            component={SettingsScreen}
+            options={{ title: 'Ajustes' }}
+          />
         </Stack.Group>
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
+
+function TabHeaderMark() {
+  return (
+    <View style={styles.mark}>
+      <BrandMark />
+    </View>
+  );
+}
+
+function SettingsButton() {
+  const navigation = useNavigation();
+  return (
+    <Pressable
+      accessibilityRole="button"
+      accessibilityLabel="Ajustes"
+      onPress={() => navigation.navigate('Settings')}
+      style={({ pressed }) => [styles.headerButton, pressed && styles.pressed]}
+    >
+      <Icon name="settings" color={colors.textPrimary} />
+    </Pressable>
+  );
+}
+
+function TabIcon({ name, focused }: { name: IconName; focused: boolean }) {
+  return (
+    <View style={[styles.iconPill, focused && styles.iconPillFocused]}>
+      <Icon
+        name={name}
+        color={focused ? colors.textPrimary : colors.textSecondary}
+      />
+    </View>
+  );
+}
+
+function TabLabel({
+  focused,
+  children,
+}: {
+  focused: boolean;
+  children: string;
+}) {
+  return (
+    <Text style={[styles.tabLabel, focused && styles.tabLabelFocused]}>
+      {children}
+    </Text>
+  );
+}
+
+const styles = StyleSheet.create({
+  mark: { marginLeft: spacing.gutter - 2, marginRight: spacing.xs },
+  headerButton: {
+    width: 48,
+    height: 48,
+    marginRight: spacing.sm,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: radius.pill,
+  },
+  pressed: { backgroundColor: colors.surfaceMuted },
+  tabBar: {
+    backgroundColor: colors.surface,
+    borderTopColor: colors.border,
+    paddingTop: spacing.sm,
+  },
+  tabItem: { gap: 4 },
+  iconPill: {
+    width: 56,
+    height: 30,
+    borderRadius: radius.pill,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  iconPillFocused: { backgroundColor: colors.surfaceMuted },
+  tabLabel: { fontSize: 12, color: colors.textSecondary },
+  tabLabelFocused: { color: colors.textPrimary, fontWeight: '700' },
+});

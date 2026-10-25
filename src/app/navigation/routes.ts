@@ -2,11 +2,11 @@ import type { NavigatorScreenParams } from '@react-navigation/native';
 
 /** Bottom tabs; labels shown to the user are in Portuguese (see Navigator). */
 export type TabParamList = {
+  Home: undefined;
   Customers: undefined;
   Jobs: undefined;
-  Catalog: undefined;
   CashFlow: undefined;
-  Settings: undefined;
+  Catalog: undefined;
 };
 
 /** Routes carry only ids; screens load the data from their repositories. */
@@ -20,6 +20,7 @@ export type RootStackParamList = {
   ProductSaleForm: { customerId: number; saleId?: number };
   PaymentForm: { customerId: number; paymentId?: number };
   ExpenseForm: { expenseId?: number } | undefined;
+  Settings: undefined;
 };
 
 declare global {

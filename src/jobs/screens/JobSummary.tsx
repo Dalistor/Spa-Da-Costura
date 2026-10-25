@@ -2,8 +2,15 @@ import { StyleSheet, Text, View } from 'react-native';
 import { formatBusinessDate } from '../../calendar';
 import { formatCents } from '../../money';
 import { colors, spacing, typography } from '../../theme';
-import type { Job } from '../domain';
+import { Pill } from '../../ui';
+import type { Job, JobStatus } from '../domain';
 import { statusLabels } from './labels';
+
+const statusTones = {
+  pending: 'neutral',
+  ready: 'accent',
+  delivered: 'quiet',
+} as const satisfies Record<JobStatus, 'neutral' | 'accent' | 'quiet'>;
 
 /** Delivery date, description, amount and status of one job. */
 export function JobSummary({
@@ -14,53 +21,32 @@ export function JobSummary({
   customerName?: string;
 }) {
   return (
-    <View>
-      {customerName ? (
-        <Text style={styles.customer}>{customerName}</Text>
-      ) : null}
-      <View style={styles.line}>
+    <View style={styles.row}>
+      <View style={styles.text}>
+        {customerName ? (
+          <Text style={styles.customer} numberOfLines={1}>
+            {customerName}
+          </Text>
+        ) : null}
         <Text style={styles.description}>{job.description}</Text>
-        <Text style={styles.amount}>{formatCents(job.amountCents)}</Text>
-      </View>
-      <View style={styles.line}>
         <Text style={styles.muted}>
           Entrega {formatBusinessDate(job.deliveryDate)}
         </Text>
-        <Text style={[styles.status, styles[job.status]]}>
-          {statusLabels[job.status]}
-        </Text>
+      </View>
+      <View style={styles.side}>
+        <Text style={styles.amount}>{formatCents(job.amountCents)}</Text>
+        <Pill label={statusLabels[job.status]} tone={statusTones[job.status]} />
       </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  customer: { ...typography.caption, fontWeight: '600', color: colors.accent },
-  line: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  description: { ...typography.body, color: colors.textPrimary, flexShrink: 1 },
-  amount: {
-    ...typography.body,
-    fontWeight: '600',
-    color: colors.textPrimary,
-    marginLeft: spacing.md,
-  },
+  row: { flexDirection: 'row', alignItems: 'flex-start', gap: spacing.md },
+  text: { flex: 1, gap: 3 },
+  customer: { ...typography.caption, fontWeight: '600', color: colors.accentInk },
+  description: { ...typography.body, fontWeight: '500', color: colors.textPrimary },
   muted: { ...typography.caption, color: colors.textSecondary },
-  status: {
-    ...typography.caption,
-    fontWeight: '600',
-    paddingHorizontal: spacing.sm,
-    borderRadius: 8,
-    overflow: 'hidden',
-    marginTop: spacing.xs,
-  },
-  pending: { color: colors.textPrimary, backgroundColor: colors.surfaceMuted },
-  ready: { color: colors.onAccent, backgroundColor: colors.accent },
-  delivered: {
-    color: colors.textSecondary,
-    backgroundColor: colors.background,
-  },
+  side: { alignItems: 'flex-end', gap: spacing.sm - 2 },
+  amount: { ...typography.figure, color: colors.textPrimary },
 });

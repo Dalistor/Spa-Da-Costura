@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Alert, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { todayLocal } from '../../calendar';
-import { colors, spacing, typography } from '../../theme';
+import { colors, radius, spacing, typography } from '../../theme';
 import { Button } from '../../ui';
 import type { ImportError } from '../domain';
 import { openFile, saveFile } from '../files/deviceFiles';
@@ -74,6 +74,9 @@ export function SettingsScreen() {
 
   return (
     <ScrollView style={styles.screen} contentContainerStyle={styles.content}>
+      <Text accessibilityRole="header" style={styles.group}>
+        Backup dos dados
+      </Text>
       <View style={styles.section}>
         <Text style={styles.title}>Gerar backup</Text>
         <Text style={styles.message}>
@@ -100,15 +103,30 @@ export function SettingsScreen() {
 
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.background },
-  content: { padding: spacing.md, gap: spacing.md },
+  content: {
+    paddingHorizontal: spacing.gutter,
+    paddingTop: spacing.xs,
+    paddingBottom: spacing.xl,
+    gap: spacing.md - 4,
+  },
+  group: {
+    ...typography.caption,
+    color: colors.textSecondary,
+    marginBottom: spacing.xs,
+  },
   section: {
     backgroundColor: colors.surface,
     borderColor: colors.border,
     borderWidth: 1,
-    borderRadius: 8,
-    padding: spacing.md,
+    borderRadius: radius.card,
+    padding: spacing.gutter,
     gap: spacing.sm,
   },
-  title: { ...typography.title, color: colors.textPrimary },
-  message: { ...typography.body, color: colors.textSecondary },
+  title: { ...typography.section, color: colors.textPrimary },
+  message: {
+    ...typography.body,
+    lineHeight: 23,
+    color: colors.textSecondary,
+    marginBottom: spacing.sm,
+  },
 });

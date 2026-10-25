@@ -6,7 +6,7 @@ import {
   toBusinessDate,
   type BusinessDate,
 } from '../calendar';
-import { colors, spacing, typography } from '../theme';
+import { colors, radius, spacing, typography } from '../theme';
 
 type Props = {
   label: string;
@@ -46,9 +46,10 @@ export function DateField({ label, value, onChange }: Props) {
 const styles = StyleSheet.create({
   container: { marginBottom: spacing.md },
   label: {
-    ...typography.caption,
+    fontSize: 14,
+    fontWeight: '500',
     color: colors.textSecondary,
-    marginBottom: spacing.xs,
+    marginBottom: spacing.sm,
   },
   field: {
     minHeight: 48,
@@ -57,10 +58,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: spacing.md,
     borderWidth: 1,
-    borderColor: colors.border,
-    borderRadius: 8,
+    borderColor: colors.control,
+    borderRadius: radius.control,
     backgroundColor: colors.surface,
   },
   value: { ...typography.body, color: colors.textPrimary },
-  action: { ...typography.caption, color: colors.accent, fontWeight: '600' },
+  action: { fontSize: 15, color: colors.accent, fontWeight: '600' },
 });

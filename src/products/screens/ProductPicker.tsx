@@ -1,6 +1,6 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { formatCents } from '../../money';
-import { colors, spacing, typography } from '../../theme';
+import { colors, radius, spacing, typography } from '../../theme';
 import type { Product } from '../domain';
 
 type Props = {
@@ -63,12 +63,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: spacing.md,
-    borderRadius: 8,
+    borderRadius: radius.control,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: colors.control,
     backgroundColor: colors.surface,
   },
-  selected: { backgroundColor: colors.accent, borderColor: colors.accent },
+  selected: {
+    backgroundColor: colors.textPrimary,
+    borderColor: colors.textPrimary,
+  },
   name: { ...typography.body, color: colors.textPrimary, flexShrink: 1 },
   detail: {
     ...typography.caption,

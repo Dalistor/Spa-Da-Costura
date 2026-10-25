@@ -173,8 +173,8 @@ export function ProductSaleFormScreen() {
 
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.background },
-  content: { padding: spacing.md },
-  footer: { padding: spacing.md },
+  content: { padding: spacing.gutter, gap: spacing.xs },
+  footer: { padding: spacing.gutter },
   label: {
     ...typography.caption,
     color: colors.textSecondary,

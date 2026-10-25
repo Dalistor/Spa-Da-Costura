@@ -2,7 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useCallback } from 'react';
 import { FlatList, Pressable, StyleSheet, View } from 'react-native';
 import { colors, spacing } from '../../theme';
-import { EmptyState, useFocusedLoad } from '../../ui';
+import { Card, EmptyState, useFocusedLoad } from '../../ui';
 import type { JobListItem, JobStatus } from '../domain';
 import { useJobRepository } from './JobRepository';
 import { JobSummary } from './JobSummary';
@@ -39,12 +39,12 @@ export function JobsScreen() {
       data={jobs}
       keyExtractor={job => String(job.id)}
       renderItem={({ item }) => (
-        <View style={styles.card}>
+        <Card style={styles.card}>
           <Pressable
             accessibilityRole="button"
             accessibilityHint="Abre o serviço para editar ou excluir"
             onPress={() => navigation.navigate('JobForm', { jobId: item.id })}
-            style={({ pressed }) => pressed && styles.pressed}
+            style={({ pressed }) => [styles.summary, pressed && styles.pressed]}
           >
             <JobSummary job={item} customerName={item.customerName} />
           </Pressable>
@@ -54,7 +54,7 @@ export function JobsScreen() {
               onChange={status => changeStatus(item, status)}
             />
           </View>
-        </View>
+        </Card>
       )}
     />
   );
@@ -62,14 +62,14 @@ export function JobsScreen() {
 
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.background },
-  content: { padding: spacing.md, gap: spacing.sm },
-  card: {
-    backgroundColor: colors.surface,
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: colors.border,
-    padding: spacing.md,
+  content: {
+    paddingHorizontal: spacing.gutter,
+    paddingTop: spacing.xs,
+    paddingBottom: spacing.xl,
+    gap: spacing.md - 4,
   },
-  pressed: { opacity: 0.6 },
-  status: { marginTop: spacing.sm },
+  card: { paddingBottom: spacing.md },
+  summary: { padding: spacing.md },
+  pressed: { backgroundColor: colors.surfaceMuted },
+  status: { paddingHorizontal: spacing.md },
 });

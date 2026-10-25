@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { formatCents, type Cents } from '../../money';
 import { colors, spacing, typography } from '../../theme';
-import { useFocusedLoad } from '../../ui';
+import { Card, useFocusedLoad } from '../../ui';
 import { customerBalance } from '../domain';
 import { useFinanceRepositories } from './FinanceRepositories';
 
@@ -18,11 +18,11 @@ export function CustomerBalanceSection({ customerId }: { customerId: number }) {
   const { totalPaid, amountDue, credit } = customerBalance(totals);
 
   return (
-    <View style={styles.card}>
-      <Total label="Pago" cents={totalPaid} />
+    <Card style={styles.card}>
       <Total label="Devido" cents={amountDue} highlighted={amountDue > 0} />
-      {credit > 0 ? <Total label="Crédito" cents={credit} /> : null}
-    </View>
+      <Total label="Pago" cents={totalPaid} divided />
+      {credit > 0 ? <Total label="Crédito" cents={credit} divided /> : null}
+    </Card>
   );
 }
 
@@ -30,15 +30,21 @@ function Total({
   label,
   cents,
   highlighted = false,
+  divided = false,
 }: {
   label: string;
   cents: Cents;
   highlighted?: boolean;
+  divided?: boolean;
 }) {
   return (
-    <View style={styles.total}>
+    <View style={[styles.total, divided && styles.divided]}>
       <Text style={styles.label}>{label}</Text>
-      <Text style={[styles.value, highlighted && styles.due]}>
+      <Text
+        style={[styles.value, highlighted && styles.due]}
+        adjustsFontSizeToFit
+        numberOfLines={1}
+      >
         {formatCents(cents)}
       </Text>
     </View>
@@ -46,17 +52,15 @@ function Total({
 }
 
 const styles = StyleSheet.create({
-  card: {
-    flexDirection: 'row',
-    marginTop: spacing.md,
-    backgroundColor: colors.surface,
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: colors.border,
-    padding: spacing.md,
-  },
-  total: { flex: 1 },
+  card: { flexDirection: 'row' },
+  total: { flex: 1, padding: spacing.md, gap: spacing.xs },
+  divided: { borderLeftWidth: 1, borderLeftColor: colors.rule },
   label: { ...typography.caption, color: colors.textSecondary },
-  value: { ...typography.body, fontWeight: '700', color: colors.textPrimary },
+  value: {
+    ...typography.figure,
+    fontSize: 24,
+    fontWeight: '700',
+    color: colors.textPrimary,
+  },
   due: { color: colors.accent },
 });

@@ -1,5 +1,5 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors, spacing, typography } from '../../theme';
+import { colors, radius, spacing } from '../../theme';
 import type { JobStatus } from '../domain';
 import { STATUSES, statusLabels } from './labels';
 
@@ -35,15 +35,18 @@ const styles = StyleSheet.create({
   row: { flexDirection: 'row', gap: spacing.xs },
   option: {
     flex: 1,
-    minHeight: 40,
+    minHeight: 44,
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 8,
+    borderRadius: radius.pill,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: colors.control,
     backgroundColor: colors.surface,
   },
-  selected: { backgroundColor: colors.accent, borderColor: colors.accent },
-  label: { ...typography.caption, color: colors.textPrimary },
+  selected: {
+    backgroundColor: colors.textPrimary,
+    borderColor: colors.textPrimary,
+  },
+  label: { fontSize: 14, color: colors.textPrimary },
   selectedLabel: { color: colors.onAccent, fontWeight: '600' },
 });

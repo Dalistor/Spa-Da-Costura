@@ -1,9 +1,16 @@
 import { useNavigation } from '@react-navigation/native';
 import { useCallback } from 'react';
-import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
 import { formatCents } from '../../money';
 import { colors, spacing, typography } from '../../theme';
-import { Button, EmptyState, useFocusedLoad } from '../../ui';
+import {
+  Button,
+  CardSegment,
+  EmptyState,
+  ListRow,
+  RowFigure,
+  useFocusedLoad,
+} from '../../ui';
 import { useProductRepositories } from './ProductRepositories';
 
 export function CatalogScreen() {
@@ -34,60 +41,49 @@ export function CatalogScreen() {
   }
 
   return (
-    <View style={styles.screen}>
-      <View style={styles.header}>
-        <Button title="Novo produto" onPress={addProduct} />
-      </View>
-      <FlatList
-        data={products}
-        keyExtractor={product => String(product.id)}
-        renderItem={({ item }) => (
-          <Pressable
-            accessibilityRole="button"
+    <FlatList
+      style={styles.screen}
+      contentContainerStyle={styles.list}
+      data={products}
+      keyExtractor={product => String(product.id)}
+      ListHeaderComponent={
+        <View style={styles.header}>
+          <Text style={styles.count}>
+            {products.length === 1 ? '1 peça' : `${products.length} peças`}
+          </Text>
+          <Button title="Novo produto" onPress={addProduct} />
+        </View>
+      }
+      renderItem={({ item, index }) => (
+        <CardSegment first={index === 0} last={index === products.length - 1}>
+          <ListRow
+            first={index === 0}
+            title={item.name}
+            trailing={<RowFigure>{formatCents(item.priceCents)}</RowFigure>}
             accessibilityHint="Abre o produto para editar ou excluir"
             onPress={() =>
               navigation.navigate('ProductForm', { productId: item.id })
             }
-            style={({ pressed }) => [styles.row, pressed && styles.pressed]}
-          >
-            <Text style={styles.name}>{item.name}</Text>
-            <Text style={styles.price}>{formatCents(item.priceCents)}</Text>
-          </Pressable>
-        )}
-        ItemSeparatorComponent={Separator}
-      />
-    </View>
+          />
+        </CardSegment>
+      )}
+    />
   );
-}
-
-function Separator() {
-  return <View style={styles.separator} />;
 }
 
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.background },
-  header: { padding: spacing.md, paddingBottom: spacing.sm },
-  footer: { padding: spacing.md },
-  row: {
+  footer: { padding: spacing.gutter },
+  list: {
+    paddingHorizontal: spacing.gutter,
+    paddingTop: spacing.xs,
+    paddingBottom: spacing.xl,
+  },
+  header: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: colors.surface,
-    paddingHorizontal: spacing.md,
-    paddingVertical: spacing.md,
+    justifyContent: 'space-between',
+    marginBottom: spacing.md,
   },
-  pressed: { backgroundColor: colors.surfaceMuted },
-  name: {
-    ...typography.body,
-    fontWeight: '600',
-    color: colors.textPrimary,
-    flexShrink: 1,
-  },
-  price: {
-    ...typography.body,
-    fontWeight: '600',
-    color: colors.textPrimary,
-    marginLeft: spacing.md,
-  },
-  separator: { height: 1, backgroundColor: colors.border },
+  count: { ...typography.caption, color: colors.textSecondary },
 });

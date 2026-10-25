@@ -63,3 +63,8 @@ export function validateJob(
     },
   };
 }
+
+/** A job not yet delivered whose delivery date has passed. */
+export function isLate(job: Job, today: BusinessDate): boolean {
+  return job.status !== 'delivered' && job.deliveryDate < today;
+}

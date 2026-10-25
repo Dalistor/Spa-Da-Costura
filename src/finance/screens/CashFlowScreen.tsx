@@ -9,12 +9,13 @@ import {
   previousMonth,
   todayLocal,
 } from '../../calendar';
-import { formatCents, type Cents } from '../../money';
-import { colors, spacing, typography } from '../../theme';
-import { Button, useFocusedLoad } from '../../ui';
+import { formatCents } from '../../money';
+import { colors, radius, spacing, typography } from '../../theme';
+import { Card, ListRow, RowFigure, Section, useFocusedLoad } from '../../ui';
 import { cashFlowSummary } from '../domain';
 import { useFinanceRepositories } from './FinanceRepositories';
 import { categoryLabels } from './labels';
+import { MonthSummaryCard } from './MonthSummaryCard';
 
 /** Income, expenses and balance of one month, starting on the current one. */
 export function CashFlowScreen() {
@@ -37,13 +38,13 @@ export function CashFlowScreen() {
     <ScrollView style={styles.screen} contentContainerStyle={styles.content}>
       <View style={styles.monthBar}>
         <MonthArrow
-          label="‹"
+          direction="previous"
           description="Mês anterior"
           onPress={() => setMonth(previousMonth)}
         />
         <Text style={styles.month}>{formatBusinessMonth(month)}</Text>
         <MonthArrow
-          label="›"
+          direction="next"
           description="Próximo mês"
           onPress={() => setMonth(nextMonth)}
         />
@@ -51,56 +52,41 @@ export function CashFlowScreen() {
 
       {current ? (
         <>
-          <View style={styles.card}>
-            <Total label="Entradas" cents={current.summary.incomeCents} />
-            <Total label="Saídas" cents={current.summary.expensesCents} />
-            <Total
-              label="Saldo"
-              cents={current.summary.balanceCents}
-              negative={current.summary.balanceCents < 0}
-            />
-          </View>
+          <MonthSummaryCard
+            label="Saldo do mês"
+            summary={current.summary}
+          />
 
-          <Text style={styles.section}>Despesas do mês</Text>
-          <View style={styles.card}>
-            <View style={styles.list}>
+          <Section
+            title="Despesas do mês"
+            action={{
+              label: 'Nova despesa',
+              onPress: () => navigation.navigate('ExpenseForm'),
+            }}
+          >
+            <Card>
               {current.monthExpenses.length === 0 ? (
                 <Text style={styles.empty}>Nenhuma despesa neste mês.</Text>
               ) : null}
-              {current.monthExpenses.map(expense => (
-                <Pressable
+              {current.monthExpenses.map((expense, index) => (
+                <ListRow
                   key={expense.id}
-                  accessibilityRole="button"
+                  first={index === 0}
+                  title={expense.description}
+                  subtitle={`${categoryLabels[expense.category]} · ${formatBusinessDate(expense.date)}`}
+                  trailing={
+                    <RowFigure>{formatCents(expense.amountCents)}</RowFigure>
+                  }
                   accessibilityHint="Abre a despesa para editar ou excluir"
                   onPress={() =>
                     navigation.navigate('ExpenseForm', {
                       expenseId: expense.id,
                     })
                   }
-                  style={({ pressed }) => [
-                    styles.row,
-                    pressed && styles.pressed,
-                  ]}
-                >
-                  <View style={styles.line}>
-                    <Text style={styles.name}>{expense.description}</Text>
-                    <Text style={styles.amount}>
-                      {formatCents(expense.amountCents)}
-                    </Text>
-                  </View>
-                  <Text style={styles.muted}>
-                    {categoryLabels[expense.category]} ·{' '}
-                    {formatBusinessDate(expense.date)}
-                  </Text>
-                </Pressable>
+                />
               ))}
-            </View>
-            <Button
-              title="Nova despesa"
-              variant="secondary"
-              onPress={() => navigation.navigate('ExpenseForm')}
-            />
-          </View>
+            </Card>
+          </Section>
         </>
       ) : null}
     </ScrollView>
@@ -108,11 +94,11 @@ export function CashFlowScreen() {
 }
 
 function MonthArrow({
-  label,
+  direction,
   description,
   onPress,
 }: {
-  label: string;
+  direction: 'previous' | 'next';
   description: string;
   onPress: () => void;
 }) {
@@ -123,96 +109,50 @@ function MonthArrow({
       onPress={onPress}
       style={({ pressed }) => [styles.arrow, pressed && styles.pressed]}
     >
-      <Text style={styles.arrowLabel}>{label}</Text>
+      <View
+        style={[
+          styles.chevron,
+          direction === 'previous' ? styles.previous : styles.next,
+        ]}
+      />
     </Pressable>
-  );
-}
-
-function Total({
-  label,
-  cents,
-  negative = false,
-}: {
-  label: string;
-  cents: Cents;
-  negative?: boolean;
-}) {
-  return (
-    <View style={styles.total}>
-      <Text style={styles.totalLabel}>{label}</Text>
-      <Text style={[styles.totalValue, negative && styles.negative]}>
-        {formatCents(cents)}
-      </Text>
-    </View>
   );
 }
 
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.background },
-  content: { padding: spacing.md },
+  content: {
+    paddingHorizontal: spacing.gutter,
+    paddingBottom: spacing.xl,
+  },
   monthBar: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginBottom: spacing.md,
-  },
-  month: { ...typography.title, color: colors.textPrimary },
-  arrow: {
-    minWidth: 48,
-    minHeight: 48,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: colors.border,
-    backgroundColor: colors.surface,
-  },
-  arrowLabel: { ...typography.title, color: colors.accent },
-  card: {
-    backgroundColor: colors.surface,
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: colors.border,
-    padding: spacing.md,
-  },
-  total: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingVertical: spacing.xs,
-  },
-  totalLabel: { ...typography.body, color: colors.textSecondary },
-  totalValue: {
-    ...typography.body,
-    fontWeight: '700',
-    color: colors.textPrimary,
-  },
-  negative: { color: colors.danger },
-  section: {
-    ...typography.body,
-    fontWeight: '700',
-    color: colors.textPrimary,
-    marginTop: spacing.lg,
+    marginHorizontal: -spacing.sm - 4,
     marginBottom: spacing.sm,
   },
-  list: { marginBottom: spacing.sm },
-  empty: { ...typography.body, color: colors.textSecondary },
-  row: {
-    paddingVertical: spacing.sm,
-    borderBottomWidth: 1,
-    borderBottomColor: colors.border,
+  month: { ...typography.section, color: colors.textPrimary },
+  arrow: {
+    width: 48,
+    height: 48,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: radius.pill,
   },
   pressed: { backgroundColor: colors.surfaceMuted },
-  line: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+  chevron: {
+    width: 11,
+    height: 11,
+    borderTopWidth: 1.8,
+    borderRightWidth: 1.8,
+    borderColor: colors.textPrimary,
   },
-  name: { ...typography.body, color: colors.textPrimary, flexShrink: 1 },
-  amount: {
+  previous: { transform: [{ rotate: '-135deg' }], marginLeft: 4 },
+  next: { transform: [{ rotate: '45deg' }], marginRight: 4 },
+  empty: {
     ...typography.body,
-    fontWeight: '600',
-    color: colors.textPrimary,
-    marginLeft: spacing.md,
+    color: colors.textSecondary,
+    padding: spacing.md,
   },
-  muted: { ...typography.caption, color: colors.textSecondary },
 });

@@ -1,9 +1,17 @@
 import { useNavigation } from '@react-navigation/native';
 import { useCallback, useState } from 'react';
-import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors, spacing, typography } from '../../theme';
-import { Button, EmptyState, TextField, useFocusedLoad } from '../../ui';
-import { searchByName, type Customer } from '../domain';
+import { FlatList, StyleSheet, Text, TextInput, View } from 'react-native';
+import { colors, radius, spacing, typography } from '../../theme';
+import {
+  Avatar,
+  Button,
+  CardSegment,
+  Chevron,
+  EmptyState,
+  ListRow,
+  useFocusedLoad,
+} from '../../ui';
+import { searchByName } from '../domain';
 import { useCustomerRepositories } from './CustomerRepositories';
 
 export function CustomersScreen() {
@@ -37,28 +45,41 @@ export function CustomersScreen() {
   const found = searchByName(customers, query);
   return (
     <View style={styles.screen}>
-      <View style={styles.header}>
-        <TextField
-          label="Buscar pelo nome"
+      <View style={styles.toolbar}>
+        <TextInput
+          accessibilityLabel="Buscar pelo nome"
+          placeholder="Buscar pelo nome"
+          placeholderTextColor={colors.textSecondary}
           value={query}
           onChangeText={setQuery}
-          placeholder="Ex.: Maria"
           autoCorrect={false}
+          style={styles.search}
         />
-        <Button title="Novo cliente" onPress={addCustomer} />
+        <Button title="Novo" onPress={addCustomer} />
       </View>
       <FlatList
         data={found}
         keyExtractor={customer => String(customer.id)}
-        renderItem={({ item }) => (
-          <CustomerRow
-            customer={item}
-            onPress={() =>
-              navigation.navigate('CustomerDetail', { customerId: item.id })
-            }
-          />
+        contentContainerStyle={styles.list}
+        ListHeaderComponent={
+          <Text style={styles.count}>
+            {customers.length === 1 ? '1 cliente' : `${customers.length} clientes`}
+          </Text>
+        }
+        renderItem={({ item, index }) => (
+          <CardSegment first={index === 0} last={index === found.length - 1}>
+            <ListRow
+              first={index === 0}
+              title={item.name}
+              subtitle={item.phone ?? 'Sem telefone'}
+              leading={<Avatar name={item.name} />}
+              trailing={<Chevron />}
+              onPress={() =>
+                navigation.navigate('CustomerDetail', { customerId: item.id })
+              }
+            />
+          </CardSegment>
         )}
-        ItemSeparatorComponent={Separator}
         ListEmptyComponent={
           <Text style={styles.notFound}>
             Nenhum cliente encontrado para “{query.trim()}”.
@@ -70,48 +91,33 @@ export function CustomersScreen() {
   );
 }
 
-function CustomerRow({
-  customer,
-  onPress,
-}: {
-  customer: Customer;
-  onPress: () => void;
-}) {
-  return (
-    <Pressable
-      accessibilityRole="button"
-      onPress={onPress}
-      style={({ pressed }) => [styles.row, pressed && styles.rowPressed]}
-    >
-      <Text style={styles.name}>{customer.name}</Text>
-      {customer.phone ? (
-        <Text style={styles.phone}>{customer.phone}</Text>
-      ) : null}
-    </Pressable>
-  );
-}
-
-function Separator() {
-  return <View style={styles.separator} />;
-}
-
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.background },
-  header: { padding: spacing.md, paddingBottom: spacing.sm },
-  footer: { padding: spacing.md },
-  row: {
-    backgroundColor: colors.surface,
-    paddingHorizontal: spacing.md,
-    paddingVertical: spacing.md,
+  toolbar: {
+    flexDirection: 'row',
+    gap: spacing.sm,
+    paddingHorizontal: spacing.gutter,
+    paddingTop: spacing.xs,
+    paddingBottom: spacing.md,
   },
-  rowPressed: { backgroundColor: colors.surfaceMuted },
-  name: { ...typography.body, fontWeight: '600', color: colors.textPrimary },
-  phone: {
+  search: {
+    flex: 1,
+    ...typography.body,
+    color: colors.textPrimary,
+    backgroundColor: colors.surface,
+    borderWidth: 1,
+    borderColor: colors.control,
+    borderRadius: radius.control,
+    paddingHorizontal: spacing.md,
+    minHeight: 48,
+  },
+  footer: { padding: spacing.gutter },
+  list: { paddingHorizontal: spacing.gutter, paddingBottom: spacing.xl },
+  count: {
     ...typography.caption,
     color: colors.textSecondary,
-    marginTop: spacing.xs,
+    marginBottom: spacing.sm,
   },
-  separator: { height: 1, backgroundColor: colors.border },
   notFound: {
     ...typography.body,
     color: colors.textSecondary,

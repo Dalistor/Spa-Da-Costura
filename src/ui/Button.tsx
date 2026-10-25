@@ -1,5 +1,5 @@
 import { Pressable, StyleSheet, Text } from 'react-native';
-import { colors, spacing, typography } from '../theme';
+import { colors, radius, spacing } from '../theme';
 
 type Props = {
   title: string;
@@ -23,17 +23,11 @@ export function Button({
       style={({ pressed }) => [
         styles.base,
         styles[variant],
-        (pressed || disabled) && styles.dimmed,
+        pressed && styles.pressed,
+        disabled && styles.disabled,
       ]}
     >
-      <Text
-        style={[
-          styles.label,
-          variant === 'primary' ? styles.onAccent : styles[`${variant}Label`],
-        ]}
-      >
-        {title}
-      </Text>
+      <Text style={[styles.label, styles[`${variant}Label`]]}>{title}</Text>
     </Pressable>
   );
 }
@@ -41,25 +35,26 @@ export function Button({
 const styles = StyleSheet.create({
   base: {
     minHeight: 48,
-    paddingHorizontal: spacing.md,
-    borderRadius: 8,
+    paddingHorizontal: spacing.lg,
+    borderRadius: radius.pill,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  primary: { backgroundColor: colors.accent },
+  primary: { backgroundColor: colors.textPrimary },
   secondary: {
     backgroundColor: colors.surface,
     borderWidth: 1,
-    borderColor: colors.accent,
+    borderColor: colors.control,
   },
   danger: {
     backgroundColor: colors.surface,
     borderWidth: 1,
     borderColor: colors.danger,
   },
-  dimmed: { opacity: 0.6 },
-  label: { ...typography.body, fontWeight: '600' },
-  onAccent: { color: colors.onAccent },
-  secondaryLabel: { color: colors.accent },
+  pressed: { opacity: 0.8 },
+  disabled: { opacity: 0.5 },
+  label: { fontSize: 16, fontWeight: '600' },
+  primaryLabel: { color: colors.onAccent },
+  secondaryLabel: { color: colors.textPrimary },
   dangerLabel: { color: colors.danger },
 });

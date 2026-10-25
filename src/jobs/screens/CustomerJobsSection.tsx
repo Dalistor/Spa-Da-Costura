@@ -1,8 +1,8 @@
 import { useNavigation } from '@react-navigation/native';
 import { useCallback } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text } from 'react-native';
 import { colors, spacing, typography } from '../../theme';
-import { Button, useFocusedLoad } from '../../ui';
+import { Card, Section, useFocusedLoad } from '../../ui';
 import { useJobRepository } from './JobRepository';
 import { JobSummary } from './JobSummary';
 
@@ -18,57 +18,44 @@ export function CustomerJobsSection({ customerId }: { customerId: number }) {
   );
 
   return (
-    <View>
-      <Text style={styles.section}>Serviços</Text>
-      <View style={styles.card}>
+    <Section
+      title="Serviços"
+      action={{
+        label: 'Novo serviço',
+        onPress: () => navigation.navigate('JobForm', { customerId }),
+      }}
+    >
+      <Card>
         {jobs && jobs.length === 0 ? (
           <Text style={styles.empty}>Nenhum serviço registrado.</Text>
         ) : null}
-        {jobs?.map(job => (
+        {jobs?.map((job, index) => (
           <Pressable
             key={job.id}
             accessibilityRole="button"
+            accessibilityHint="Abre o serviço para editar ou excluir"
             onPress={() => navigation.navigate('JobForm', { jobId: job.id })}
-            style={({ pressed }) => [styles.row, pressed && styles.pressed]}
+            style={({ pressed }) => [
+              styles.row,
+              index > 0 && styles.ruled,
+              pressed && styles.pressed,
+            ]}
           >
             <JobSummary job={job} />
           </Pressable>
         ))}
-        <Button
-          title="Novo serviço"
-          variant="secondary"
-          onPress={() => navigation.navigate('JobForm', { customerId })}
-        />
-      </View>
-    </View>
+      </Card>
+    </Section>
   );
 }
 
 const styles = StyleSheet.create({
-  section: {
-    ...typography.body,
-    fontWeight: '700',
-    color: colors.textPrimary,
-    marginTop: spacing.lg,
-    marginBottom: spacing.sm,
-  },
-  card: {
-    backgroundColor: colors.surface,
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: colors.border,
-    padding: spacing.md,
-  },
   empty: {
     ...typography.body,
     color: colors.textSecondary,
-    marginBottom: spacing.md,
+    padding: spacing.md,
   },
-  row: {
-    paddingVertical: spacing.sm,
-    marginBottom: spacing.sm,
-    borderBottomWidth: 1,
-    borderBottomColor: colors.border,
-  },
+  row: { padding: spacing.md },
+  ruled: { borderTopWidth: 1, borderTopColor: colors.rule },
   pressed: { backgroundColor: colors.surfaceMuted },
 });

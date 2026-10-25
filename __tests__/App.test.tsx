@@ -22,11 +22,11 @@ test('migrates the database, then shows the five tabs', async () => {
   const [version] = await database.query('PRAGMA user_version');
   expect(Number(version.user_version)).toBeGreaterThan(0);
   for (const label of [
+    'Início',
     'Clientes',
     'Serviços',
-    'Catálogo',
     'Caixa',
-    'Ajustes',
+    'Catálogo',
   ]) {
     expect(
       renderer.root.findAllByProps({ children: label }).length,

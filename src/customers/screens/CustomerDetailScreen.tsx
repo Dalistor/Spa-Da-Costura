@@ -13,7 +13,7 @@ import {
   View,
 } from 'react-native';
 import { colors, spacing, typography } from '../../theme';
-import { Button, EmptyState, useFocusedLoad } from '../../ui';
+import { Button, Card, EmptyState, Section, useFocusedLoad } from '../../ui';
 import { CustomerBalanceSection, CustomerPaymentsSection } from '../../finance';
 import { CustomerJobsSection } from '../../jobs';
 import { CustomerProductSalesSection } from '../../products';
@@ -96,55 +96,74 @@ export function CustomerDetailScreen() {
       ],
     );
 
+  const contact = [customer.phone, customer.description]
+    .filter(Boolean)
+    .join(' · ');
+
   return (
     <ScrollView style={styles.screen} contentContainerStyle={styles.content}>
-      <View style={styles.card}>
-        <Text style={styles.name}>{customer.name}</Text>
-        <Info label="Telefone" value={customer.phone} />
-        <Info label="Descrição" value={customer.description} />
-        <Button
-          title="Editar dados"
-          variant="secondary"
+      <View style={styles.identity}>
+        <View style={styles.identityText}>
+          <Text accessibilityRole="header" style={styles.name}>
+            {customer.name}
+          </Text>
+          <Text style={styles.contact}>
+            {contact || 'Sem telefone nem descrição'}
+          </Text>
+        </View>
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel="Editar dados do cliente"
           onPress={() => navigation.navigate('CustomerForm', { customerId })}
-        />
+          style={({ pressed }) => [styles.edit, pressed && styles.pressed]}
+        >
+          <Text style={styles.editLabel}>Editar</Text>
+        </Pressable>
       </View>
       <CustomerBalanceSection customerId={customerId} />
 
-      <Text style={styles.section}>Medidas</Text>
-      <View style={styles.card}>
-        {detail.measurements.length === 0 ? (
-          <Text style={[styles.muted, styles.spaced]}>
-            Nenhuma medida registrada.
+      <Section
+        title="Medidas"
+        action={{
+          label: 'Adicionar',
+          onPress: () => navigation.navigate('MeasurementForm', { customerId }),
+        }}
+      >
+        <Card>
+          {detail.measurements.length === 0 ? (
+            <Text style={styles.empty}>Nenhuma medida registrada.</Text>
+          ) : (
+            <View style={styles.measurements}>
+              {detail.measurements.map((measurement, index) => (
+                <Pressable
+                  key={measurement.id}
+                  accessibilityRole="button"
+                  accessibilityHint="Toque para editar; toque e segure para remover"
+                  onPress={() => editMeasurement(measurement)}
+                  onLongPress={() => confirmRemoval(measurement)}
+                  style={({ pressed }) => [
+                    styles.measurement,
+                    index >= 2 && styles.ruled,
+                    pressed && styles.pressed,
+                  ]}
+                >
+                  <Text style={styles.measurementKey} numberOfLines={1}>
+                    {measurement.key}
+                  </Text>
+                  <Text style={styles.measurementValue}>
+                    {measurement.value}
+                  </Text>
+                </Pressable>
+              ))}
+            </View>
+          )}
+        </Card>
+        {detail.measurements.length > 0 ? (
+          <Text style={styles.hint}>
+            Toque para editar. Toque e segure para remover.
           </Text>
-        ) : (
-          <>
-            {detail.measurements.map(measurement => (
-              <Pressable
-                key={measurement.id}
-                accessibilityRole="button"
-                accessibilityHint="Toque para editar; toque e segure para remover"
-                onPress={() => editMeasurement(measurement)}
-                onLongPress={() => confirmRemoval(measurement)}
-                style={({ pressed }) => [
-                  styles.measurement,
-                  pressed && styles.pressed,
-                ]}
-              >
-                <Text style={styles.measurementKey}>{measurement.key}</Text>
-                <Text style={styles.measurementValue}>{measurement.value}</Text>
-              </Pressable>
-            ))}
-            <Text style={[styles.hint, styles.spaced]}>
-              Toque para editar. Toque e segure para remover.
-            </Text>
-          </>
-        )}
-        <Button
-          title="Adicionar medida"
-          variant="secondary"
-          onPress={() => navigation.navigate('MeasurementForm', { customerId })}
-        />
-      </View>
+        ) : null}
+      </Section>
 
       <CustomerJobsSection customerId={customerId} />
       <CustomerProductSalesSection customerId={customerId} />
@@ -161,63 +180,53 @@ export function CustomerDetailScreen() {
   );
 }
 
-function Info({ label, value }: { label: string; value: string | null }) {
-  return (
-    <View style={styles.info}>
-      <Text style={styles.infoLabel}>{label}</Text>
-      <Text style={value ? styles.infoValue : styles.muted}>
-        {value ?? 'Não informado'}
-      </Text>
-    </View>
-  );
-}
-
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.background },
-  content: { padding: spacing.md },
-  card: {
-    backgroundColor: colors.surface,
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: colors.border,
+  content: {
+    paddingHorizontal: spacing.gutter,
+    paddingTop: spacing.sm,
+    paddingBottom: spacing.xl,
+  },
+  identity: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: spacing.md,
+    marginBottom: spacing.lg,
+  },
+  identityText: { flex: 1, gap: spacing.xs },
+  name: {
+    fontSize: 26,
+    fontWeight: '700',
+    letterSpacing: -0.2,
+    color: colors.textPrimary,
+  },
+  contact: { fontSize: 15, color: colors.textSecondary },
+  edit: { minHeight: 44, justifyContent: 'center' },
+  editLabel: { fontSize: 15, fontWeight: '600', color: colors.accent },
+  pressed: { opacity: 0.6 },
+  empty: {
+    ...typography.body,
+    color: colors.textSecondary,
     padding: spacing.md,
   },
-  name: {
-    ...typography.title,
-    color: colors.textPrimary,
-    marginBottom: spacing.md,
-  },
-  info: { marginBottom: spacing.md },
-  infoLabel: { ...typography.caption, color: colors.textSecondary },
-  infoValue: { ...typography.body, color: colors.textPrimary },
-  muted: { ...typography.body, color: colors.textSecondary },
-  spaced: { marginVertical: spacing.sm },
-  hint: { ...typography.caption, color: colors.textSecondary },
-  dangerZone: { marginTop: spacing.xl },
-  section: {
-    ...typography.body,
-    fontWeight: '700',
-    color: colors.textPrimary,
-    marginTop: spacing.lg,
-    marginBottom: spacing.sm,
-  },
+  measurements: { flexDirection: 'row', flexWrap: 'wrap' },
   measurement: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingVertical: spacing.sm,
-    borderBottomWidth: 1,
-    borderBottomColor: colors.border,
+    width: '50%',
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.md - 4,
+    gap: 2,
   },
-  pressed: { backgroundColor: colors.surfaceMuted },
-  measurementKey: {
-    ...typography.body,
-    color: colors.textPrimary,
-    flexShrink: 1,
-  },
+  ruled: { borderTopWidth: 1, borderTopColor: colors.rule },
+  measurementKey: { ...typography.caption, color: colors.textSecondary },
   measurementValue: {
-    ...typography.body,
-    fontWeight: '600',
+    ...typography.figure,
+    fontSize: 17,
     color: colors.textPrimary,
-    marginLeft: spacing.md,
   },
+  hint: {
+    ...typography.caption,
+    color: colors.textSecondary,
+    marginTop: spacing.sm,
+  },
+  dangerZone: { marginTop: spacing.xl + spacing.md },
 });

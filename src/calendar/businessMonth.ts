@@ -36,6 +36,18 @@ export function formatBusinessMonth(month: BusinessMonth): string {
   return `${MONTH_NAMES[index]} de ${year}`;
 }
 
+/** The day and abbreviated month of a date, as in a calendar leaf: "24", "out". */
+export function dayAndShortMonth(date: BusinessDate): {
+  day: string;
+  month: string;
+} {
+  const index = Number(date.slice(5, 7)) - 1;
+  return {
+    day: date.slice(8, 10),
+    month: MONTH_NAMES[index].slice(0, 3).toLowerCase(),
+  };
+}
+
 function shiftMonth(month: BusinessMonth, offset: number): BusinessMonth {
   const [year, index] = parts(month);
   const total = year * 12 + index + offset;

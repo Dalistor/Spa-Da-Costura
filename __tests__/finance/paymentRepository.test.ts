@@ -3,6 +3,7 @@ import { initializeDatabase, type Database } from '../../src/database';
 import {
   customerBalance,
   exceedsAmountDue,
+  totalAmountDue,
   createPaymentRepository,
   type Payment,
 } from '../../src/finance';
@@ -18,9 +19,9 @@ async function setup() {
   await initializeDatabase(db);
   const customers = createCustomerRepository(db);
   const created = await Promise.all(
-    ['Maria', 'Ana'].map(name => customers.create({ name })),
+    ['Maria', 'Ana', 'Lúcia'].map(name => customers.create({ name })),
   );
-  const [maria, ana] = created.map(result => {
+  const [maria, ana, lucia] = created.map(result => {
     if (!result.ok) {
       throw new Error(result.error);
     }
@@ -31,9 +32,11 @@ async function setup() {
     jobs: createJobRepository(db),
     products: createProductRepository(db),
     sales: createProductSaleRepository(db),
+    customers,
     payments: createPaymentRepository(db),
     maria,
     ana,
+    lucia,
   };
 }
 
@@ -184,5 +187,52 @@ describe('payments', () => {
     expect(
       await payments.update(999, { amount: '10', date: '2026-10-24' }),
     ).toEqual({ ok: false, error: 'not-found' });
+  });
+});
+
+describe('amounts due across customers', () => {
+  test('lists only active customers who still owe, largest amount first', async () => {
+    const { customers, jobs, products, sales, payments, maria, ana, lucia } =
+      await setup();
+    await jobs.create(maria.id, {
+      description: 'Bainha',
+      amount: '35,50',
+      deliveryDate: '2026-10-30',
+    });
+    await payments.create(maria.id, { amount: '10,25', date: '2026-10-24' });
+    const coat = await products.create({ name: 'Casaco', price: '120' });
+    if (!coat.ok) {
+      throw new Error(coat.error);
+    }
+    await sales.create(ana.id, {
+      productId: coat.product.id,
+      amount: '120,00',
+      date: '2026-10-24',
+    });
+    await jobs.create(ana.id, {
+      description: 'Zíper',
+      amount: '0,10',
+      deliveryDate: '2026-10-30',
+    });
+    // Paid beyond the charges: a credit, not a debt.
+    await jobs.create(lucia.id, {
+      description: 'Ajuste',
+      amount: '20',
+      deliveryDate: '2026-10-30',
+    });
+    await payments.create(lucia.id, { amount: '25', date: '2026-10-24' });
+
+    expect(await payments.listAmountsDue()).toEqual([
+      { customerId: ana.id, customerName: 'Ana', amountDueCents: 12010 },
+      { customerId: maria.id, customerName: 'Maria', amountDueCents: 2525 },
+    ]);
+
+    expect(totalAmountDue(await payments.listAmountsDue())).toBe(14535);
+
+    await customers.remove(ana.id);
+
+    expect(await payments.listAmountsDue()).toEqual([
+      { customerId: maria.id, customerName: 'Maria', amountDueCents: 2525 },
+    ]);
   });
 });

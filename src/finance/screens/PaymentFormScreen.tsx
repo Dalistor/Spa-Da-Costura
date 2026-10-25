@@ -158,7 +158,7 @@ export function PaymentFormScreen() {
 
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.background },
-  content: { padding: spacing.md },
+  content: { padding: spacing.gutter, gap: spacing.xs },
   error: {
     ...typography.caption,
     color: colors.danger,

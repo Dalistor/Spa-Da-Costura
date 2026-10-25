@@ -5,7 +5,7 @@ import {
   View,
   type TextInputProps,
 } from 'react-native';
-import { colors, spacing, typography } from '../theme';
+import { colors, radius, spacing, typography } from '../theme';
 
 type Props = Omit<TextInputProps, 'style' | 'placeholderTextColor'> & {
   label: string;
@@ -34,23 +34,24 @@ export function TextField({ label, error, ...input }: Props) {
 const styles = StyleSheet.create({
   container: { marginBottom: spacing.md },
   label: {
-    ...typography.caption,
+    fontSize: 14,
+    fontWeight: '500',
     color: colors.textSecondary,
-    marginBottom: spacing.xs,
+    marginBottom: spacing.sm,
   },
   input: {
     ...typography.body,
     color: colors.textPrimary,
     backgroundColor: colors.surface,
     borderWidth: 1,
-    borderColor: colors.border,
-    borderRadius: 8,
+    borderColor: colors.control,
+    borderRadius: radius.control,
     paddingHorizontal: spacing.md,
     minHeight: 48,
   },
   multiline: {
-    minHeight: 96,
-    paddingTop: spacing.sm,
+    minHeight: 104,
+    paddingTop: spacing.md,
     textAlignVertical: 'top',
   },
   invalid: { borderColor: colors.danger },

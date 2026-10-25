@@ -7,6 +7,7 @@ export {
   type BusinessDate,
 } from './businessDate';
 export {
+  dayAndShortMonth,
   formatBusinessMonth,
   monthOf,
   nextMonth,

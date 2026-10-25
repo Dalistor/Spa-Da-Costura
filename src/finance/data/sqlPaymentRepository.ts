@@ -78,6 +78,27 @@ export function createPaymentRepository(db: Database): PaymentRepository {
       );
       return { chargedCents: Number(row.charged), paidCents: Number(row.paid) };
     },
+
+    async listAmountsDue() {
+      const rows = await db.query(
+        `SELECT id, name, due FROM (
+           SELECT c.id, c.name,
+             (SELECT COALESCE(SUM(amount_cents), 0) FROM job WHERE customer_id = c.id)
+             + (SELECT COALESCE(SUM(amount_cents), 0) FROM product_sale WHERE customer_id = c.id)
+             - (SELECT COALESCE(SUM(amount_cents), 0) FROM payment WHERE customer_id = c.id)
+               AS due
+           FROM customer c
+           WHERE c.deleted_at IS NULL
+         )
+         WHERE due > 0
+         ORDER BY due DESC, name`,
+      );
+      return rows.map(row => ({
+        customerId: Number(row.id),
+        customerName: String(row.name),
+        amountDueCents: Number(row.due),
+      }));
+    },
   };
 }
 

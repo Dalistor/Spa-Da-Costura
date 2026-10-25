@@ -6,6 +6,13 @@ export type CustomerTotals = {
   paidCents: Cents;
 };
 
+/** What one customer still owes, for the list of open debts. */
+export type AmountDue = {
+  customerId: number;
+  customerName: string;
+  amountDueCents: Cents;
+};
+
 export type CustomerBalance = {
   totalPaid: Cents;
   /** Charges minus payments, never below zero. */
@@ -36,4 +43,9 @@ export function exceedsAmountDue(
   replacedCents: Cents = 0,
 ): boolean {
   return paidCents - replacedCents + amountCents > chargedCents;
+}
+
+/** Everything customers still owe, summed in integer cents. */
+export function totalAmountDue(amounts: AmountDue[]): Cents {
+  return amounts.reduce((total, { amountDueCents }) => total + amountDueCents, 0);
 }

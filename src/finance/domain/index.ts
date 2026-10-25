@@ -1,6 +1,8 @@
 export {
   customerBalance,
   exceedsAmountDue,
+  totalAmountDue,
+  type AmountDue,
   type CustomerBalance,
   type CustomerTotals,
 } from './balance';
