@@ -4,6 +4,10 @@ import {
   createCustomerRepository,
   createMeasurementRepository,
 } from '../customers';
+import {
+  createPaymentRepository,
+  FinanceRepositoriesProvider,
+} from '../finance';
 import { createJobRepository, JobRepositoryProvider } from '../jobs';
 import {
   createProductRepository,
@@ -33,12 +37,18 @@ export function RepositoriesProvider({ children }: { children: ReactNode }) {
     }),
     [database],
   );
+  const financeRepositories = useMemo(
+    () => ({ payments: createPaymentRepository(database) }),
+    [database],
+  );
 
   return (
     <CustomerRepositoriesProvider repositories={customerRepositories}>
       <JobRepositoryProvider repository={jobRepository}>
         <ProductRepositoriesProvider repositories={productRepositories}>
-          {children}
+          <FinanceRepositoriesProvider repositories={financeRepositories}>
+            {children}
+          </FinanceRepositoriesProvider>
         </ProductRepositoriesProvider>
       </JobRepositoryProvider>
     </CustomerRepositoriesProvider>

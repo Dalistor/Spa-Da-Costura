@@ -1,0 +1,1 @@
+export { createPaymentRepository } from './sqlPaymentRepository';

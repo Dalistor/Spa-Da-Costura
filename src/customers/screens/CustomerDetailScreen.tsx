@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 import { colors, spacing, typography } from '../../theme';
 import { Button, EmptyState, useFocusedLoad } from '../../ui';
+import { CustomerBalanceSection, CustomerPaymentsSection } from '../../finance';
 import { CustomerJobsSection } from '../../jobs';
 import { CustomerProductSalesSection } from '../../products';
 import type { Measurement } from '../domain';
@@ -107,6 +108,7 @@ export function CustomerDetailScreen() {
           onPress={() => navigation.navigate('CustomerForm', { customerId })}
         />
       </View>
+      <CustomerBalanceSection customerId={customerId} />
 
       <Text style={styles.section}>Medidas</Text>
       <View style={styles.card}>
@@ -146,6 +148,7 @@ export function CustomerDetailScreen() {
 
       <CustomerJobsSection customerId={customerId} />
       <CustomerProductSalesSection customerId={customerId} />
+      <CustomerPaymentsSection customerId={customerId} />
 
       <View style={styles.dangerZone}>
         <Button

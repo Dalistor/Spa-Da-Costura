@@ -5,7 +5,7 @@ import {
 } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { CashFlowScreen } from '../../finance';
+import { CashFlowScreen, PaymentFormScreen } from '../../finance';
 import {
   CatalogScreen,
   ProductFormScreen,
@@ -121,7 +121,7 @@ export function Navigator() {
           />
           <Stack.Screen
             name="PaymentForm"
-            component={PendingScreen}
+            component={PaymentFormScreen}
             options={{ title: 'Pagamento' }}
           />
           <Stack.Screen
