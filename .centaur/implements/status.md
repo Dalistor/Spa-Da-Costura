@@ -12,6 +12,7 @@ Histórico de todas as implementações realizadas neste projeto.
 | [0006](0006/README.md) | Produtos: catálogo e venda ao cliente (master/0006) | 2026-10-24 | Concluído | src/{products,ui,app,customers,jobs}, __tests__/products |
 | [0007](0007/README.md) | Pagamentos e saldo do cliente (master/0007) | 2026-10-25 | Concluído | src/{finance,app,customers}, __tests__/finance |
 | [0008](0008/README.md) | Despesas e caixa por mês (master/0008) | 2026-10-25 | Concluído | src/{finance,calendar,app}, __tests__/finance |
+| [0009](0009/README.md) | Backup em arquivo e importação (master/0009) | 2026-10-25 | Concluído | src/{backup,app}, android/…/spadacostura, __tests__/backup |
 
 ---
 

@@ -25,8 +25,8 @@
         }
       ],
       "evidence": [
-        "ev-5edfb520a4d149219f6a460165df873e",
-        "ev-4b91e5cb536b463281654217045648ad"
+        "ev-4cb171c30a424facabb0d064661e7af1",
+        "ev-465124a719d14a5cb6b6433a217869cc"
       ],
       "delivery": {
         "stage": "integrated",
@@ -62,7 +62,7 @@
         }
       ],
       "evidence": [
-        "ev-8d59a6d3f7cc4521b9557facd6ce8440"
+        "ev-bf2130b133a342e1b4eb6038523998b4"
       ],
       "delivery": {
         "stage": "integrated",
@@ -111,6 +111,128 @@
         "master/0001"
       ],
       "notes": "Inspecionado no emulador Android 36."
+    },
+    "SIS-04": {
+      "implementation": "implementada",
+      "sources": [
+        {
+          "path": "src/backup/domain/backup.ts",
+          "start": 1,
+          "end": 93,
+          "role": "Formato do backup, tabelas na ordem das relações e validação do arquivo"
+        },
+        {
+          "path": "src/backup/data/backupFile.ts",
+          "start": 1,
+          "end": 108,
+          "role": "Exporta todas as tabelas e a versão do esquema"
+        },
+        {
+          "path": "src/backup/screens/SettingsScreen.tsx",
+          "start": 1,
+          "end": 114,
+          "role": "Gerar backup na aba Ajustes"
+        },
+        {
+          "path": "src/backup/files/deviceFiles.ts",
+          "start": 1,
+          "end": 25,
+          "role": "Adaptador JS do módulo nativo de arquivo"
+        },
+        {
+          "path": "android/app/src/main/java/com/spadacostura/BackupFileModule.kt",
+          "start": 1,
+          "end": 106,
+          "role": "Salvar e abrir o arquivo pelo Storage Access Framework"
+        },
+        {
+          "path": "src/app/RepositoriesProvider.tsx",
+          "start": 1,
+          "end": 69,
+          "role": "Liga o backup ao banco local pela composição"
+        },
+        {
+          "path": "__tests__/backup/backup.test.ts",
+          "start": 1,
+          "end": 212,
+          "role": "Testes de ida e volta, recusa e totais"
+        }
+      ],
+      "evidence": [
+        "ev-648694b4e05543668dc171783e53f015",
+        "ev-9665f0f41ae54b57a775fe7316f8718e"
+      ],
+      "delivery": {
+        "stage": "integrated",
+        "reference": "main local",
+        "revision": "06cc8b0",
+        "at": "2026-10-25"
+      },
+      "specs": [
+        "master/0009"
+      ],
+      "notes": "Demonstrado no emulador em modo avião: arquivo salvo em Downloads pelo seletor do Android com todas as tabelas, inclusive clientes excluídos."
+    },
+    "SIS-05": {
+      "implementation": "implementada",
+      "sources": [
+        {
+          "path": "src/backup/domain/backup.ts",
+          "start": 1,
+          "end": 93,
+          "role": "Formato do backup, tabelas na ordem das relações e validação do arquivo"
+        },
+        {
+          "path": "src/backup/data/backupFile.ts",
+          "start": 1,
+          "end": 108,
+          "role": "Importa numa única transação; qualquer erro desfaz tudo"
+        },
+        {
+          "path": "src/backup/screens/SettingsScreen.tsx",
+          "start": 1,
+          "end": 114,
+          "role": "Importar backup com aviso e confirmação"
+        },
+        {
+          "path": "src/backup/files/deviceFiles.ts",
+          "start": 1,
+          "end": 25,
+          "role": "Adaptador JS do módulo nativo de arquivo"
+        },
+        {
+          "path": "android/app/src/main/java/com/spadacostura/BackupFileModule.kt",
+          "start": 1,
+          "end": 106,
+          "role": "Salvar e abrir o arquivo pelo Storage Access Framework"
+        },
+        {
+          "path": "src/app/RepositoriesProvider.tsx",
+          "start": 1,
+          "end": 69,
+          "role": "Liga o backup ao banco local pela composição"
+        },
+        {
+          "path": "__tests__/backup/backup.test.ts",
+          "start": 1,
+          "end": 212,
+          "role": "Testes de ida e volta, recusa e totais"
+        }
+      ],
+      "evidence": [
+        "ev-2b3b6482ad9f415a8c2ab01a0bde505a",
+        "ev-86e48a9ee50c48c784aa67057ca46c29"
+      ],
+      "delivery": {
+        "stage": "integrated",
+        "reference": "main local",
+        "revision": "06cc8b0",
+        "at": "2026-10-25"
+      },
+      "specs": [
+        "master/0009"
+      ],
+      "notes": "Demonstrado no emulador: cancelar não muda nada, importar substitui tudo, arquivo corrompido e arquivo qualquer são recusados sem mudar os dados."
     },
     "SIS-06": {
       "implementation": "implementada",

@@ -12,7 +12,7 @@ Planejamentos de implementações complexas, decompostos em tasks para subagente
 | [master/0006](0006/README.md) | Catálogo de produtos e venda de produto ao cliente | 2026-10-24 | Concluída | 3 |
 | [master/0007](0007/README.md) | Pagamentos do cliente com total pago, devido e crédito | 2026-10-24 | Concluída | 2 |
 | [master/0008](0008/README.md) | Despesas do ateliê e caixa por mês | 2026-10-24 | Concluída | 2 |
-| [master/0009](0009/README.md) | Backup dos dados em arquivo e importação que substitui tudo | 2026-10-25 | Pendente | 2 |
+| [master/0009](0009/README.md) | Backup dos dados em arquivo e importação que substitui tudo | 2026-10-25 | Concluída | 2 |
 
 ---
 

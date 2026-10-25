@@ -1,6 +1,6 @@
 # Visão geral — Spa da Costura
 
-> Estado (2026-10-25): **clientes, serviços, produtos e financeiro implementados; backup/importação pendente** (SIS-04, SIS-05). Este documento registra a definição fornecida pelo usuário em 2026-10-23 e as lacunas abertas. A definição normativa vive nos contratos em [`../contracts/`](../contracts/); aqui ficam contexto e motivos.
+> Estado (2026-10-25): **clientes, serviços, produtos, financeiro e backup/importação implementados**. Este documento registra a definição fornecida pelo usuário em 2026-10-23 e as lacunas abertas. A definição normativa vive nos contratos em [`../contracts/`](../contracts/); aqui ficam contexto e motivos.
 
 ## Propósito
 

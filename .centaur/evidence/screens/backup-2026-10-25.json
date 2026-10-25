@@ -1,0 +1,226 @@
+{
+  "format": "spa-da-costura-backup",
+  "schemaVersion": 2,
+  "createdAt": "2026-10-25T12:43:05.685Z",
+  "tables": {
+    "customer": [
+      {
+        "id": 1,
+        "name": "Maria Souza",
+        "phone": "11988887777",
+        "description": "Barra italiana",
+        "created_at": "2026-10-24T18:37:07.488Z",
+        "updated_at": "2026-10-24T18:38:46.420Z",
+        "deleted_at": null
+      },
+      {
+        "id": 2,
+        "name": "Ana Lima",
+        "phone": null,
+        "description": null,
+        "created_at": "2026-10-24T18:40:38.006Z",
+        "updated_at": "2026-10-24T18:47:48.271Z",
+        "deleted_at": "2026-10-24T18:47:48.271Z"
+      },
+      {
+        "id": 3,
+        "name": "Joana Prado",
+        "phone": "1133334444",
+        "description": "Ajustes de vestido",
+        "created_at": "2026-10-24T18:49:17.323Z",
+        "updated_at": "2026-10-25T00:21:26.440Z",
+        "deleted_at": "2026-10-25T00:21:26.440Z"
+      },
+      {
+        "id": 4,
+        "name": "Lia Costa",
+        "phone": "1122223333",
+        "description": null,
+        "created_at": "2026-10-25T00:01:19.487Z",
+        "updated_at": "2026-10-25T00:02:19.768Z",
+        "deleted_at": "2026-10-25T00:02:19.768Z"
+      },
+      {
+        "id": 5,
+        "name": "Rita Alves",
+        "phone": "1144445555",
+        "description": null,
+        "created_at": "2026-10-25T00:22:34.972Z",
+        "updated_at": "2026-10-25T00:22:52.021Z",
+        "deleted_at": null
+      },
+      {
+        "id": 6,
+        "name": "Joana Prado",
+        "phone": "1133332222",
+        "description": null,
+        "created_at": "2026-10-25T01:05:02.504Z",
+        "updated_at": "2026-10-25T01:11:28.565Z",
+        "deleted_at": "2026-10-25T01:11:28.565Z"
+      },
+      {
+        "id": 7,
+        "name": "Lucia Ramos",
+        "phone": null,
+        "description": null,
+        "created_at": "2026-10-25T11:35:15.921Z",
+        "updated_at": "2026-10-25T11:49:58.008Z",
+        "deleted_at": "2026-10-25T11:49:58.008Z"
+      },
+      {
+        "id": 8,
+        "name": "Joana Lima",
+        "phone": "1133334444",
+        "description": null,
+        "created_at": "2026-10-25T11:52:31.636Z",
+        "updated_at": "2026-10-25T12:20:44.687Z",
+        "deleted_at": "2026-10-25T12:20:44.687Z"
+      }
+    ],
+    "measurement": [
+      {
+        "id": 1,
+        "customer_id": 1,
+        "key": "Cintura",
+        "value": "74 cm",
+        "created_at": "2026-10-24T18:37:38.421Z",
+        "updated_at": "2026-10-24T18:39:34.711Z"
+      },
+      {
+        "id": 2,
+        "customer_id": 3,
+        "key": "Busto",
+        "value": "92 cm",
+        "created_at": "2026-10-24T18:50:19.323Z",
+        "updated_at": "2026-10-24T18:51:25.477Z"
+      }
+    ],
+    "job": [
+      {
+        "id": 1,
+        "customer_id": 1,
+        "description": "Barra da calca",
+        "amount_cents": 3000,
+        "status": "delivered",
+        "delivery_date": "2026-10-30",
+        "created_at": "2026-10-25T00:17:58.720Z",
+        "updated_at": "2026-10-25T00:20:22.818Z"
+      },
+      {
+        "id": 3,
+        "customer_id": 3,
+        "description": "Bainha",
+        "amount_cents": 2000,
+        "status": "pending",
+        "delivery_date": "2026-10-24",
+        "created_at": "2026-10-25T00:19:05.818Z",
+        "updated_at": "2026-10-25T00:19:05.818Z"
+      },
+      {
+        "id": 4,
+        "customer_id": 6,
+        "description": "Bainha",
+        "amount_cents": 2200,
+        "status": "ready",
+        "delivery_date": "2026-10-28",
+        "created_at": "2026-10-25T01:09:06.937Z",
+        "updated_at": "2026-10-25T01:10:42.687Z"
+      },
+      {
+        "id": 5,
+        "customer_id": 8,
+        "description": "Bainha",
+        "amount_cents": 2200,
+        "status": "ready",
+        "delivery_date": "2026-10-28",
+        "created_at": "2026-10-25T12:03:16.685Z",
+        "updated_at": "2026-10-25T12:15:57.569Z"
+      }
+    ],
+    "product": [
+      {
+        "id": 1,
+        "name": "Saia midi",
+        "price_cents": 12000,
+        "created_at": "2026-10-25T00:58:30.404Z",
+        "updated_at": "2026-10-25T00:58:30.404Z"
+      },
+      {
+        "id": 2,
+        "name": "Blusa",
+        "price_cents": 8000,
+        "created_at": "2026-10-25T01:00:02.353Z",
+        "updated_at": "2026-10-25T01:00:02.353Z"
+      }
+    ],
+    "product_sale": [
+      {
+        "id": 1,
+        "customer_id": 1,
+        "product_id": 2,
+        "product_name": "Blusa",
+        "amount_cents": 8000,
+        "date": "2026-10-20",
+        "created_at": "2026-10-25T00:59:21.263Z",
+        "updated_at": "2026-10-25T01:00:34.851Z"
+      },
+      {
+        "id": 2,
+        "customer_id": 7,
+        "product_id": 2,
+        "product_name": "Blusa",
+        "amount_cents": 5000,
+        "date": "2026-10-25",
+        "created_at": "2026-10-25T11:36:40.299Z",
+        "updated_at": "2026-10-25T11:36:40.299Z"
+      },
+      {
+        "id": 3,
+        "customer_id": 8,
+        "product_id": null,
+        "product_name": "Calca social",
+        "amount_cents": 9000,
+        "date": "2026-10-25",
+        "created_at": "2026-10-25T12:13:46.322Z",
+        "updated_at": "2026-10-25T12:13:46.322Z"
+      }
+    ],
+    "payment": [
+      {
+        "id": 1,
+        "customer_id": 7,
+        "amount_cents": 4000,
+        "date": "2026-10-25",
+        "created_at": "2026-10-25T11:37:48.687Z",
+        "updated_at": "2026-10-25T11:37:48.687Z"
+      },
+      {
+        "id": 2,
+        "customer_id": 7,
+        "amount_cents": 11000,
+        "date": "2026-10-25",
+        "created_at": "2026-10-25T11:40:17.285Z",
+        "updated_at": "2026-10-25T11:40:48.414Z"
+      },
+      {
+        "id": 3,
+        "customer_id": 8,
+        "amount_cents": 5000,
+        "date": "2026-10-25",
+        "created_at": "2026-10-25T12:19:45.010Z",
+        "updated_at": "2026-10-25T12:19:45.010Z"
+      }
+    ],
+    "expense": [
+      {
+        "id": 1,
+        "description": "Linha e botoes",
+        "category": "materials",
+        "amount_cents": 3500,
+        "date": "2026-10-25",
+        "created_at": "2026-10-25T11:47:22.551Z",
+        "updated_at": "2026-10-25T11:47:22.551Z"
+      }
+    ]
+  }
+}

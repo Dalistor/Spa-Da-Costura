@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "id": "ev-2b3b6482ad9f415a8c2ab01a0bde505a",
+  "contract": "sistema@1",
+  "rule": "SIS-05",
+  "contract_hash": "67c2c67a03901dd912c682f243b82af6d943a979e8fe6028c044acee0722c8e6",
+  "method": "test",
+  "command": [
+    "npx",
+    "jest",
+    "__tests__/backup"
+  ],
+  "result": "passed",
+  "exit_code": 0,
+  "at": "2026-10-25T13:02:51.067593+00:00",
+  "revision": "06cc8b0e7c19b64747ececf3f8974f703e749c22",
+  "summary": "Importação substitui tudo (registro anterior some, saldo do cliente e caixa do mês iguais) e recusa sem alterar o banco texto que não é JSON, outro JSON, tabela ou coluna ausente, pagamento órfão, categoria inválida, centavos decimais e versão de esquema mais nova",
+  "reference": "Comando executado no checkout; saída exibida no terminal",
+  "files": {
+    "__tests__/backup/backup.test.ts": "92364db265d17462b4816efdaf1921678351d3de7185338685cffde8a9dc9950",
+    "android/app/src/main/java/com/spadacostura/BackupFileModule.kt": "7db3cc3e08253a9b8d005913377eacf91894540840ece5c9f9aed3113e8947de",
+    "src/app/RepositoriesProvider.tsx": "1eff4b9446a87e3a278df6593e04f8eca119da9fd8c0a827d81b4296735dfb9a",
+    "src/backup/data/backupFile.ts": "31b75b756afa29762817d8aac6f2d924db296c4440ff2f2d6759cfa6c3ee7ca2",
+    "src/backup/domain/backup.ts": "3fe45b65923eba23e530e75e967762f0dc764023d0e2c60c9b52785b792225ea",
+    "src/backup/files/deviceFiles.ts": "b172fc00e9728b6dfae548940ea1b83227e2d862b8bc1ff0f8e4b5fa8b8c14a4",
+    "src/backup/screens/SettingsScreen.tsx": "0695f2b7804d0b09e32ca09efc69c8eed865bce0c4b117ce5ac11dacb6d4341e"
+  },
+  "sources_stable": true
+}

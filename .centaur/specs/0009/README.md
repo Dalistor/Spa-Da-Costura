@@ -1,7 +1,7 @@
 # 0009 Backup dos dados em arquivo e importação que substitui tudo
 
 **Data:** 2026-10-25
-**Status:** Pendente
+**Status:** Concluída
 **Escopo:** master
 **Responsável:** Diego
 **Contrato:** sistema@1
@@ -156,11 +156,22 @@ Demonstração no APK release em modo avião:
 
 ## Diferença entre plano e resultado
 
-—
+- **Formato:** JSON com `format: "spa-da-costura-backup"`, `schemaVersion`, `createdAt` e `tables`, com as linhas de cada tabela e as colunas do banco. A lista de tabelas fica só em `BACKUP_TABLES`, em `src/backup/domain/backup.ts`, na ordem das relações.
+- **Colunas:** a importação compara as chaves de cada linha com `PRAGMA table_info` da tabela. Coluna faltando ou sobrando recusa o arquivo, e os nomes de coluna nunca vêm do arquivo para o SQL.
+- **Versão:** backup de versão mais nova devolve `newer-version`. Backup de versão mais antiga é recusado como `invalid-file` até existir uma conversão (não há nenhum hoje).
+- **Composição:** `createBackupService(db)` liga exportar e importar ao banco em `RepositoriesProvider`, e a tela usa `BackupServiceProvider`. Como `RepositoriesProvider` mudou, as evidências de CLI-01..04, SRV-01..05, PRD-01/02 e SIS-01/02 foram reemitidas, com uma regressão curta no build da 0009 (capturas 81–89).
+- **Módulo nativo:** `BackupFileModule.kt` funcionou no RN 0.88 pelo módulo legado (`ReactContextBaseJavaModule`), sem precisar de biblioteca. Não há dependência nova.
+- **Demonstração (capturas 70–80):**
+  - O backup foi salvo em Downloads com as 7 tabelas, incluindo 6 clientes excluídos. O arquivo da demonstração ficou em `.centaur/evidence/screens/backup-2026-10-25.json`.
+  - Cancelar no aviso não mudou nada. Confirmar removeu "Depois do backup" e a despesa nova.
+  - O caixa de outubro voltou a 200,00 / 35,00 / 165,00 e o saldo da Maria a Pago 0,00 / Devido 110,00.
+  - Um `.json` truncado e um `notas.txt` foram recusados, sem mudar os dados.
+  - Depois de reiniciar, um novo backup trouxe tabelas idênticas às do arquivo importado.
+- **Integração:** commit `06cc8b0` no `main` local, sem push.
 
 ## Checklist de conclusão
-- [ ] Task 01 — Exportar e importar todos os dados com validação
-- [ ] Task 02 — Aba Ajustes com salvar e importar arquivo no Android
+- [x] Task 01 — Exportar e importar todos os dados com validação
+- [x] Task 02 — Aba Ajustes com salvar e importar arquivo no Android
 
 ## Execução
 $run master/0009

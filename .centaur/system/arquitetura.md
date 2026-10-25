@@ -1,6 +1,6 @@
 # Arquitetura — Spa da Costura
 
-> Estado: **fundação implementada (2026-10-24)** em [master/0001](../specs/0001/README.md): banco, migração v1, tema e rotas; clientes e medidas em [master/0002](../specs/0002/README.md) [master/0003](../specs/0003/README.md) e [master/0004](../specs/0004/README.md) (migração 002); serviços em [master/0005](../specs/0005/README.md); produtos em [master/0006](../specs/0006/README.md); pagamentos e saldo do cliente em [master/0007](../specs/0007/README.md); despesas e caixa por mês em [master/0008](../specs/0008/README.md); a tela de Ajustes (backup) ainda está vazia. Repositórios de cada funcionalidade chegam às telas por contexto declarado na própria funcionalidade e montado em `src/app/RepositoriesProvider`. A definição normativa vive nos contratos ([sistema](../contracts/sistema/v001.json), [clientes@2](../contracts/clientes/v002.json), [servicos](../contracts/servicos/v001.json), [financeiro](../contracts/financeiro/v001.json)); este documento explica como o código os atende. Código e testes prevalecem quando existirem.
+> Estado: **fundação implementada (2026-10-24)** em [master/0001](../specs/0001/README.md): banco, migração v1, tema e rotas; clientes e medidas em [master/0002](../specs/0002/README.md) [master/0003](../specs/0003/README.md) e [master/0004](../specs/0004/README.md) (migração 002); serviços em [master/0005](../specs/0005/README.md); produtos em [master/0006](../specs/0006/README.md); pagamentos e saldo do cliente em [master/0007](../specs/0007/README.md); despesas e caixa por mês em [master/0008](../specs/0008/README.md); backup e importação por arquivo em [master/0009](../specs/0009/README.md) (módulo nativo `BackupFile` com o Storage Access Framework). Repositórios de cada funcionalidade chegam às telas por contexto declarado na própria funcionalidade e montado em `src/app/RepositoriesProvider`. A definição normativa vive nos contratos ([sistema](../contracts/sistema/v001.json), [clientes@2](../contracts/clientes/v002.json), [servicos](../contracts/servicos/v001.json), [financeiro](../contracts/financeiro/v001.json)); este documento explica como o código os atende. Código e testes prevalecem quando existirem.
 
 ## Idioma
 
@@ -51,7 +51,7 @@ src/
   jobs/           domain/ data/ screens/
   products/       catálogo e vendas de produto: domain/ data/ screens/
   finance/        pagamentos, despesas, caixa e saldo: domain/ data/ screens/
-  backup/         exportar/importar (spec própria)
+  backup/         exportar/importar em JSON; files/ chama o módulo nativo BackupFile
 __tests__/        testes Jest (domínio e banco em Node, com node:sqlite)
 ```
 
