@@ -104,7 +104,7 @@ Execução em 2026-10-24, registro [implements/0006](../../implements/0006/READM
 - O repositório confere a peça antes do valor. Na primeira demonstração, salvar sem peça mostrava o erro de valor.
 - Componente próprio `ProductPicker` para escolher a peça; `DateField` movido para `src/ui` como previsto.
 - Mudanças em telas compartilhadas exigiram repetir no mesmo build os fluxos de CLI-01..04 e SRV-01/02/03/05 e reemitir SIS-01, 02 e 03.
-- Integrada em `main` local (56472d5); `validate-lifecycle.py --ready` ok para PRD-01, PRD-02 e SRV-04 e `--complete master/0006` ok. Push para `origin` aguarda autorização de Diego.
+- Integrada em `main` local (56472d5); `validate-lifecycle.py --ready` ok para PRD-01, PRD-02 e SRV-04 e `--complete master/0006` ok. Enviada a `origin/main` (push autorizado por Diego: "Pode dar commit e push").
 
 ## Checklist de conclusão
 - [x] Task 01 — Regras e repositórios de produtos e vendas

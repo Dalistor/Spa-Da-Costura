@@ -195,7 +195,7 @@
       ],
       "delivery": {
         "stage": "integrated",
-        "reference": "main local (commit sem push)",
+        "reference": "origin/main (github.com/Dalistor/Spa-Da-Costura)",
         "revision": "56472d5",
         "at": "2026-10-24"
       },
@@ -250,7 +250,7 @@
       ],
       "delivery": {
         "stage": "integrated",
-        "reference": "main local (commit sem push)",
+        "reference": "origin/main (github.com/Dalistor/Spa-Da-Costura)",
         "revision": "56472d5",
         "at": "2026-10-24"
       },
@@ -293,7 +293,7 @@
       ],
       "delivery": {
         "stage": "integrated",
-        "reference": "main local (commit sem push)",
+        "reference": "origin/main (github.com/Dalistor/Spa-Da-Costura)",
         "revision": "56472d5",
         "at": "2026-10-24"
       },
