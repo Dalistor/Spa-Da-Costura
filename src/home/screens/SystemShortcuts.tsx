@@ -68,8 +68,12 @@ export function SystemShortcuts() {
         >
           <Icon name={shortcut.icon} color={colors.accent} size={26} />
           <View style={styles.text}>
-            <Text style={styles.label}>{shortcut.label}</Text>
-            <Text style={styles.description}>{shortcut.description}</Text>
+            <Text style={styles.label} numberOfLines={1}>
+              {shortcut.label}
+            </Text>
+            <Text style={styles.description} numberOfLines={2}>
+              {shortcut.description}
+            </Text>
           </View>
         </Pressable>
       ))}
@@ -101,7 +105,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   pressed: { backgroundColor: colors.surfaceMuted },
-  text: { gap: 2 },
+  text: { flexShrink: 1, gap: 2 },
   label: { ...typography.section, color: colors.textPrimary },
   description: { ...typography.caption, color: colors.textSecondary },
 });

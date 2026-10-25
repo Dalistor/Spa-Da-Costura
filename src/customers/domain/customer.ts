@@ -50,13 +50,21 @@ export function compareByName(a: Customer, b: Customer): number {
   return nameCollator.compare(a.name, b.name);
 }
 
-/** Customers whose name contains `query`, ignoring letter case. */
-export function searchByName(customers: Customer[], query: string): Customer[] {
-  const wanted = query.trim().toLocaleLowerCase('pt-BR');
+const onlyDigits = (text: string) => text.replace(/\D/g, '');
+
+/**
+ * Customers whose name contains what was typed, ignoring letter case,
+ * or whose phone contains the typed digits, whatever the punctuation.
+ */
+export function searchCustomers(customers: Customer[], typed: string): Customer[] {
+  const wanted = typed.trim().toLocaleLowerCase('pt-BR');
   if (wanted === '') {
     return customers;
   }
-  return customers.filter(customer =>
-    customer.name.toLocaleLowerCase('pt-BR').includes(wanted),
+  const digits = onlyDigits(wanted);
+  return customers.filter(
+    customer =>
+      customer.name.toLocaleLowerCase('pt-BR').includes(wanted) ||
+      (digits !== '' && onlyDigits(customer.phone ?? '').includes(digits)),
   );
 }

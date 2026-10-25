@@ -21,7 +21,11 @@ export function StatusSelector({ value, onChange }: Props) {
             onPress={() => onChange(status)}
             style={[styles.option, selected && styles.selected]}
           >
-            <Text style={[styles.label, selected && styles.selectedLabel]}>
+            <Text
+              style={[styles.label, selected && styles.selectedLabel]}
+              numberOfLines={1}
+              adjustsFontSizeToFit
+            >
               {statusLabels[status]}
             </Text>
           </Pressable>

@@ -1,4 +1,9 @@
-import { SQL_NOW as NOW, type Database, type Row } from '../../database';
+import {
+  SQL_NOW as NOW,
+  searchFilter,
+  type Database,
+  type Row,
+} from '../../database';
 import {
   validatePayment,
   type Payment,
@@ -24,6 +29,25 @@ export function createPaymentRepository(db: Database): PaymentRepository {
         [customerId],
       );
       return rows.map(toPayment);
+    },
+
+    async searchForCustomer(customerId, search, { offset, limit }) {
+      const filter = searchFilter(search, {
+        amount: 'amount_cents',
+        date: 'date',
+      });
+      const where = `WHERE customer_id = ? AND ${filter.sql}`;
+      const params = [customerId, ...filter.params];
+      const [counted] = await db.query(
+        `SELECT COUNT(*) AS total FROM payment ${where}`,
+        params,
+      );
+      const rows = await db.query(
+        `SELECT ${COLUMNS} FROM payment ${where}
+         ORDER BY date DESC, id DESC LIMIT ? OFFSET ?`,
+        [...params, limit, offset],
+      );
+      return { items: rows.map(toPayment), total: Number(counted.total) };
     },
 
     get,

@@ -2,20 +2,20 @@ import { useNavigation } from '@react-navigation/native';
 import { useCallback, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import {
-  formatBusinessDate,
   formatBusinessMonth,
   monthOf,
   nextMonth,
   previousMonth,
   todayLocal,
 } from '../../calendar';
-import { formatCents } from '../../money';
 import { colors, radius, spacing, typography } from '../../theme';
-import { Card, ListRow, RowFigure, Section, useFocusedLoad } from '../../ui';
+import { Card, SeeAllRow, Section, useFocusedLoad } from '../../ui';
 import { cashFlowSummary } from '../domain';
 import { useFinanceRepositories } from './FinanceRepositories';
-import { categoryLabels } from './labels';
+import { ExpenseRow } from './ExpenseRow';
 import { MonthSummaryCard } from './MonthSummaryCard';
+
+const SHOWN = 5;
 
 /** Income, expenses and balance of one month, starting on the current one. */
 export function CashFlowScreen() {
@@ -26,7 +26,11 @@ export function CashFlowScreen() {
     useCallback(async () => {
       const [totals, monthExpenses] = await Promise.all([
         cashFlow.totalsFor(month),
-        expenses.listForMonth(month),
+        expenses.searchForMonth(
+          month,
+          { kind: 'all' },
+          { offset: 0, limit: SHOWN },
+        ),
       ]);
       return { month, summary: cashFlowSummary(totals), monthExpenses };
     }, [month, cashFlow, expenses]),
@@ -65,26 +69,24 @@ export function CashFlowScreen() {
             }}
           >
             <Card>
-              {current.monthExpenses.length === 0 ? (
+              {current.monthExpenses.total === 0 ? (
                 <Text style={styles.empty}>Nenhuma despesa neste mês.</Text>
               ) : null}
-              {current.monthExpenses.map((expense, index) => (
-                <ListRow
+              {current.monthExpenses.items.map((expense, index) => (
+                <ExpenseRow
                   key={expense.id}
+                  expense={expense}
                   first={index === 0}
-                  title={expense.description}
-                  subtitle={`${categoryLabels[expense.category]} · ${formatBusinessDate(expense.date)}`}
-                  trailing={
-                    <RowFigure>{formatCents(expense.amountCents)}</RowFigure>
-                  }
-                  accessibilityHint="Abre a despesa para editar ou excluir"
-                  onPress={() =>
-                    navigation.navigate('ExpenseForm', {
-                      expenseId: expense.id,
-                    })
-                  }
                 />
               ))}
+              {current.monthExpenses.total > SHOWN ? (
+                <SeeAllRow
+                  label={`Ver todas as ${current.monthExpenses.total} despesas`}
+                  onPress={() =>
+                    navigation.navigate('MonthExpenses', { month })
+                  }
+                />
+              ) : null}
             </Card>
           </Section>
         </>
@@ -120,7 +122,7 @@ function MonthArrow({
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: colors.background },
+  screen: { flex: 1 },
   content: {
     paddingHorizontal: spacing.gutter,
     paddingBottom: spacing.xl,

@@ -7,5 +7,6 @@ export type {
 } from './Database';
 export { initializeDatabase } from './initializeDatabase';
 export { migrate, type Migration } from './migrate';
+export { searchFilter } from './searchFilter';
 export { MIGRATIONS } from './migrations';
 export { SQL_NOW } from './sqlNow';

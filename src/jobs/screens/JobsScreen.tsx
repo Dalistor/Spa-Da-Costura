@@ -1,57 +1,52 @@
 import { useNavigation } from '@react-navigation/native';
-import { useCallback } from 'react';
-import { FlatList, Pressable, StyleSheet, View } from 'react-native';
+import { useCallback, useRef } from 'react';
+import { Pressable, StyleSheet, View } from 'react-native';
+import type { ListSearch, PageRequest } from '../../search';
 import { colors, spacing } from '../../theme';
-import { Card, EmptyState, useFocusedLoad } from '../../ui';
+import { Card, PagedList } from '../../ui';
 import type { JobListItem, JobStatus } from '../domain';
 import { useJobRepository } from './JobRepository';
 import { JobSummary } from './JobSummary';
 import { StatusSelector } from './StatusSelector';
 
+/** Every job, nearest delivery first, searchable by customer, description, amount or date. */
 export function JobsScreen() {
   const navigation = useNavigation();
   const repository = useJobRepository();
-  const [jobs, reload] = useFocusedLoad(
-    useCallback(() => repository.listAll(), [repository]),
+  const reload = useRef<(() => Promise<void>) | null>(null);
+  const load = useCallback(
+    (search: ListSearch, page: PageRequest) => repository.search(search, page),
+    [repository],
   );
-
-  if (!jobs) {
-    return <View style={styles.screen} />;
-  }
-  if (jobs.length === 0) {
-    return (
-      <EmptyState
-        title="Nenhum serviço ainda"
-        message="Para criar um serviço, abra a ficha do cliente e toque em Novo serviço."
-      />
-    );
-  }
 
   const changeStatus = async (job: JobListItem, status: JobStatus) => {
     await repository.setStatus(job.id, status);
-    await reload();
+    await reload.current?.();
   };
 
   return (
-    <FlatList
-      style={styles.screen}
-      contentContainerStyle={styles.content}
-      data={jobs}
-      keyExtractor={job => String(job.id)}
-      renderItem={({ item }) => (
+    <PagedList
+      load={load}
+      reloadRef={reload}
+      gap={spacing.md - 4}
+      keyOf={job => String(job.id)}
+      placeholder="Buscar cliente, serviço, valor ou data"
+      countLabel={total => (total === 1 ? '1 serviço' : `${total} serviços`)}
+      emptyLabel="Nenhum serviço ainda. Para criar um, abra a ficha do cliente e toque em Novo serviço."
+      renderItem={job => (
         <Card style={styles.card}>
           <Pressable
             accessibilityRole="button"
             accessibilityHint="Abre o serviço para editar ou excluir"
-            onPress={() => navigation.navigate('JobForm', { jobId: item.id })}
+            onPress={() => navigation.navigate('JobForm', { jobId: job.id })}
             style={({ pressed }) => [styles.summary, pressed && styles.pressed]}
           >
-            <JobSummary job={item} customerName={item.customerName} />
+            <JobSummary job={job} customerName={job.customerName} />
           </Pressable>
           <View style={styles.status}>
             <StatusSelector
-              value={item.status}
-              onChange={status => changeStatus(item, status)}
+              value={job.status}
+              onChange={status => changeStatus(job, status)}
             />
           </View>
         </Card>
@@ -61,13 +56,6 @@ export function JobsScreen() {
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: colors.background },
-  content: {
-    paddingHorizontal: spacing.gutter,
-    paddingTop: spacing.xs,
-    paddingBottom: spacing.xl,
-    gap: spacing.md - 4,
-  },
   card: { paddingBottom: spacing.md },
   summary: { padding: spacing.md },
   pressed: { backgroundColor: colors.surfaceMuted },

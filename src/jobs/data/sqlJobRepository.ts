@@ -1,4 +1,9 @@
-import { SQL_NOW as NOW, type Database, type Row } from '../../database';
+import {
+  SQL_NOW as NOW,
+  searchFilter,
+  type Database,
+  type Row,
+} from '../../database';
 import {
   validateJob,
   type Job,
@@ -29,6 +34,46 @@ export function createJobRepository(db: Database): JobRepository {
          ${NEAREST_FIRST}`,
       );
       return rows.map(toListItem);
+    },
+
+    async search(search, { offset, limit }) {
+      const filter = searchFilter(search, {
+        amount: 'j.amount_cents',
+        date: 'j.delivery_date',
+        text: ['j.description', 'c.name'],
+      });
+      const from = `FROM job j
+         JOIN customer c ON c.id = j.customer_id AND c.deleted_at IS NULL
+         WHERE ${filter.sql}`;
+      const [counted] = await db.query(
+        `SELECT COUNT(*) AS total ${from}`,
+        filter.params,
+      );
+      const rows = await db.query(
+        `SELECT ${COLUMNS}, c.name AS customer_name ${from}
+         ${NEAREST_FIRST} LIMIT ? OFFSET ?`,
+        [...filter.params, limit, offset],
+      );
+      return { items: rows.map(toListItem), total: Number(counted.total) };
+    },
+
+    async searchForCustomer(customerId, search, { offset, limit }) {
+      const filter = searchFilter(search, {
+        amount: 'j.amount_cents',
+        date: 'j.delivery_date',
+        text: ['j.description'],
+      });
+      const where = `WHERE j.customer_id = ? AND ${filter.sql}`;
+      const params = [customerId, ...filter.params];
+      const [counted] = await db.query(
+        `SELECT COUNT(*) AS total FROM job j ${where}`,
+        params,
+      );
+      const rows = await db.query(
+        `SELECT ${COLUMNS} FROM job j ${where} ${NEAREST_FIRST} LIMIT ? OFFSET ?`,
+        [...params, limit, offset],
+      );
+      return { items: rows.map(toJob), total: Number(counted.total) };
     },
 
     async listForCustomer(customerId) {

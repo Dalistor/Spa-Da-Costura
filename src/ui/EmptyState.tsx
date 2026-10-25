@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
 import { colors, spacing, typography } from '../theme';
-import { BrandMark } from './BrandMark';
+import { Artwork } from './Artwork';
 
 type Props = {
   title: string;
@@ -10,9 +10,7 @@ type Props = {
 export function EmptyState({ title, message }: Props) {
   return (
     <View style={styles.container}>
-      <View style={styles.mark}>
-        <BrandMark />
-      </View>
+      <Artwork name="spool" style={styles.art} />
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.message}>{message}</Text>
     </View>
@@ -25,9 +23,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: spacing.xl,
-    backgroundColor: colors.background,
   },
-  mark: { opacity: 0.9, marginBottom: spacing.md },
+  art: { width: 200, marginBottom: spacing.lg },
   title: {
     ...typography.title,
     color: colors.textPrimary,

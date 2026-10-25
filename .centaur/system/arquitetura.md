@@ -43,10 +43,14 @@ screens (React Native)  ──►  domain  ◄──  data (SQL)
 src/
   app/            App.tsx, inicialização do banco, provedor de repositórios
     navigation/   routes.ts (tipos das rotas), Navigator.tsx
-  theme/          tokens da paleta bege/marrom e tipografia
+  theme/          tokens da paleta bege/marrom, raios, espaçamento e tipografia
+  ui/             componentes compartilhados (Card, Section, ListRow, Pill, PagedList…),
+                  ícones, fundo com fios (ThreadBackground) e ilustrações em art/
   money/          Cents: converter texto ⇄ centavos, somar, formatar R$
   calendar/       datas de negócio locais (YYYY-MM-DD ⇄ DD/MM/AAAA), sem UTC
-  database/       porta Database, adaptador SQLite do app, migrations/
+  search/         o que se digita na busca das listas (valor, data, mês ou texto) e páginas
+  database/       porta Database, adaptador SQLite do app, migrations/, searchFilter (WHERE da busca)
+  home/           aba Início: atalhos para as áreas, próximas entregas e valores a receber
   customers/      domain/ data/ screens/
   jobs/           domain/ data/ screens/
   products/       catálogo e vendas de produto: domain/ data/ screens/
@@ -95,13 +99,13 @@ Navegação com pilha raiz contendo as abas e as telas de detalhe/formulário. R
 
 | Aba (rota) | Rótulo | Tela inicial | Contrato |
 |---|---|---|---|
-| `Home` | Início | resumo do mês, próximas entregas e valores a receber; botão Ajustes no cabeçalho | — |
-| `Customers` | Clientes | lista com busca por nome | CLI-01, CLI-03 |
-| `Jobs` | Serviços | lista de serviços com status | SRV-01..03 |
-| `CashFlow` | Caixa | fluxo de caixa do mês e despesas | FIN-02, FIN-04 |
-| `Catalog` | Catálogo | produtos e preços | PRD-01 |
+| `Home` | Início | botões para Clientes, Serviços, Caixa, Catálogo e Ajustes; próximas entregas; valores a receber (5 maiores e o total) | — |
+| `Customers` | Clientes | lista paginada com busca por nome ou telefone | CLI-01, CLI-03 |
+| `Jobs` | Serviços | lista paginada de serviços com status; busca por cliente, descrição, valor ou data | SRV-01..03 |
+| `CashFlow` | Caixa | saldo do mês e as 5 primeiras despesas, com "Ver todas" | FIN-02, FIN-04 |
+| `Catalog` | Catálogo | lista paginada de produtos; busca por nome ou preço | PRD-01 |
 
-Ajustes (`Settings`, backup e importação, SIS-04 e SIS-05) é uma rota da pilha, aberta pelo botão do cabeçalho do Início.
+Ajustes (`Settings`, backup e importação, SIS-04 e SIS-05) é uma rota da pilha, aberta pelo botão Ajustes do Início.
 
 | Rota da pilha | Parâmetros | Uso |
 |---|---|---|
@@ -113,5 +117,18 @@ Ajustes (`Settings`, backup e importação, SIS-04 e SIS-05) é uma rota da pilh
 | `ProductSaleForm` | `customerId`, `saleId?` | vender/editar venda de produto |
 | `PaymentForm` | `customerId`, `paymentId?` | registrar/editar pagamento |
 | `ExpenseForm` | `expenseId?` | registrar/editar despesa |
+| `CustomerJobs` | `customerId` | todos os serviços do cliente, com busca |
+| `CustomerSales` | `customerId` | todas as vendas ao cliente, com busca |
+| `CustomerPayments` | `customerId` | todos os pagamentos do cliente, com busca |
+| `MonthExpenses` | `month` | todas as despesas do mês, com busca |
+| `Settings` | — | backup e restauração |
 
 Os parâmetros são tipados em `src/app/navigation/routes.ts`; telas recebem IDs e buscam os dados no repositório, nunca objetos inteiros pela rota.
+
+## Listas longas: busca e paginação
+
+- A ficha do cliente mostra os 3 serviços, vendas e pagamentos mais recentes, e o Caixa as 5 primeiras despesas do mês. Quando há mais, um "Ver todos" abre a lista completa.
+- As listas completas e as abas usam `PagedList` (`src/ui`): campo de busca, contagem do que foi encontrado e carregamento de 20 em 20 ao rolar. A busca roda 300 ms depois que a pessoa para de digitar.
+- `parseListSearch` (`src/search`) lê o texto digitado. Ele entende valor (`15`, `15,50`, `R$ 1.234,00`), data (`24/10/2026`), dia em qualquer ano (`24/10`), mês (`10/2026`) ou texto. Uma data impossível é procurada como texto.
+- **Paginação no banco:** pagamentos, serviços, vendas e despesas usam `searchForCustomer`, `search` ou `searchForMonth` nos repositórios. Essas consultas usam `searchFilter` (`src/database`) com `LIMIT/OFFSET` e devolvem `{ items, total }`.
+- **Paginação na tela:** Clientes e Catálogo leem a lista inteira, que é leve, para manter a ordem com acentos (`Intl.Collator` pt-BR). A busca (`searchCustomers`, `searchProducts`) e as páginas (`pageOf`) ficam na tela. Para clientes, dígitos procuram no telefone; para produtos, um número procura o preço exato e também o nome.

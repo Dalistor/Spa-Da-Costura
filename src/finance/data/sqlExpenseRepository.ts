@@ -1,4 +1,9 @@
-import { SQL_NOW as NOW, type Database, type Row } from '../../database';
+import {
+  SQL_NOW as NOW,
+  searchFilter,
+  type Database,
+  type Row,
+} from '../../database';
 import {
   validateExpense,
   type Expense,
@@ -18,6 +23,26 @@ export function createExpenseRepository(db: Database): ExpenseRepository {
         monthRange(month),
       );
       return rows.map(toExpense);
+    },
+
+    async searchForMonth(month, search, { offset, limit }) {
+      const filter = searchFilter(search, {
+        amount: 'amount_cents',
+        date: 'date',
+        text: ['description'],
+      });
+      const where = `WHERE date BETWEEN ? AND ? AND ${filter.sql}`;
+      const params = [...monthRange(month), ...filter.params];
+      const [counted] = await db.query(
+        `SELECT COUNT(*) AS total FROM expense ${where}`,
+        params,
+      );
+      const rows = await db.query(
+        `SELECT ${COLUMNS} FROM expense ${where}
+         ORDER BY date, id LIMIT ? OFFSET ?`,
+        [...params, limit, offset],
+      );
+      return { items: rows.map(toExpense), total: Number(counted.total) };
     },
 
     async get(id) {

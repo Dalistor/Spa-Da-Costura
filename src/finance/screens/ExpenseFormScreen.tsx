@@ -144,7 +144,7 @@ export function ExpenseFormScreen() {
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: colors.background },
+  screen: { flex: 1 },
   content: { padding: spacing.gutter, gap: spacing.xs },
   label: {
     ...typography.caption,

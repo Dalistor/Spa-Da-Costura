@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
   day: { ...typography.figure, fontSize: 20, fontWeight: '700', color: colors.textPrimary },
   lateText: { color: colors.danger },
   month: { fontSize: 12, color: colors.textSecondary },
-  text: { flex: 1, gap: 2 },
+  text: { flex: 1, minWidth: 0, gap: 2 },
   description: { ...typography.body, fontWeight: '500', color: colors.textPrimary },
   customer: { ...typography.caption, color: colors.textSecondary },
 });

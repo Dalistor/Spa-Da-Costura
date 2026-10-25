@@ -13,6 +13,9 @@ export type TabParamList = {
 export type RootStackParamList = {
   Tabs: NavigatorScreenParams<TabParamList> | undefined;
   CustomerDetail: { customerId: number };
+  CustomerJobs: { customerId: number };
+  CustomerSales: { customerId: number };
+  CustomerPayments: { customerId: number };
   CustomerForm: { customerId?: number } | undefined;
   MeasurementForm: { customerId: number; measurementId?: number };
   JobForm: { customerId?: number; jobId?: number } | undefined;
@@ -20,6 +23,7 @@ export type RootStackParamList = {
   ProductSaleForm: { customerId: number; saleId?: number };
   PaymentForm: { customerId: number; paymentId?: number };
   ExpenseForm: { expenseId?: number } | undefined;
+  MonthExpenses: { month: string };
   Settings: undefined;
 };
 

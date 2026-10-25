@@ -4,10 +4,19 @@ import { StyleSheet, Text } from 'react-native';
 import { formatBusinessDate } from '../../calendar';
 import { formatCents } from '../../money';
 import { colors, spacing, typography } from '../../theme';
-import { Card, ListRow, RowFigure, Section, useFocusedLoad } from '../../ui';
+import {
+  Card,
+  ListRow,
+  RowFigure,
+  SeeAllRow,
+  Section,
+  useFocusedLoad,
+} from '../../ui';
 import { useProductRepositories } from './ProductRepositories';
 
-/** Products sold to the customer, shown inside the customer detail. */
+const SHOWN = 3;
+
+/** The latest products sold to the customer, shown inside the customer detail. */
 export function CustomerProductSalesSection({
   customerId,
 }: {
@@ -15,9 +24,14 @@ export function CustomerProductSalesSection({
 }) {
   const navigation = useNavigation();
   const { sales: repository } = useProductRepositories();
-  const [sales] = useFocusedLoad(
+  const [latest] = useFocusedLoad(
     useCallback(
-      () => repository.listForCustomer(customerId),
+      () =>
+        repository.searchForCustomer(
+          customerId,
+          { kind: 'all' },
+          { offset: 0, limit: SHOWN },
+        ),
       [customerId, repository],
     ),
   );
@@ -31,10 +45,10 @@ export function CustomerProductSalesSection({
       }}
     >
       <Card>
-        {sales && sales.length === 0 ? (
+        {latest && latest.total === 0 ? (
           <Text style={styles.empty}>Nenhum produto vendido.</Text>
         ) : null}
-        {sales?.map((sale, index) => (
+        {latest?.items.map((sale, index) => (
           <ListRow
             key={sale.id}
             first={index === 0}
@@ -50,6 +64,12 @@ export function CustomerProductSalesSection({
             }
           />
         ))}
+        {latest && latest.total > SHOWN ? (
+          <SeeAllRow
+            label={`Ver todas as ${latest.total} vendas`}
+            onPress={() => navigation.navigate('CustomerSales', { customerId })}
+          />
+        ) : null}
       </Card>
     </Section>
   );

@@ -54,9 +54,39 @@ export function ListRow({
   );
 }
 
+/** The last row of a shortened list, opening the whole list. */
+export function SeeAllRow({
+  label,
+  onPress,
+}: {
+  label: string;
+  onPress: () => void;
+}) {
+  return (
+    <Pressable
+      accessibilityRole="button"
+      onPress={onPress}
+      style={({ pressed }) => [
+        styles.seeAll,
+        styles.ruled,
+        pressed && styles.pressed,
+      ]}
+    >
+      <Text style={styles.seeAllLabel} numberOfLines={1}>
+        {label}
+      </Text>
+      <Chevron />
+    </Pressable>
+  );
+}
+
 /** A right-aligned amount for the trailing slot of a row. */
 export function RowFigure({ children }: { children: string }) {
-  return <Text style={styles.figure}>{children}</Text>;
+  return (
+    <Text style={styles.figure} numberOfLines={1}>
+      {children}
+    </Text>
+  );
 }
 
 /** The arrow that tells a row opens another screen. */
@@ -74,11 +104,24 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.md - 4,
   },
   ruled: { borderTopWidth: 1, borderTopColor: colors.rule },
+  seeAll: {
+    minHeight: 48,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: spacing.md,
+  },
+  seeAllLabel: {
+    fontSize: 15,
+    fontWeight: '600',
+    color: colors.accent,
+    flexShrink: 1,
+  },
   pressed: { backgroundColor: colors.surfaceMuted },
-  text: { flex: 1, gap: 2 },
+  text: { flex: 1, minWidth: 0, gap: 2 },
   title: { ...typography.body, fontWeight: '500', color: colors.textPrimary },
   subtitle: { ...typography.caption, color: colors.textSecondary },
-  figure: { ...typography.figure, color: colors.textPrimary },
+  figure: { ...typography.figure, color: colors.textPrimary, flexShrink: 0 },
   chevron: {
     width: 9,
     height: 9,

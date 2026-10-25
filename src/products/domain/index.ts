@@ -1,5 +1,6 @@
 export {
   compareByName,
+  searchProducts,
   validateProduct,
   type Product,
   type ProductError,

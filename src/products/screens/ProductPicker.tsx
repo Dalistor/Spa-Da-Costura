@@ -26,7 +26,7 @@ export function ProductPicker({
           accessibilityState={{ selected: true }}
           style={[styles.option, styles.selected]}
         >
-          <Text style={[styles.name, styles.selectedText]}>{removedName}</Text>
+          <Text style={[styles.name, styles.selectedText]} numberOfLines={2}>{removedName}</Text>
           <Text style={[styles.detail, styles.selectedText]}>
             Fora do catálogo
           </Text>
@@ -42,7 +42,10 @@ export function ProductPicker({
             onPress={() => onSelect(product)}
             style={[styles.option, selected && styles.selected]}
           >
-            <Text style={[styles.name, selected && styles.selectedText]}>
+            <Text
+              style={[styles.name, selected && styles.selectedText]}
+              numberOfLines={2}
+            >
               {product.name}
             </Text>
             <Text style={[styles.detail, selected && styles.selectedText]}>

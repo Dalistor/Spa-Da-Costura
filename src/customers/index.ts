@@ -1,6 +1,6 @@
 export { createCustomerRepository, createMeasurementRepository } from './data';
 export {
-  searchByName,
+  searchCustomers,
   type Customer,
   type CustomerRepository,
   type Measurement,

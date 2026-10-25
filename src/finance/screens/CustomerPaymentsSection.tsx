@@ -4,10 +4,19 @@ import { StyleSheet, Text } from 'react-native';
 import { formatBusinessDate } from '../../calendar';
 import { formatCents } from '../../money';
 import { colors, spacing, typography } from '../../theme';
-import { Card, ListRow, RowFigure, Section, useFocusedLoad } from '../../ui';
+import {
+  Card,
+  ListRow,
+  RowFigure,
+  SeeAllRow,
+  Section,
+  useFocusedLoad,
+} from '../../ui';
 import { useFinanceRepositories } from './FinanceRepositories';
 
-/** Payments of the customer, shown inside the customer detail. */
+const SHOWN = 3;
+
+/** The customer's latest payments, shown inside the customer detail. */
 export function CustomerPaymentsSection({
   customerId,
 }: {
@@ -15,9 +24,14 @@ export function CustomerPaymentsSection({
 }) {
   const navigation = useNavigation();
   const { payments: repository } = useFinanceRepositories();
-  const [payments] = useFocusedLoad(
+  const [latest] = useFocusedLoad(
     useCallback(
-      () => repository.listForCustomer(customerId),
+      () =>
+        repository.searchForCustomer(
+          customerId,
+          { kind: 'all' },
+          { offset: 0, limit: SHOWN },
+        ),
       [customerId, repository],
     ),
   );
@@ -31,10 +45,10 @@ export function CustomerPaymentsSection({
       }}
     >
       <Card>
-        {payments && payments.length === 0 ? (
+        {latest && latest.total === 0 ? (
           <Text style={styles.empty}>Nenhum pagamento registrado.</Text>
         ) : null}
-        {payments?.map((payment, index) => (
+        {latest?.items.map((payment, index) => (
           <ListRow
             key={payment.id}
             first={index === 0}
@@ -49,6 +63,14 @@ export function CustomerPaymentsSection({
             }
           />
         ))}
+        {latest && latest.total > SHOWN ? (
+          <SeeAllRow
+            label={`Ver todos os ${latest.total} pagamentos`}
+            onPress={() =>
+              navigation.navigate('CustomerPayments', { customerId })
+            }
+          />
+        ) : null}
       </Card>
     </Section>
   );

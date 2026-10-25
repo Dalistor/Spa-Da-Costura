@@ -1,3 +1,4 @@
+import type { ListSearch, Page, PageRequest } from '../../search';
 import type { Product, ProductInput, SaveProductResult } from './product';
 import type {
   ProductSale,
@@ -18,6 +19,12 @@ export interface ProductRepository {
 export interface ProductSaleRepository {
   /** Most recent first. */
   listForCustomer(customerId: number): Promise<ProductSale[]>;
+  /** The customer's sales matching a product name, amount or date, most recent first. */
+  searchForCustomer(
+    customerId: number,
+    search: ListSearch,
+    page: PageRequest,
+  ): Promise<Page<ProductSale>>;
   get(id: number): Promise<ProductSale | null>;
   /** Saves the typed amount and copies the product name. */
   create(

@@ -19,10 +19,12 @@ export {
 export { AmountsDueSection } from './screens/AmountsDueSection';
 export { CashFlowScreen } from './screens/CashFlowScreen';
 export { CustomerBalanceSection } from './screens/CustomerBalanceSection';
+export { CustomerPaymentsScreen } from './screens/CustomerPaymentsScreen';
 export { CustomerPaymentsSection } from './screens/CustomerPaymentsSection';
 export {
   FinanceRepositoriesProvider,
   type FinanceRepositories,
 } from './screens/FinanceRepositories';
 export { ExpenseFormScreen } from './screens/ExpenseFormScreen';
+export { MonthExpensesScreen } from './screens/MonthExpensesScreen';
 export { PaymentFormScreen } from './screens/PaymentFormScreen';

@@ -96,9 +96,10 @@ export function CustomerDetailScreen() {
       ],
     );
 
-  const contact = [customer.phone, customer.description]
-    .filter(Boolean)
-    .join(' · ');
+  const details = [
+    { label: 'Telefone', value: customer.phone },
+    { label: 'Observações', value: customer.description },
+  ].filter(info => info.value);
 
   return (
     <ScrollView style={styles.screen} contentContainerStyle={styles.content}>
@@ -106,9 +107,6 @@ export function CustomerDetailScreen() {
         <View style={styles.identityText}>
           <Text accessibilityRole="header" style={styles.name}>
             {customer.name}
-          </Text>
-          <Text style={styles.contact}>
-            {contact || 'Sem telefone nem descrição'}
           </Text>
         </View>
         <Pressable
@@ -120,6 +118,21 @@ export function CustomerDetailScreen() {
           <Text style={styles.editLabel}>Editar</Text>
         </Pressable>
       </View>
+      {details.length > 0 ? (
+        <Card style={styles.details}>
+          {details.map((info, index) => (
+            <View
+              key={info.label}
+              style={[styles.detail, index > 0 && styles.ruled]}
+            >
+              <Text style={styles.detailLabel}>{info.label}</Text>
+              <Text style={styles.detailValue} selectable>
+                {info.value}
+              </Text>
+            </View>
+          ))}
+        </Card>
+      ) : null}
       <CustomerBalanceSection customerId={customerId} />
 
       <Section
@@ -147,10 +160,10 @@ export function CustomerDetailScreen() {
                     pressed && styles.pressed,
                   ]}
                 >
-                  <Text style={styles.measurementKey} numberOfLines={1}>
+                  <Text style={styles.measurementKey} numberOfLines={2}>
                     {measurement.key}
                   </Text>
-                  <Text style={styles.measurementValue}>
+                  <Text style={styles.measurementValue} numberOfLines={2}>
                     {measurement.value}
                   </Text>
                 </Pressable>
@@ -181,7 +194,7 @@ export function CustomerDetailScreen() {
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: colors.background },
+  screen: { flex: 1 },
   content: {
     paddingHorizontal: spacing.gutter,
     paddingTop: spacing.sm,
@@ -191,17 +204,20 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-start',
     gap: spacing.md,
-    marginBottom: spacing.lg,
+    marginBottom: spacing.md,
   },
-  identityText: { flex: 1, gap: spacing.xs },
+  identityText: { flex: 1, minWidth: 0, gap: spacing.xs },
   name: {
     fontSize: 26,
     fontWeight: '700',
     letterSpacing: -0.2,
     color: colors.textPrimary,
   },
-  contact: { fontSize: 15, color: colors.textSecondary },
-  edit: { minHeight: 44, justifyContent: 'center' },
+  details: { marginBottom: spacing.md - 4 },
+  detail: { padding: spacing.md, gap: spacing.xs },
+  detailLabel: { ...typography.caption, color: colors.textSecondary },
+  detailValue: { ...typography.body, lineHeight: 23, color: colors.textPrimary },
+  edit: { minHeight: 44, justifyContent: 'center', flexShrink: 0 },
   editLabel: { fontSize: 15, fontWeight: '600', color: colors.accent },
   pressed: { opacity: 0.6 },
   empty: {

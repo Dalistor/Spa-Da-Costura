@@ -1,4 +1,4 @@
-import type { Cents } from '../../money';
+import { sumCents, type Cents } from '../../money';
 
 /** What a customer was charged (jobs + products sold) and has paid. */
 export type CustomerTotals = {
@@ -47,5 +47,5 @@ export function exceedsAmountDue(
 
 /** Everything customers still owe, summed in integer cents. */
 export function totalAmountDue(amounts: AmountDue[]): Cents {
-  return amounts.reduce((total, { amountDueCents }) => total + amountDueCents, 0);
+  return sumCents(amounts.map(({ amountDueCents }) => amountDueCents));
 }

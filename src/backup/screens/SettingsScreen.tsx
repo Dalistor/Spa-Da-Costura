@@ -102,7 +102,7 @@ export function SettingsScreen() {
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: colors.background },
+  screen: { flex: 1 },
   content: {
     paddingHorizontal: spacing.gutter,
     paddingTop: spacing.xs,

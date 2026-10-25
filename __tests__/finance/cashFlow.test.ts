@@ -13,6 +13,7 @@ import {
   createPaymentRepository,
   type Expense,
 } from '../../src/finance';
+import { parseListSearch } from '../../src/search';
 import { createNodeSqliteDatabase } from '../support/nodeSqliteDatabase';
 
 async function setup() {
@@ -191,5 +192,60 @@ describe('cash flow', () => {
     await expenses.remove(saved.id);
 
     expect(await expenses.listForMonth('2026-11')).toEqual([]);
+  });
+});
+
+describe("searching a month's expenses", () => {
+  test('pages the month oldest first and finds by description, amount or day', async () => {
+    const { expenses } = await setup();
+    for (let day = 1; day <= 24; day++) {
+      expense(
+        await expenses.create({
+          description: day === 6 ? 'Linhas e agulhas' : `Despesa ${day}`,
+          category: 'materials',
+          amount: day === 6 ? '95,00' : '10',
+          date: `2026-10-${String(day).padStart(2, '0')}`,
+        }),
+      );
+    }
+    expense(
+      await expenses.create({
+        description: 'Linhas de setembro',
+        category: 'materials',
+        amount: '95',
+        date: '2026-09-30',
+      }),
+    );
+    const firstPage = { offset: 0, limit: 20 };
+
+    const first = await expenses.searchForMonth(
+      '2026-10',
+      parseListSearch(''),
+      firstPage,
+    );
+    expect(first.total).toBe(24);
+    expect(first.items[0].date).toBe('2026-10-01');
+    const rest = await expenses.searchForMonth(
+      '2026-10',
+      parseListSearch(''),
+      { offset: 20, limit: 20 },
+    );
+    expect(rest.items.map(found => found.date)).toEqual([
+      '2026-10-21',
+      '2026-10-22',
+      '2026-10-23',
+      '2026-10-24',
+    ]);
+
+    for (const typed of ['linhas', '95', '06/10/2026', '06/10']) {
+      const found = await expenses.searchForMonth(
+        '2026-10',
+        parseListSearch(typed),
+        firstPage,
+      );
+      expect(found.items.map(row => row.description)).toEqual([
+        'Linhas e agulhas',
+      ]);
+    }
   });
 });

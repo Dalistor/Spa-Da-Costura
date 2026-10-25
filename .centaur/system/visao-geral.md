@@ -27,6 +27,8 @@ Arquitetura proposta (ainda sem código): regras do domínio independentes da UI
 
 Paleta de cores em tons de **bege e marrom**. Valores exatos (tokens) delegados ao agente na implementação.
 
+Logo: agulha creme com linha dourada sobre marrom (`assets/logo/`). O fundo das telas tem fios e pespontos desenhados em tom próximo ao bege (`assets/logo/threads.svg`). As telas vazias mostram a ilustração de um carretel.
+
 ## Vocabulário
 
 | Termo | Significado |
@@ -38,8 +40,10 @@ Paleta de cores em tons de **bege e marrom**. Valores exatos (tokens) delegados 
 | Venda de produto | Produto anexado a um cliente; valor preenchido pelo preço do catálogo e editável |
 | Pagamento | Entrada de dinheiro de um cliente, ligada só ao cliente; pode ser parcial |
 | Despesa | Saída de dinheiro do ateliê, com categoria Imposto ou Materiais |
-| Total devido | Soma dos serviços e produtos vendidos ao cliente menos o total pago, quando positivo |
-| Crédito | Valor pago a mais que o cobrado |
+| Total devido | Soma dos serviços e produtos vendidos ao cliente menos o total pago, quando positivo. Na tela: "Devendo" |
+| Crédito | Valor pago a mais que o cobrado. Na tela: "Saldo a favor" |
+
+Rótulos da tela que diferem do termo de domínio: o status Pendente aparece como **"A fazer"**, o total pago como **"Já pagou"** e importar backup como **"Restaurar backup"**.
 
 ## Decisões tomadas (2026-10-23)
 

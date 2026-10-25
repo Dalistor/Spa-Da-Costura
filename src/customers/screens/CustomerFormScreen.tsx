@@ -6,7 +6,7 @@ import {
 } from '@react-navigation/native';
 import { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
-import { colors, spacing } from '../../theme';
+import { spacing } from '../../theme';
 import { Button, TextField } from '../../ui';
 import type { CustomerInput } from '../domain';
 import { useCustomerRepositories } from './CustomerRepositories';
@@ -106,6 +106,6 @@ export function CustomerFormScreen() {
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: colors.background },
+  screen: { flex: 1 },
   content: { padding: spacing.gutter, gap: spacing.xs },
 });

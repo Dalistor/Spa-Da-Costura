@@ -1,4 +1,5 @@
 export { createProductRepository, createProductSaleRepository } from './data';
+export { searchProducts } from './domain';
 export type {
   Product,
   ProductRepository,
@@ -7,6 +8,7 @@ export type {
 } from './domain';
 export { CatalogScreen } from './screens/CatalogScreen';
 export { CustomerProductSalesSection } from './screens/CustomerProductSalesSection';
+export { CustomerSalesScreen } from './screens/CustomerSalesScreen';
 export {
   ProductRepositoriesProvider,
   type ProductRepositories,

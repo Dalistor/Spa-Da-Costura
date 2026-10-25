@@ -21,7 +21,11 @@ export function CategorySelector({ value, onChange }: Props) {
             onPress={() => onChange(category)}
             style={[styles.option, selected && styles.selected]}
           >
-            <Text style={[styles.label, selected && styles.selectedLabel]}>
+            <Text
+              style={[styles.label, selected && styles.selectedLabel]}
+              numberOfLines={1}
+              adjustsFontSizeToFit
+            >
               {categoryLabels[category]}
             </Text>
           </Pressable>

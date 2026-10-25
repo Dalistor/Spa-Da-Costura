@@ -12,6 +12,7 @@ import {
   createProductRepository,
   createProductSaleRepository,
 } from '../../src/products';
+import { parseListSearch } from '../../src/search';
 import { createNodeSqliteDatabase } from '../support/nodeSqliteDatabase';
 
 async function setup() {
@@ -234,5 +235,69 @@ describe('amounts due across customers', () => {
     expect(await payments.listAmountsDue()).toEqual([
       { customerId: maria.id, customerName: 'Maria', amountDueCents: 2525 },
     ]);
+  });
+});
+
+describe("searching a customer's payments", () => {
+  test('pages the most recent first and filters by amount, date or month', async () => {
+    const { payments, maria, ana } = await setup();
+    for (let day = 1; day <= 25; day++) {
+      const date = `2026-10-${String(day).padStart(2, '0')}`;
+      await payments.create(maria.id, { amount: day === 7 ? '40' : '15', date });
+    }
+    await payments.create(maria.id, { amount: '15', date: '2026-09-30' });
+    await payments.create(ana.id, { amount: '15', date: '2026-10-25' });
+
+    const first = await payments.searchForCustomer(
+      maria.id,
+      parseListSearch(''),
+      { offset: 0, limit: 20 },
+    );
+    expect(first.total).toBe(26);
+    expect(first.items).toHaveLength(20);
+    expect(first.items[0].date).toBe('2026-10-25');
+    const rest = await payments.searchForCustomer(
+      maria.id,
+      parseListSearch(''),
+      { offset: 20, limit: 20 },
+    );
+    expect(rest.items.map(p => p.date)).toEqual([
+      '2026-10-05',
+      '2026-10-04',
+      '2026-10-03',
+      '2026-10-02',
+      '2026-10-01',
+      '2026-09-30',
+    ]);
+
+    const byAmount = await payments.searchForCustomer(
+      maria.id,
+      parseListSearch('40,00'),
+      { offset: 0, limit: 20 },
+    );
+    expect(byAmount.items.map(p => p.date)).toEqual(['2026-10-07']);
+    expect(byAmount.total).toBe(1);
+
+    const byDate = await payments.searchForCustomer(
+      maria.id,
+      parseListSearch('25/10/2026'),
+      { offset: 0, limit: 20 },
+    );
+    expect(byDate.items).toHaveLength(1);
+    expect(byDate.items[0].customerId).toBe(maria.id);
+
+    const byMonth = await payments.searchForCustomer(
+      maria.id,
+      parseListSearch('09/2026'),
+      { offset: 0, limit: 20 },
+    );
+    expect(byMonth.items.map(p => p.date)).toEqual(['2026-09-30']);
+
+    const byText = await payments.searchForCustomer(
+      maria.id,
+      parseListSearch('bainha'),
+      { offset: 0, limit: 20 },
+    );
+    expect(byText).toEqual({ items: [], total: 0 });
   });
 });

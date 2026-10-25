@@ -28,13 +28,17 @@ export function JobSummary({
             {customerName}
           </Text>
         ) : null}
-        <Text style={styles.description}>{job.description}</Text>
+        <Text style={styles.description} numberOfLines={2}>
+          {job.description}
+        </Text>
         <Text style={styles.muted}>
           Entrega {formatBusinessDate(job.deliveryDate)}
         </Text>
       </View>
       <View style={styles.side}>
-        <Text style={styles.amount}>{formatCents(job.amountCents)}</Text>
+        <Text style={styles.amount} numberOfLines={1}>
+          {formatCents(job.amountCents)}
+        </Text>
         <Pill label={statusLabels[job.status]} tone={statusTones[job.status]} />
       </View>
     </View>
@@ -43,10 +47,10 @@ export function JobSummary({
 
 const styles = StyleSheet.create({
   row: { flexDirection: 'row', alignItems: 'flex-start', gap: spacing.md },
-  text: { flex: 1, gap: 3 },
+  text: { flex: 1, minWidth: 0, gap: 3 },
   customer: { ...typography.caption, fontWeight: '600', color: colors.accentInk },
   description: { ...typography.body, fontWeight: '500', color: colors.textPrimary },
   muted: { ...typography.caption, color: colors.textSecondary },
-  side: { alignItems: 'flex-end', gap: spacing.sm - 2 },
+  side: { alignItems: 'flex-end', gap: spacing.sm - 2, flexShrink: 0 },
   amount: { ...typography.figure, color: colors.textPrimary },
 });

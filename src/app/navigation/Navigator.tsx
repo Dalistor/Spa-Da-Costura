@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import {
   DefaultTheme,
   NavigationContainer,
@@ -8,11 +9,14 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import {
   CashFlowScreen,
+  CustomerPaymentsScreen,
   ExpenseFormScreen,
+  MonthExpensesScreen,
   PaymentFormScreen,
 } from '../../finance';
 import {
   CatalogScreen,
+  CustomerSalesScreen,
   ProductFormScreen,
   ProductSaleFormScreen,
 } from '../../products';
@@ -22,11 +26,11 @@ import {
   CustomersScreen,
   MeasurementFormScreen,
 } from '../../customers';
-import { JobFormScreen, JobsScreen } from '../../jobs';
+import { CustomerJobsScreen, JobFormScreen, JobsScreen } from '../../jobs';
 import { SettingsScreen } from '../../backup';
 import { HomeScreen } from '../../home';
 import { colors, radius, spacing, typography } from '../../theme';
-import { BrandMark, Icon, type IconName } from '../../ui';
+import { BrandMark, Icon, ThreadBackground, type IconName } from '../../ui';
 import { StyleSheet, Text, View } from 'react-native';
 import type { RootStackParamList, TabParamList } from './routes';
 
@@ -61,10 +65,16 @@ const tabIcons = {
   Catalog: tabIcon('catalog'),
 } satisfies Record<keyof TabParamList, unknown>;
 
+/** Every screen sits on the threaded ground, so transitions never show through. */
+function screenLayout({ children }: { children: ReactNode }) {
+  return <ThreadBackground>{children}</ThreadBackground>;
+}
+
 function Tabs() {
   const { bottom } = useSafeAreaInsets();
   return (
     <Tab.Navigator
+      screenLayout={screenLayout}
       screenOptions={{
         headerStyle: { backgroundColor: colors.background },
         headerShadowVisible: false,
@@ -114,7 +124,7 @@ function Tabs() {
 export function Navigator() {
   return (
     <NavigationContainer theme={navigationTheme}>
-      <Stack.Navigator>
+      <Stack.Navigator screenLayout={screenLayout}>
         <Stack.Screen
           name="Tabs"
           component={Tabs}
@@ -132,6 +142,21 @@ export function Navigator() {
             name="CustomerDetail"
             component={CustomerDetailScreen}
             options={{ title: 'Cliente' }}
+          />
+          <Stack.Screen
+            name="CustomerJobs"
+            component={CustomerJobsScreen}
+            options={{ title: 'Serviços do cliente' }}
+          />
+          <Stack.Screen
+            name="CustomerSales"
+            component={CustomerSalesScreen}
+            options={{ title: 'Produtos vendidos' }}
+          />
+          <Stack.Screen
+            name="CustomerPayments"
+            component={CustomerPaymentsScreen}
+            options={{ title: 'Pagamentos do cliente' }}
           />
           <Stack.Screen
             name="CustomerForm"
@@ -167,6 +192,11 @@ export function Navigator() {
             name="ExpenseForm"
             component={ExpenseFormScreen}
             options={{ title: 'Despesa' }}
+          />
+          <Stack.Screen
+            name="MonthExpenses"
+            component={MonthExpensesScreen}
+            options={{ title: 'Despesas do mês' }}
           />
           <Stack.Screen
             name="Settings"

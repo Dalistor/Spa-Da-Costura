@@ -1,7 +1,7 @@
 import { ScrollView, StyleSheet } from 'react-native';
 import { AmountsDueSection } from '../../finance';
 import { UpcomingDeliveriesSection } from '../../jobs';
-import { colors, spacing } from '../../theme';
+import { spacing } from '../../theme';
 import { SystemShortcuts } from './SystemShortcuts';
 
 /** The way into every area of the app, with what is due to deliver and who owes. */
@@ -16,7 +16,7 @@ export function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: colors.background },
+  screen: { flex: 1 },
   content: {
     paddingHorizontal: spacing.gutter,
     paddingTop: spacing.xs,

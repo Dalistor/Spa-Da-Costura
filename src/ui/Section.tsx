@@ -14,7 +14,11 @@ export function Section({ title, action, children }: Props) {
   return (
     <View style={styles.section}>
       <View style={styles.header}>
-        <Text accessibilityRole="header" style={styles.title}>
+        <Text
+          accessibilityRole="header"
+          style={styles.title}
+          numberOfLines={1}
+        >
           {title}
         </Text>
         {action ? (
@@ -42,8 +46,13 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginBottom: spacing.xs,
   },
-  title: { ...typography.section, color: colors.textPrimary },
-  action: { minHeight: 44, justifyContent: 'center', paddingLeft: spacing.md },
+  title: { ...typography.section, color: colors.textPrimary, flexShrink: 1 },
+  action: {
+    minHeight: 44,
+    justifyContent: 'center',
+    paddingLeft: spacing.md,
+    flexShrink: 0,
+  },
   pressed: { opacity: 0.6 },
   actionLabel: { fontSize: 15, fontWeight: '600', color: colors.accent },
 });

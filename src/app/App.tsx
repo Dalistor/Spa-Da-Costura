@@ -2,7 +2,7 @@ import { ActivityIndicator, StatusBar, StyleSheet, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import type { Database } from '../database';
 import { colors } from '../theme';
-import { EmptyState } from '../ui';
+import { EmptyState, ThreadBackground } from '../ui';
 import { DatabaseProvider } from './DatabaseContext';
 import { Navigator } from './navigation/Navigator';
 import { RepositoriesProvider } from './RepositoriesProvider';
@@ -24,10 +24,12 @@ export function App({ openDatabase }: Props) {
         </View>
       )}
       {startup.status === 'failed' && (
-        <EmptyState
-          title="Não foi possível abrir os dados do ateliê"
-          message="Feche e abra o app novamente. Se o problema continuar, restaure um backup."
-        />
+        <ThreadBackground>
+          <EmptyState
+            title="Não foi possível abrir os dados do ateliê"
+            message="Feche e abra o app novamente. Se o problema continuar, restaure um backup."
+          />
+        </ThreadBackground>
       )}
       {startup.status === 'ready' && (
         <DatabaseProvider database={startup.database}>

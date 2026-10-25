@@ -1,6 +1,6 @@
 export {
   compareByName,
-  searchByName,
+  searchCustomers,
   validateCustomer,
   type Customer,
   type CustomerError,

@@ -4,7 +4,7 @@ import path from 'node:path';
 import {
   createCustomerRepository,
   createMeasurementRepository,
-  searchByName,
+  searchCustomers,
   type Customer,
 } from '../../src/customers';
 import { initializeDatabase, type Database } from '../../src/database';
@@ -268,20 +268,26 @@ describe('measurements', () => {
   });
 });
 
-describe('search by name', () => {
+describe('searching customers', () => {
   const customers: Customer[] = [
-    { id: 1, name: 'Maria Souza', phone: null, description: null },
+    { id: 1, name: 'Maria Souza', phone: '(11) 98765-4321', description: null },
     { id: 2, name: 'Érica Lima', phone: null, description: null },
     { id: 3, name: 'Ana Maria', phone: null, description: null },
   ];
 
   test('a part of the name finds only the matching customers, ignoring case', () => {
-    expect(searchByName(customers, 'mar').map(c => c.id)).toEqual([1, 3]);
-    expect(searchByName(customers, 'ÉRICA').map(c => c.id)).toEqual([2]);
-    expect(searchByName(customers, 'joana')).toEqual([]);
+    expect(searchCustomers(customers, 'mar').map(c => c.id)).toEqual([1, 3]);
+    expect(searchCustomers(customers, 'ÉRICA').map(c => c.id)).toEqual([2]);
+    expect(searchCustomers(customers, 'joana')).toEqual([]);
+  });
+
+  test('digits find the customer by phone, whatever the punctuation typed', () => {
+    expect(searchCustomers(customers, '98765').map(c => c.id)).toEqual([1]);
+    expect(searchCustomers(customers, '(11) 98765-4321').map(c => c.id)).toEqual([1]);
+    expect(searchCustomers(customers, '5555')).toEqual([]);
   });
 
   test('an empty search shows everyone', () => {
-    expect(searchByName(customers, '  ')).toEqual(customers);
+    expect(searchCustomers(customers, '  ')).toEqual(customers);
   });
 });

@@ -3,9 +3,11 @@ import { initializeDatabase, type Database } from '../../src/database';
 import {
   createProductRepository,
   createProductSaleRepository,
+  searchProducts,
   type Product,
   type ProductSale,
 } from '../../src/products';
+import { parseListSearch } from '../../src/search';
 import { createNodeSqliteDatabase } from '../support/nodeSqliteDatabase';
 
 async function setup() {
@@ -254,5 +256,71 @@ describe('product sales', () => {
       ok: true,
       sale: { ...sold, productId: null, amountCents: 25000 },
     });
+  });
+});
+
+describe("searching a customer's sales", () => {
+  test('pages the most recent first and finds by product name, amount or date', async () => {
+    const { products, sales, maria, ana } = await setup();
+    const bag = product(await products.create({ name: 'Bolsa', price: '48' }));
+    const apron = product(await products.create({ name: 'Avental', price: '65' }));
+    for (let day = 1; day <= 21; day++) {
+      await sales.create(maria.id, {
+        productId: day === 4 ? apron.id : bag.id,
+        amount: day === 4 ? '65,00' : '48,00',
+        date: `2026-10-${String(day).padStart(2, '0')}`,
+      });
+    }
+    await sales.create(ana.id, {
+      productId: apron.id,
+      amount: '65',
+      date: '2026-10-04',
+    });
+
+    const first = await sales.searchForCustomer(
+      maria.id,
+      parseListSearch(''),
+      { offset: 0, limit: 20 },
+    );
+    expect(first.total).toBe(21);
+    expect(first.items[0].date).toBe('2026-10-21');
+    const rest = await sales.searchForCustomer(
+      maria.id,
+      parseListSearch(''),
+      { offset: 20, limit: 20 },
+    );
+    expect(rest.items.map(found => found.date)).toEqual(['2026-10-01']);
+
+    for (const typed of ['avental', '65', '04/10/2026']) {
+      const found = await sales.searchForCustomer(
+        maria.id,
+        parseListSearch(typed),
+        { offset: 0, limit: 20 },
+      );
+      expect(found.items.map(row => [row.customerId, row.productName])).toEqual(
+        [[maria.id, 'Avental']],
+      );
+    }
+  });
+});
+
+describe('searching the catalog', () => {
+  const catalog: Product[] = [
+    { id: 1, name: 'Bolsa de tecido', priceCents: 4800 },
+    { id: 2, name: 'Peça 10', priceCents: 2500 },
+    { id: 3, name: 'Pano de prato', priceCents: 1000 },
+  ];
+
+  test('finds by part of the name, ignoring case', () => {
+    expect(searchProducts(catalog, 'BOLSA').map(p => p.id)).toEqual([1]);
+  });
+
+  test('a number finds the exact price, and also names containing it', () => {
+    expect(searchProducts(catalog, '48,00').map(p => p.id)).toEqual([1]);
+    expect(searchProducts(catalog, '10').map(p => p.id)).toEqual([2, 3]);
+  });
+
+  test('an empty search shows the whole catalog', () => {
+    expect(searchProducts(catalog, ' ')).toEqual(catalog);
   });
 });

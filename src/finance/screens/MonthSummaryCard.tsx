@@ -36,7 +36,9 @@ function Flow({ label, cents }: { label: string; cents: Cents }) {
   return (
     <View style={styles.flow}>
       <Text style={styles.label}>{label}</Text>
-      <Text style={styles.flowValue}>{formatCents(cents)}</Text>
+      <Text style={styles.flowValue} adjustsFontSizeToFit numberOfLines={1}>
+        {formatCents(cents)}
+      </Text>
     </View>
   );
 }

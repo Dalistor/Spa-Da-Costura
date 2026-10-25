@@ -42,3 +42,20 @@ const nameCollator = new Intl.Collator('pt-BR', { sensitivity: 'base' });
 export function compareByName(a: Product, b: Product): number {
   return nameCollator.compare(a.name, b.name);
 }
+
+/**
+ * Products whose name contains what was typed, ignoring letter case;
+ * a typed amount also finds the products sold at exactly that price.
+ */
+export function searchProducts(products: Product[], typed: string): Product[] {
+  const wanted = typed.trim().toLocaleLowerCase('pt-BR');
+  if (wanted === '') {
+    return products;
+  }
+  const price = parseCents(wanted);
+  return products.filter(
+    product =>
+      product.name.toLocaleLowerCase('pt-BR').includes(wanted) ||
+      (price.ok && product.priceCents === price.cents),
+  );
+}
