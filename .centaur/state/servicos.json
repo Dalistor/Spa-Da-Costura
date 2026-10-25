@@ -30,7 +30,7 @@
           "role": "Formulário com data padrão hoje"
         },
         {
-          "path": "src/jobs/screens/DateField.tsx",
+          "path": "src/ui/DateField.tsx",
           "start": 1,
           "end": 66,
           "role": "Seletor de data"
@@ -49,8 +49,8 @@
         }
       ],
       "evidence": [
-        "ev-8a515033d7dc4df3aa89336ce89bd15f",
-        "ev-c5dc7d0abf7e40119517a2704100a0f6"
+        "ev-d15581d2f97c4833bfe7ffed97970e68",
+        "ev-01a14b68b77b45a9a3648537f47c28dc"
       ],
       "delivery": {
         "stage": "integrated",
@@ -98,8 +98,8 @@
         }
       ],
       "evidence": [
-        "ev-a2cbedb62197491d8f46767c5046fe4b",
-        "ev-a2f92daaf0824d0d9fce008f9718f3ca"
+        "ev-10acc607746e4761be15c5e07156a355",
+        "ev-3fbb95192322403fa3ea0a272714ede5"
       ],
       "delivery": {
         "stage": "integrated",
@@ -141,8 +141,8 @@
         }
       ],
       "evidence": [
-        "ev-15159a3779ea4f3d85fdf809b5d83e82",
-        "ev-6db19ebb0be54870acbac5070028ad57"
+        "ev-89d62373297a4c9398cdd38517ae9f68",
+        "ev-9ec5fc72905e4a019c1755fd4fc2848d"
       ],
       "delivery": {
         "stage": "integrated",
@@ -156,43 +156,143 @@
       "notes": ""
     },
     "PRD-01": {
-      "implementation": "ausente",
-      "sources": [],
-      "evidence": [],
+      "implementation": "implementada",
+      "sources": [
+        {
+          "path": "src/products/domain/product.ts",
+          "start": 1,
+          "end": 44,
+          "role": "Validação: nome obrigatório, preço em centavos"
+        },
+        {
+          "path": "src/products/data/sqlProductRepository.ts",
+          "start": 1,
+          "end": 70,
+          "role": "Catálogo: gravar, listar por nome, editar e excluir"
+        },
+        {
+          "path": "src/products/screens/CatalogScreen.tsx",
+          "start": 1,
+          "end": 93,
+          "role": "Aba Catálogo"
+        },
+        {
+          "path": "src/products/screens/ProductFormScreen.tsx",
+          "start": 1,
+          "end": 130,
+          "role": "Formulário com exclusão confirmada"
+        },
+        {
+          "path": "__tests__/products/productRepository.test.ts",
+          "start": 1,
+          "end": 258,
+          "role": "Testes"
+        }
+      ],
+      "evidence": [
+        "ev-0d961c3abb6f437f93a13747d28740ca",
+        "ev-408a38cb1200428c84fc3b0ebfd0c1b7"
+      ],
       "delivery": {
         "stage": "local"
       },
-      "specs": [],
-      "notes": "Próxima spec de produtos."
+      "specs": [
+        "master/0006"
+      ],
+      "notes": ""
     },
     "PRD-02": {
-      "implementation": "ausente",
-      "sources": [],
-      "evidence": [],
+      "implementation": "implementada",
+      "sources": [
+        {
+          "path": "src/products/domain/productSale.ts",
+          "start": 1,
+          "end": 54,
+          "role": "Venda: valor em centavos e data"
+        },
+        {
+          "path": "src/products/data/sqlProductSaleRepository.ts",
+          "start": 1,
+          "end": 121,
+          "role": "Venda grava valor informado e copia o nome"
+        },
+        {
+          "path": "src/products/screens/ProductSaleFormScreen.tsx",
+          "start": 1,
+          "end": 190,
+          "role": "Venda: peça preenche o valor, editável"
+        },
+        {
+          "path": "src/products/screens/ProductPicker.tsx",
+          "start": 1,
+          "end": 79,
+          "role": "Escolha da peça"
+        },
+        {
+          "path": "src/ui/DateField.tsx",
+          "start": 1,
+          "end": 66,
+          "role": "Data da venda"
+        },
+        {
+          "path": "__tests__/products/productRepository.test.ts",
+          "start": 1,
+          "end": 258,
+          "role": "Testes"
+        }
+      ],
+      "evidence": [
+        "ev-a75591234c4f4c099fbfe676f65008ea",
+        "ev-dc28c26e5a5e45d29f2492babefb666a"
+      ],
       "delivery": {
         "stage": "local"
       },
-      "specs": [],
-      "notes": "Próxima spec de produtos."
+      "specs": [
+        "master/0006"
+      ],
+      "notes": ""
     },
     "SRV-04": {
-      "implementation": "parcial",
+      "implementation": "implementada",
       "sources": [
         {
           "path": "src/jobs/screens/CustomerJobsSection.tsx",
           "start": 1,
           "end": 74,
           "role": "Serviços no histórico do cliente"
+        },
+        {
+          "path": "src/products/screens/CustomerProductSalesSection.tsx",
+          "start": 1,
+          "end": 102,
+          "role": "Produtos vendidos no histórico do cliente"
+        },
+        {
+          "path": "src/customers/screens/CustomerDetailScreen.tsx",
+          "start": 1,
+          "end": 220,
+          "role": "Detalhe do cliente com as duas seções"
+        },
+        {
+          "path": "__tests__/products/productRepository.test.ts",
+          "start": 1,
+          "end": 258,
+          "role": "Testes"
         }
       ],
-      "evidence": [],
+      "evidence": [
+        "ev-77bb04cc056e43a897f9c887e9b0dd1b",
+        "ev-b9f1cc9270d04e6a80a4be56918583c0"
+      ],
       "delivery": {
         "stage": "local"
       },
       "specs": [
-        "master/0005"
+        "master/0005",
+        "master/0006"
       ],
-      "notes": "Serviços aparecem no detalhe do cliente; produtos vendidos dependem de PRD-02."
+      "notes": ""
     },
     "SRV-05": {
       "implementation": "implementada",
@@ -211,8 +311,8 @@
         }
       ],
       "evidence": [
-        "ev-e9b6fb4e19014e3fac1a6c0f21579272",
-        "ev-7331ac367f334eb093071d492931c48b"
+        "ev-ab0f5536812542ed86803f3e3b375364",
+        "ev-70e3eed554db457191af5526edfae196"
       ],
       "delivery": {
         "stage": "integrated",

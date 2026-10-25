@@ -15,6 +15,7 @@ import {
 import { colors, spacing, typography } from '../../theme';
 import { Button, EmptyState, useFocusedLoad } from '../../ui';
 import { CustomerJobsSection } from '../../jobs';
+import { CustomerProductSalesSection } from '../../products';
 import type { Measurement } from '../domain';
 import { useCustomerRepositories } from './CustomerRepositories';
 
@@ -144,6 +145,7 @@ export function CustomerDetailScreen() {
       </View>
 
       <CustomerJobsSection customerId={customerId} />
+      <CustomerProductSalesSection customerId={customerId} />
 
       <View style={styles.dangerZone}>
         <Button

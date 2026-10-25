@@ -5,8 +5,8 @@ import {
   fromBusinessDate,
   toBusinessDate,
   type BusinessDate,
-} from '../../calendar';
-import { colors, spacing, typography } from '../../theme';
+} from '../calendar';
+import { colors, spacing, typography } from '../theme';
 
 type Props = {
   label: string;

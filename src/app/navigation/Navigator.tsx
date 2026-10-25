@@ -6,7 +6,11 @@ import {
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { CashFlowScreen } from '../../finance';
-import { CatalogScreen } from '../../products';
+import {
+  CatalogScreen,
+  ProductFormScreen,
+  ProductSaleFormScreen,
+} from '../../products';
 import {
   CustomerDetailScreen,
   CustomerFormScreen,
@@ -107,12 +111,12 @@ export function Navigator() {
           />
           <Stack.Screen
             name="ProductForm"
-            component={PendingScreen}
+            component={ProductFormScreen}
             options={{ title: 'Produto' }}
           />
           <Stack.Screen
             name="ProductSaleForm"
-            component={PendingScreen}
+            component={ProductSaleFormScreen}
             options={{ title: 'Venda de produto' }}
           />
           <Stack.Screen
