@@ -1,9 +1,17 @@
-export { createPaymentRepository } from './data';
 export {
+  createCashFlowRepository,
+  createExpenseRepository,
+  createPaymentRepository,
+} from './data';
+export {
+  cashFlowSummary,
   customerBalance,
   exceedsAmountDue,
+  type CashFlowRepository,
   type CustomerBalance,
   type CustomerTotals,
+  type Expense,
+  type ExpenseRepository,
   type Payment,
   type PaymentRepository,
 } from './domain';
@@ -14,4 +22,5 @@ export {
   FinanceRepositoriesProvider,
   type FinanceRepositories,
 } from './screens/FinanceRepositories';
+export { ExpenseFormScreen } from './screens/ExpenseFormScreen';
 export { PaymentFormScreen } from './screens/PaymentFormScreen';

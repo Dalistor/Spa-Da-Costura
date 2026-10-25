@@ -6,3 +6,10 @@ export {
   todayLocal,
   type BusinessDate,
 } from './businessDate';
+export {
+  formatBusinessMonth,
+  monthOf,
+  nextMonth,
+  previousMonth,
+  type BusinessMonth,
+} from './businessMonth';

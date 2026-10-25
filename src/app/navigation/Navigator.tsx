@@ -5,7 +5,11 @@ import {
 } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { CashFlowScreen, PaymentFormScreen } from '../../finance';
+import {
+  CashFlowScreen,
+  ExpenseFormScreen,
+  PaymentFormScreen,
+} from '../../finance';
 import {
   CatalogScreen,
   ProductFormScreen,
@@ -20,7 +24,6 @@ import {
 import { JobFormScreen, JobsScreen } from '../../jobs';
 import { SettingsScreen } from '../../backup';
 import { colors } from '../../theme';
-import { PendingScreen } from './PendingScreen';
 import type { RootStackParamList, TabParamList } from './routes';
 
 const Tab = createBottomTabNavigator<TabParamList>();
@@ -126,7 +129,7 @@ export function Navigator() {
           />
           <Stack.Screen
             name="ExpenseForm"
-            component={PendingScreen}
+            component={ExpenseFormScreen}
             options={{ title: 'Despesa' }}
           />
         </Stack.Group>

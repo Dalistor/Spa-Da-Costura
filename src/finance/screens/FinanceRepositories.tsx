@@ -1,8 +1,14 @@
 import { createContext, useContext, type ReactNode } from 'react';
-import type { PaymentRepository } from '../domain';
+import type {
+  CashFlowRepository,
+  ExpenseRepository,
+  PaymentRepository,
+} from '../domain';
 
 export type FinanceRepositories = {
   payments: PaymentRepository;
+  expenses: ExpenseRepository;
+  cashFlow: CashFlowRepository;
 };
 
 const FinanceRepositoriesContext = createContext<FinanceRepositories | null>(
