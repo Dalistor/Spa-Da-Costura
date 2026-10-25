@@ -85,6 +85,30 @@ describe('migrations', () => {
     expect(await count(db, 'customer')).toBe(1);
   });
 
+  test('migration 2 keeps measurement keys that only differ in letter case, renaming the newer ones', async () => {
+    const db = createNodeSqliteDatabase();
+    await migrate(db, MIGRATIONS.slice(0, 1));
+    await db.execute("INSERT INTO customer (name) VALUES ('Ana')");
+    await db.execute("INSERT INTO customer (name) VALUES ('Bia')");
+    await db.execute(
+      `INSERT INTO measurement (customer_id, key, value) VALUES
+        (1, 'Cintura', '72 cm'), (1, 'cintura', '70 cm'), (1, 'CINTURA', '71 cm'),
+        (2, 'cintura', '80 cm')`,
+    );
+
+    await migrate(db, MIGRATIONS);
+
+    const rows = await db.query(
+      'SELECT id, customer_id, key, value FROM measurement ORDER BY id',
+    );
+    expect(rows).toEqual([
+      { id: 1, customer_id: 1, key: 'Cintura', value: '72 cm' },
+      { id: 2, customer_id: 1, key: 'cintura (2)', value: '70 cm' },
+      { id: 3, customer_id: 1, key: 'CINTURA (3)', value: '71 cm' },
+      { id: 4, customer_id: 2, key: 'cintura', value: '80 cm' },
+    ]);
+  });
+
   test('a database newer than the app is refused', async () => {
     const db = createNodeSqliteDatabase();
     await db.execute(`PRAGMA user_version = ${MIGRATIONS.length + 1}`);
@@ -114,10 +138,18 @@ describe('schema relations and constraints', () => {
   });
 
   test.each([
-    ["INSERT INTO measurement (customer_id, key, value) VALUES (999, 'Cintura', '72 cm')"],
-    ["INSERT INTO job (customer_id, description, amount_cents, delivery_date) VALUES (999, 'Barra', 1000, '2026-10-24')"],
-    ["INSERT INTO product_sale (customer_id, product_name, amount_cents, date) VALUES (999, 'Vestido', 1000, '2026-10-24')"],
-    ["INSERT INTO payment (customer_id, amount_cents, date) VALUES (999, 1000, '2026-10-24')"],
+    [
+      "INSERT INTO measurement (customer_id, key, value) VALUES (999, 'Cintura', '72 cm')",
+    ],
+    [
+      "INSERT INTO job (customer_id, description, amount_cents, delivery_date) VALUES (999, 'Barra', 1000, '2026-10-24')",
+    ],
+    [
+      "INSERT INTO product_sale (customer_id, product_name, amount_cents, date) VALUES (999, 'Vestido', 1000, '2026-10-24')",
+    ],
+    [
+      "INSERT INTO payment (customer_id, amount_cents, date) VALUES (999, 1000, '2026-10-24')",
+    ],
   ])('refuses orphan records: %s', async sql => {
     await expect(db.execute(sql)).rejects.toThrow(/FOREIGN KEY/);
   });
@@ -169,19 +201,36 @@ describe('schema relations and constraints', () => {
       "INSERT INTO measurement (customer_id, key, value) VALUES (?, 'Cintura', '72 cm')";
     await db.execute(sql, [customerId]);
     await expect(db.execute(sql, [customerId])).rejects.toThrow(/UNIQUE/);
+    await expect(
+      db.execute(sql.replace("'Cintura'", "'CINTURA'"), [customerId]),
+    ).rejects.toThrow(/UNIQUE/);
   });
 
   test.each([
     ["INSERT INTO customer (name) VALUES ('  ')"],
     ["INSERT INTO measurement (customer_id, key, value) VALUES (1, '', '72')"],
-    ["INSERT INTO job (customer_id, description, amount_cents, delivery_date, status) VALUES (1, 'Barra', 100, '2026-10-24', 'lost')"],
-    ["INSERT INTO job (customer_id, description, amount_cents, delivery_date) VALUES (1, 'Barra', -1, '2026-10-24')"],
-    ["INSERT INTO job (customer_id, description, amount_cents, delivery_date) VALUES (1, 'Barra', 10.5, '2026-10-24')"],
-    ["INSERT INTO job (customer_id, description, amount_cents, delivery_date) VALUES (1, 'Barra', 100, '24/10/2026')"],
+    [
+      "INSERT INTO job (customer_id, description, amount_cents, delivery_date, status) VALUES (1, 'Barra', 100, '2026-10-24', 'lost')",
+    ],
+    [
+      "INSERT INTO job (customer_id, description, amount_cents, delivery_date) VALUES (1, 'Barra', -1, '2026-10-24')",
+    ],
+    [
+      "INSERT INTO job (customer_id, description, amount_cents, delivery_date) VALUES (1, 'Barra', 10.5, '2026-10-24')",
+    ],
+    [
+      "INSERT INTO job (customer_id, description, amount_cents, delivery_date) VALUES (1, 'Barra', 100, '24/10/2026')",
+    ],
     ["INSERT INTO product (name, price_cents) VALUES ('Vestido', -100)"],
-    ["INSERT INTO payment (customer_id, amount_cents, date) VALUES (1, 0, '2026-10-24')"],
-    ["INSERT INTO expense (description, category, amount_cents, date) VALUES ('Linha', 'food', 100, '2026-10-24')"],
-    ["INSERT INTO expense (description, category, amount_cents, date) VALUES ('Linha', 'materials', 0, '2026-10-24')"],
+    [
+      "INSERT INTO payment (customer_id, amount_cents, date) VALUES (1, 0, '2026-10-24')",
+    ],
+    [
+      "INSERT INTO expense (description, category, amount_cents, date) VALUES ('Linha', 'food', 100, '2026-10-24')",
+    ],
+    [
+      "INSERT INTO expense (description, category, amount_cents, date) VALUES ('Linha', 'materials', 0, '2026-10-24')",
+    ],
   ])('refuses invalid values: %s', async sql => {
     await expect(db.execute(sql)).rejects.toThrow(/CHECK/);
   });

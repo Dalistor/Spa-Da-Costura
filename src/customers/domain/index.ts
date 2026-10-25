@@ -8,6 +8,7 @@ export {
   type SaveCustomerResult,
 } from './customer';
 export {
+  isSameKey,
   validateMeasurement,
   type Measurement,
   type MeasurementError,

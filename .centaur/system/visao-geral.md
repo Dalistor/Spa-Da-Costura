@@ -19,7 +19,7 @@ Arquitetura proposta (ainda sem código): regras do domínio independentes da UI
 | Área | Definição | Contrato (rascunho) |
 |---|---|---|
 | Sistema | Dados locais em SQLite, Android, paleta bege/marrom, backup e importação, migrações | [`sistema`](../contracts/sistema/v001.json) (aprovado) |
-| Clientes | Nome; telefone e descrição opcionais; medidas livres (chave e valor); exclusão permitida com histórico | [`clientes`](../contracts/clientes/v001.json) (aprovado) |
+| Clientes | Nome; telefone e descrição opcionais; medidas livres (chave e valor); exclusão permitida com histórico | [`clientes`](../contracts/clientes/v002.json) (aprovado, v2) |
 | Serviços e produtos | Serviço = conserto com status Pendente/Pronto/Entregue; produto = peça inteira do catálogo, vendida ao cliente com valor preenchido e editável | [`servicos`](../contracts/servicos/v001.json) |
 | Financeiro | Pagamentos ligados só ao cliente (aviso se passar do devido); despesas; fluxo de caixa; total pago e devido | [`financeiro`](../contracts/financeiro/v001.json) |
 
@@ -61,6 +61,8 @@ Paleta de cores em tons de **bege e marrom**. Valores exatos (tokens) delegados 
 16. (2026-10-24) Contrato `sistema@1` aprovado, com SIS-06 (migrações sem perda de dados).
 17. (2026-10-24) Identificadores de código em inglês; interface em português.
 18. (2026-10-24) Contrato `clientes@1` aprovado.
+19. (2026-10-24) Chave de medida sem diferenciar maiúsculas e minúsculas ("Cintura" = "cintura") → `clientes@2`.
+20. (2026-10-24) `servicos` (rascunho) ganhou SRV-05: serviços de clientes excluídos não aparecem na aba Serviços.
 
 ## Lacunas abertas
 

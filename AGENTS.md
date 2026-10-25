@@ -12,7 +12,7 @@ Backend `files` (em `.centaur/workspace.json`): registros em `.centaur/implement
 ## Contratos e realização
 Contratos em `.centaur/contracts/<id>/vNNN.json` definem o comportamento desejado e a autonomia. Estado em `.centaur/state/` e evidências em `.centaur/evidence/` registram a realização; o ciclo normativo de `graphify` define formatos e gates. Contratos aprovados são versionados, não reescritos. Antes de editar, consultar apenas as regras e limites pertinentes. Checklist de spec não comprova comportamento. Consulte specs, fontes e evidências diretamente no terminal. Apresente resultado, validação e próxima ação com links; detalhes ficam nos registros.
 
-Contratos atuais: [sistema](.centaur/contracts/sistema/v001.json) e [clientes](.centaur/contracts/clientes/v001.json) (aprovados); rascunho: [servicos](.centaur/contracts/servicos/v001.json), [financeiro](.centaur/contracts/financeiro/v001.json).
+Contratos atuais: [sistema](.centaur/contracts/sistema/v001.json) e [clientes@2](.centaur/contracts/clientes/v002.json) (aprovados); rascunho: [servicos](.centaur/contracts/servicos/v001.json), [financeiro](.centaur/contracts/financeiro/v001.json).
 
 ## Comandos essenciais
 Na raiz, com Node >= 22.11 e npm:

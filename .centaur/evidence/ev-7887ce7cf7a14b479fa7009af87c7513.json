@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "id": "ev-7887ce7cf7a14b479fa7009af87c7513",
+  "contract": "sistema@1",
+  "rule": "SIS-06",
+  "contract_hash": "67c2c67a03901dd912c682f243b82af6d943a979e8fe6028c044acee0722c8e6",
+  "method": "manual",
+  "result": "passed",
+  "at": "2026-10-25T00:03:41.876717+00:00",
+  "revision": "a4faac55fb0d251fba16df8714dfb57f1dc6207c",
+  "summary": "No emulador, o APK com a migração 002 foi instalado por cima de um banco na versão 1 com clientes e medidas; o app abriu sem erro e todos os clientes e medidas existentes continuaram visíveis ('Busto 92 cm', 'Cintura 74 cm'), e a nova regra passou a valer. Limite: o banco do APK release não é legível por adb, então user_version não foi lido no aparelho (coberto no teste).",
+  "reference": "Sessão Claude Code f61330bd (2026-10-24), APK release x86_64 com a migração 002 instalado por cima dos dados existentes no emulador Pixel_API_36 (reiniciado), modo avião (airplane_mode_on=1); capturas 14–16 em .centaur/evidence/screens/",
+  "files": {
+    ".centaur/evidence/screens/14-busto-maiuscula-recusada.png": "20e4a74cda2cb4deb8223b78681c1e7254376e4eb9e400b1617462039ef6e6e6",
+    ".centaur/evidence/screens/15-busca-lia.png": "c2184da737f99c0191d6e56b3d922e68e6aa299ef769bb618c7fbce63dcacbf9",
+    ".centaur/evidence/screens/16-reaberto-apos-migracao.png": "3d672137cd47874343b5292d817ef1ab14dac0a7754df6209d32a532f189f1d6",
+    "__tests__/database/schema.test.ts": "0bbaf8716135d42c80518dd2005da8f99e8fd1ddb6fd8d7fc9be47730891cb3b",
+    "src/database/initializeDatabase.ts": "0ab929a66facadcc05d5677fb5cf6cef3e50185cfdbf8fd312d5f9ef263b8974",
+    "src/database/migrate.ts": "f28fdc277c557c2ecbf78c2ee6b937aaf152dc8a52c5fff13e594f1a51d9b127",
+    "src/database/migrations/001_initial_schema.ts": "2393b5dfe11929e2e147fb2cd1170b71f0296c3a2f418d35fe4cd7a66ce56fdd",
+    "src/database/migrations/002_measurement_key_ignores_case.ts": "e66191c1116463af9f0e6478cb00d9b89c3d4d8ae3a9ac90f1cce8d82efd3370",
+    "src/database/migrations/index.ts": "30051061b0c749e3eca34e9a08982cbb4ad9ef806ecd06a9bd48906c0eb08c12"
+  }
+}

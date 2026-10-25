@@ -43,7 +43,9 @@ function assertSequential(migrations: readonly Migration[]): void {
   migrations.forEach((migration, index) => {
     if (migration.version !== index + 1) {
       throw new Error(
-        `Migration versions must be sequential from 1; found ${migration.version} at position ${index + 1}`,
+        `Migration versions must be sequential from 1; found ${
+          migration.version
+        } at position ${index + 1}`,
       );
     }
   });

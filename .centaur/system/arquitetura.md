@@ -1,6 +1,6 @@
 # Arquitetura — Spa da Costura
 
-> Estado: **fundação implementada (2026-10-24)** em [master/0001](../specs/0001/README.md): banco, migração v1, tema e rotas; clientes e medidas em [master/0002](../specs/0002/README.md) e [master/0003](../specs/0003/README.md); demais telas ainda vazias. Repositórios de cada funcionalidade chegam às telas por contexto declarado na própria funcionalidade e montado em `src/app/RepositoriesProvider`. A definição normativa vive nos contratos ([sistema](../contracts/sistema/v001.json), [clientes](../contracts/clientes/v001.json), [servicos](../contracts/servicos/v001.json), [financeiro](../contracts/financeiro/v001.json)); este documento explica como o código os atende. Código e testes prevalecem quando existirem.
+> Estado: **fundação implementada (2026-10-24)** em [master/0001](../specs/0001/README.md): banco, migração v1, tema e rotas; clientes e medidas em [master/0002](../specs/0002/README.md) [master/0003](../specs/0003/README.md) e [master/0004](../specs/0004/README.md) (migração 002); demais telas ainda vazias. Repositórios de cada funcionalidade chegam às telas por contexto declarado na própria funcionalidade e montado em `src/app/RepositoriesProvider`. A definição normativa vive nos contratos ([sistema](../contracts/sistema/v001.json), [clientes@2](../contracts/clientes/v002.json), [servicos](../contracts/servicos/v001.json), [financeiro](../contracts/financeiro/v001.json)); este documento explica como o código os atende. Código e testes prevalecem quando existirem.
 
 ## Idioma
 
@@ -77,7 +77,7 @@ expense (independente)
 | Tabela | Colunas | Restrições |
 |---|---|---|
 | `customer` | `id`, `name`, `phone?`, `description?`, `created_at`, `updated_at`, `deleted_at?` | `name` não vazio; índice em `name` |
-| `measurement` | `id`, `customer_id`, `key`, `value`, `created_at`, `updated_at` | FK customer RESTRICT; `key` não vazia; `UNIQUE(customer_id, key)` |
+| `measurement` | `id`, `customer_id`, `key`, `value`, `created_at`, `updated_at` | FK customer RESTRICT; `key` não vazia; `UNIQUE(customer_id, key)` e, desde a migração 002, índice único `(customer_id, key COLLATE NOCASE)` (o repositório compara também acentos) |
 | `job` | `id`, `customer_id`, `description`, `amount_cents`, `status`, `delivery_date`, `created_at`, `updated_at` | FK customer RESTRICT; `description` não vazia; `amount_cents >= 0`; `status IN ('pending','ready','delivered')` padrão `pending`; índice em `customer_id` |
 | `product` | `id`, `name`, `price_cents`, `created_at`, `updated_at` | `name` não vazio; `price_cents >= 0` |
 | `product_sale` | `id`, `customer_id`, `product_id?`, `product_name`, `amount_cents`, `date`, `created_at`, `updated_at` | FK customer RESTRICT; FK product `ON DELETE SET NULL`; `amount_cents >= 0`; índice em `customer_id` |

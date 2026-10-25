@@ -220,7 +220,7 @@ describe('measurements', () => {
     expect(await count(db, 'measurement')).toBe(0);
   });
 
-  test('a repeated key in the same customer is refused, also when editing', async () => {
+  test('a repeated key in the same customer is refused ignoring letter case, also when editing', async () => {
     const db = await openDatabase();
     const measurements = createMeasurementRepository(db);
     const maria = await createCustomer(db, 'Maria');
@@ -234,14 +234,14 @@ describe('measurements', () => {
     }
 
     expect(
-      await measurements.add(maria.id, { key: 'Cintura ', value: '70 cm' }),
+      await measurements.add(maria.id, { key: 'cintura ', value: '70 cm' }),
     ).toEqual({
       ok: false,
       error: 'key-taken',
     });
     expect(
       await measurements.update(bust.measurement.id, {
-        key: 'Cintura',
+        key: 'CINTURA',
         value: '90 cm',
       }),
     ).toEqual({
@@ -250,15 +250,20 @@ describe('measurements', () => {
     });
     expect(
       await measurements.update(bust.measurement.id, {
-        key: 'Busto',
+        key: 'busto',
         value: '92 cm',
       }),
     ).toMatchObject({
       ok: true,
     });
+    await measurements.add(maria.id, { key: 'Ômbro', value: '38 cm' });
+    expect(
+      await measurements.add(maria.id, { key: 'ômbro', value: '39 cm' }),
+    ).toEqual({ ok: false, error: 'key-taken' });
     expect(await measurements.listFor(maria.id)).toMatchObject([
-      { key: 'Busto', value: '92 cm' },
+      { key: 'busto', value: '92 cm' },
       { key: 'Cintura', value: '72 cm' },
+      { key: 'Ômbro', value: '38 cm' },
     ]);
   });
 });

@@ -86,6 +86,18 @@
         "servicos/SRV-01",
         "servicos/PRD-02"
       ]
+    },
+    {
+      "id": "SRV-05",
+      "description": "Serviços de clientes excluídos não aparecem na aba Serviços",
+      "acceptance": [
+        "Após excluir um cliente, seus serviços deixam de aparecer na lista da aba Serviços",
+        "Os serviços do cliente excluído continuam gravados no banco"
+      ],
+      "depends_on": [
+        "servicos/SRV-01",
+        "clientes/CLI-04"
+      ]
     }
   ],
   "specification": {

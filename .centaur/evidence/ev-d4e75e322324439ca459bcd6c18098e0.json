@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "id": "ev-d4e75e322324439ca459bcd6c18098e0",
+  "contract": "clientes@2",
+  "rule": "CLI-04",
+  "contract_hash": "1099b24f6c0bf08b06b5d6221e5d7d5be5f35cfaa93e6b43c4f55bf0953cf406",
+  "method": "test",
+  "command": [
+    "npx",
+    "jest",
+    "__tests__/customers",
+    "__tests__/database"
+  ],
+  "result": "passed",
+  "exit_code": 0,
+  "at": "2026-10-25T00:03:35.420585+00:00",
+  "revision": "a4faac55fb0d251fba16df8714dfb57f1dc6207c",
+  "summary": "Repositório em node:sqlite (clientes@2): excluir marca deleted_at e mantém a linha; cliente e medidas somem de lista, leitura e edição; medida, pagamento, serviço e venda continuam no banco.",
+  "reference": "Comando executado no checkout; saída exibida no terminal",
+  "files": {
+    "__tests__/customers/customerRepository.test.ts": "c1aa12d97b0d1199405c24980bf75bec3d837722730327a527b0a476caa2bb1c",
+    "__tests__/database/schema.test.ts": "0bbaf8716135d42c80518dd2005da8f99e8fd1ddb6fd8d7fc9be47730891cb3b",
+    "src/app/RepositoriesProvider.tsx": "0b8791832dc5e024a06d5bec39c21e18247878abb0e65182f16b4008b1e4bca7",
+    "src/app/navigation/Navigator.tsx": "30572dae4be3b3e1b340c0560f4dca677b0318001b50769f728c8f29eebfef7d",
+    "src/customers/data/sqlCustomerRepository.ts": "98ac463bf0deba8e1a6cd7b6b214443e3d7e6e272aad5b6fc51cffce5876a432",
+    "src/customers/data/sqlMeasurementRepository.ts": "542b06e783c65fd0510d4ae4f2e9c99b4516b5801e0b626bbe131e41fc8b1930",
+    "src/customers/domain/customer.ts": "3ba65dccad8a4bbd63ca2fe8eb9764fa98e0f72ec92cbd2aca9a852edb2f535e",
+    "src/customers/domain/measurement.ts": "7bdb0adcc4a58e6aaed28b9c512671bdebb2ba82c6c10952aa13d4d059ff8c62",
+    "src/customers/domain/repositories.ts": "fd8f614e8f5f897a3be0910bd3077b300eeec221d516468805f760a43c9539c6",
+    "src/customers/screens/CustomerDetailScreen.tsx": "47b07eda37adec76232e517709ba858800658d8948891d26f4e8fbfea4604d36",
+    "src/customers/screens/CustomerFormScreen.tsx": "99d2778f9ea21fee07948dcf9041c37db78700417e0e35394d63b93cf6c38322",
+    "src/customers/screens/CustomersScreen.tsx": "7968da40903bae0a974f71bb19e8dc169f4f704dc64bb68c3c50a902ff62ce61",
+    "src/customers/screens/MeasurementFormScreen.tsx": "6c4f503132766a2238fc75127d432d82732fb9dab990173760cded6c27d617a2",
+    "src/database/migrations/002_measurement_key_ignores_case.ts": "e66191c1116463af9f0e6478cb00d9b89c3d4d8ae3a9ac90f1cce8d82efd3370",
+    "src/database/migrations/index.ts": "30051061b0c749e3eca34e9a08982cbb4ad9ef806ecd06a9bd48906c0eb08c12"
+  },
+  "sources_stable": true
+}

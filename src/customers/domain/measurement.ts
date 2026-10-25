@@ -28,3 +28,10 @@ export function validateMeasurement(
   }
   return { ok: true, measurement: { key, value: input.value.trim() } };
 }
+
+/** Keys are the same measurement regardless of letter case: "Cintura" = "cintura". */
+export function isSameKey(a: string, b: string): boolean {
+  return (
+    a.trim().toLocaleLowerCase('pt-BR') === b.trim().toLocaleLowerCase('pt-BR')
+  );
+}

@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "contract": "clientes@1",
+  "contract": "clientes@2",
   "rules": {
     "CLI-01": {
       "implementation": "implementada",
@@ -32,13 +32,13 @@
         {
           "path": "__tests__/customers/customerRepository.test.ts",
           "start": 1,
-          "end": 282,
+          "end": 287,
           "role": "Testes de repositório"
         }
       ],
       "evidence": [
-        "ev-b14428b71eb042aab0f383127eaadd94",
-        "ev-a0cfa37c8150433a81cd355b015e9c40"
+        "ev-7889bcf1080444849fe26a33da42f9e4",
+        "ev-884a59a072184ecbbb7766f849a9fc43"
       ],
       "delivery": {
         "stage": "integrated",
@@ -47,7 +47,8 @@
         "at": "2026-10-24"
       },
       "specs": [
-        "master/0002"
+        "master/0002",
+        "master/0004"
       ],
       "notes": ""
     },
@@ -57,13 +58,13 @@
         {
           "path": "src/customers/domain/measurement.ts",
           "start": 1,
-          "end": 30,
+          "end": 37,
           "role": "Validação da medida (chave obrigatória)"
         },
         {
           "path": "src/customers/data/sqlMeasurementRepository.ts",
           "start": 1,
-          "end": 102,
+          "end": 104,
           "role": "Medidas no SQLite; chave repetida vira resultado do domínio"
         },
         {
@@ -81,13 +82,19 @@
         {
           "path": "__tests__/customers/customerRepository.test.ts",
           "start": 1,
-          "end": 282,
+          "end": 287,
           "role": "Testes de repositório"
+        },
+        {
+          "path": "src/database/migrations/002_measurement_key_ignores_case.ts",
+          "start": 1,
+          "end": 19,
+          "role": "Renomeia repetições antigas e cria índice único sem diferenciar maiúsculas"
         }
       ],
       "evidence": [
-        "ev-07c231b99dff45f8bf9859b36d3b2068",
-        "ev-00e2c4fa36f246c1a673bbaff424e12d"
+        "ev-7647456810d8427c93b1f4fd16f3854b",
+        "ev-ff00e8da8738484aae9a398137549bd8"
       ],
       "delivery": {
         "stage": "integrated",
@@ -96,9 +103,10 @@
         "at": "2026-10-24"
       },
       "specs": [
-        "master/0002"
+        "master/0002",
+        "master/0004"
       ],
-      "notes": "Chave comparada após trim, diferenciando maiúsculas (leitura literal; decisão aberta registrada em master/0002)."
+      "notes": "Chave comparada sem diferenciar maiúsculas (domínio isSameKey, inclusive acentos); índice NOCASE da migração 002 como proteção no banco."
     },
     "CLI-03": {
       "implementation": "implementada",
@@ -124,13 +132,13 @@
         {
           "path": "__tests__/customers/customerRepository.test.ts",
           "start": 1,
-          "end": 282,
+          "end": 287,
           "role": "Testes de busca"
         }
       ],
       "evidence": [
-        "ev-486c20dbe171421382d93bc690655f7d",
-        "ev-8c9a0d190ee548a390a88eff53bd69e6"
+        "ev-afde34a28e9441e2892f1c58012a1b7c",
+        "ev-eb936d1851b54ae7815353cbe4cfd980"
       ],
       "delivery": {
         "stage": "integrated",
@@ -139,7 +147,8 @@
         "at": "2026-10-24"
       },
       "specs": [
-        "master/0002"
+        "master/0002",
+        "master/0004"
       ],
       "notes": ""
     },
@@ -155,7 +164,7 @@
         {
           "path": "src/customers/data/sqlMeasurementRepository.ts",
           "start": 1,
-          "end": 102,
+          "end": 104,
           "role": "Medidas só de clientes ativos"
         },
         {
@@ -167,13 +176,13 @@
         {
           "path": "__tests__/customers/customerRepository.test.ts",
           "start": 1,
-          "end": 282,
+          "end": 287,
           "role": "Teste de soft delete"
         }
       ],
       "evidence": [
-        "ev-6b2d8338d1ae4a31b919e22aad84a68b",
-        "ev-8b799c118f1a471596d8a64a8d83a3f8"
+        "ev-d4e75e322324439ca459bcd6c18098e0",
+        "ev-c45f14036c7244f59b13748aaaacd98b"
       ],
       "delivery": {
         "stage": "integrated",
@@ -182,7 +191,8 @@
         "at": "2026-10-24"
       },
       "specs": [
-        "master/0003"
+        "master/0003",
+        "master/0004"
       ],
       "notes": "Telas de histórico de serviços/produtos e caixa ainda não existem; dados preservados verificados no repositório. FIN-04 e servicos confirmam nas telas."
     }

@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "id": "ev-d503e9207d3c41a9b241d12b79a779f1",
+  "contract": "sistema@1",
+  "rule": "SIS-06",
+  "contract_hash": "67c2c67a03901dd912c682f243b82af6d943a979e8fe6028c044acee0722c8e6",
+  "method": "test",
+  "command": [
+    "npx",
+    "jest",
+    "__tests__/database"
+  ],
+  "result": "passed",
+  "exit_code": 0,
+  "at": "2026-10-25T00:03:41.868596+00:00",
+  "revision": "a4faac55fb0d251fba16df8714dfb57f1dc6207c",
+  "summary": "Testes de esquema reexecutados com a migração 002: banco vazio chega à última versão, reabrir não reaplica, falha faz rollback, banco mais novo recusado, versões sequenciais, migração 002 mantém medidas repetidas por maiúsculas renomeando-as, FKs e CHECKs.",
+  "reference": "Comando executado no checkout; saída exibida no terminal",
+  "files": {
+    "__tests__/database/schema.test.ts": "0bbaf8716135d42c80518dd2005da8f99e8fd1ddb6fd8d7fc9be47730891cb3b",
+    "__tests__/support/nodeSqliteDatabase.ts": "9552026caef26244ac2f7866bf1375964765df6571d80d397d2e82bdaaf022a7",
+    "jest.config.js": "e911b7746dffa0fae978909afeca10c62db6bc4b177197b60d6c24f5c9906fc1",
+    "src/database/Database.ts": "6c32adfc74ea0421b273dd0421ea9fa6c06a80040bd9234fcf4e9b333c514a2c",
+    "src/database/index.ts": "370ccad22684a4c0ffb04e3f92bf300572230b5721acda9b6fe1f2cf292e10b5",
+    "src/database/initializeDatabase.ts": "0ab929a66facadcc05d5677fb5cf6cef3e50185cfdbf8fd312d5f9ef263b8974",
+    "src/database/migrate.ts": "f28fdc277c557c2ecbf78c2ee6b937aaf152dc8a52c5fff13e594f1a51d9b127",
+    "src/database/migrations/001_initial_schema.ts": "2393b5dfe11929e2e147fb2cd1170b71f0296c3a2f418d35fe4cd7a66ce56fdd",
+    "src/database/migrations/002_measurement_key_ignores_case.ts": "e66191c1116463af9f0e6478cb00d9b89c3d4d8ae3a9ac90f1cce8d82efd3370",
+    "src/database/migrations/index.ts": "30051061b0c749e3eca34e9a08982cbb4ad9ef806ecd06a9bd48906c0eb08c12",
+    "src/database/openAppDatabase.ts": "71a56b09d43aa2e5ce28d8feed513d948de2789dccc7b007f19ad4b564f5d52a"
+  },
+  "sources_stable": true
+}

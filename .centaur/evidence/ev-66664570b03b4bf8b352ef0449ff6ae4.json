@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "id": "ev-66664570b03b4bf8b352ef0449ff6ae4",
+  "contract": "sistema@1",
+  "rule": "SIS-02",
+  "contract_hash": "67c2c67a03901dd912c682f243b82af6d943a979e8fe6028c044acee0722c8e6",
+  "method": "manual",
+  "result": "passed",
+  "at": "2026-10-25T00:03:41.879320+00:00",
+  "revision": "a4faac55fb0d251fba16df8714dfb57f1dc6207c",
+  "summary": "Após atualizar o app (migração 002) e reiniciar o emulador, os dados gravados antes continuaram disponíveis; após excluir 'Lia Costa', fechar à força e reabrir, a lista manteve 'Joana Prado' e 'Maria Souza'.",
+  "reference": "Sessão Claude Code f61330bd (2026-10-24), APK release x86_64 com a migração 002 instalado por cima dos dados existentes no emulador Pixel_API_36 (reiniciado), modo avião (airplane_mode_on=1); capturas 14–16 em .centaur/evidence/screens/",
+  "files": {
+    ".centaur/evidence/screens/14-busto-maiuscula-recusada.png": "20e4a74cda2cb4deb8223b78681c1e7254376e4eb9e400b1617462039ef6e6e6",
+    ".centaur/evidence/screens/15-busca-lia.png": "c2184da737f99c0191d6e56b3d922e68e6aa299ef769bb618c7fbce63dcacbf9",
+    ".centaur/evidence/screens/16-reaberto-apos-migracao.png": "3d672137cd47874343b5292d817ef1ab14dac0a7754df6209d32a532f189f1d6",
+    "App.tsx": "3e60bb7f9893bc71b3274b57e0d39c2e7733be2cb7d8a2039fb8c89ba97840e3",
+    "__tests__/customers/customerRepository.test.ts": "c1aa12d97b0d1199405c24980bf75bec3d837722730327a527b0a476caa2bb1c",
+    "src/app/RepositoriesProvider.tsx": "0b8791832dc5e024a06d5bec39c21e18247878abb0e65182f16b4008b1e4bca7",
+    "src/app/navigation/Navigator.tsx": "30572dae4be3b3e1b340c0560f4dca677b0318001b50769f728c8f29eebfef7d",
+    "src/customers/data/sqlCustomerRepository.ts": "98ac463bf0deba8e1a6cd7b6b214443e3d7e6e272aad5b6fc51cffce5876a432",
+    "src/customers/data/sqlMeasurementRepository.ts": "542b06e783c65fd0510d4ae4f2e9c99b4516b5801e0b626bbe131e41fc8b1930",
+    "src/customers/domain/customer.ts": "3ba65dccad8a4bbd63ca2fe8eb9764fa98e0f72ec92cbd2aca9a852edb2f535e",
+    "src/customers/domain/measurement.ts": "7bdb0adcc4a58e6aaed28b9c512671bdebb2ba82c6c10952aa13d4d059ff8c62",
+    "src/customers/domain/repositories.ts": "fd8f614e8f5f897a3be0910bd3077b300eeec221d516468805f760a43c9539c6",
+    "src/customers/screens/CustomerDetailScreen.tsx": "47b07eda37adec76232e517709ba858800658d8948891d26f4e8fbfea4604d36",
+    "src/customers/screens/CustomerFormScreen.tsx": "99d2778f9ea21fee07948dcf9041c37db78700417e0e35394d63b93cf6c38322",
+    "src/customers/screens/CustomersScreen.tsx": "7968da40903bae0a974f71bb19e8dc169f4f704dc64bb68c3c50a902ff62ce61",
+    "src/customers/screens/MeasurementFormScreen.tsx": "6c4f503132766a2238fc75127d432d82732fb9dab990173760cded6c27d617a2",
+    "src/database/migrations/002_measurement_key_ignores_case.ts": "e66191c1116463af9f0e6478cb00d9b89c3d4d8ae3a9ac90f1cce8d82efd3370",
+    "src/database/openAppDatabase.ts": "71a56b09d43aa2e5ce28d8feed513d948de2789dccc7b007f19ad4b564f5d52a"
+  }
+}

@@ -1,5 +1,6 @@
 import type { Database, Row } from '../../database';
 import {
+  isSameKey,
   validateMeasurement,
   type Measurement,
   type MeasurementRepository,
@@ -22,18 +23,19 @@ export function createMeasurementRepository(
     return row ? toMeasurement(row) : null;
   };
 
-  // Checked before writing so a repeated key is an answer for the user,
-  // not a constraint error; UNIQUE (customer_id, key) still guards the table.
+  // Checked before writing so a repeated key is an answer for the user, not a
+  // constraint error. Compared here because SQLite's NOCASE index (the guard in
+  // the table) only ignores the case of ASCII letters, not of "Ô" or "É".
   const isKeyTaken = async (
     customerId: number,
     key: string,
     exceptId?: number,
   ) => {
     const rows = await db.query(
-      'SELECT id FROM measurement WHERE customer_id = ? AND key = ? AND id <> ?',
-      [customerId, key, exceptId ?? -1],
+      'SELECT key FROM measurement WHERE customer_id = ? AND id <> ?',
+      [customerId, exceptId ?? -1],
     );
-    return rows.length > 0;
+    return rows.some(row => isSameKey(String(row.key), key));
   };
 
   return {

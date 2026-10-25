@@ -25,7 +25,7 @@
         }
       ],
       "evidence": [
-        "ev-f7a876f4a0b84133b51544a60eff5755",
+        "ev-01bd6d4f02614cf98c5d8cf626eefe15",
         "ev-2415f739fb5f4bd8871bed3b7cc21644"
       ],
       "delivery": {
@@ -51,18 +51,18 @@
         {
           "path": "src/customers/data/sqlCustomerRepository.ts",
           "start": 1,
-          "end": 74,
+          "end": 82,
           "role": "Primeira gravação de dados pela UI"
         },
         {
           "path": "src/customers/data/sqlMeasurementRepository.ts",
           "start": 1,
-          "end": 99,
+          "end": 104,
           "role": "Gravação de medidas"
         }
       ],
       "evidence": [
-        "ev-421122082efb4efb9de0f93936bafddb"
+        "ev-66664570b03b4bf8b352ef0449ff6ae4"
       ],
       "delivery": {
         "stage": "integrated",
@@ -87,7 +87,7 @@
         {
           "path": "src/app/navigation/Navigator.tsx",
           "start": 21,
-          "end": 31,
+          "end": 132,
           "role": "Tema da navegação a partir dos tokens"
         },
         {
@@ -118,7 +118,7 @@
         {
           "path": "src/database/migrate.ts",
           "start": 1,
-          "end": 50,
+          "end": 52,
           "role": "Executor de migrações transacional com user_version"
         },
         {
@@ -136,13 +136,25 @@
         {
           "path": "__tests__/database/schema.test.ts",
           "start": 1,
-          "end": 188,
+          "end": 237,
           "role": "Testes de migração e restrições"
+        },
+        {
+          "path": "src/database/migrations/002_measurement_key_ignores_case.ts",
+          "start": 1,
+          "end": 19,
+          "role": "Migração 002 sem perda de medidas"
+        },
+        {
+          "path": "src/database/migrations/index.ts",
+          "start": 1,
+          "end": 9,
+          "role": "Ordem das migrações"
         }
       ],
       "evidence": [
-        "ev-33228507ad9d4e318f0e5e608ea74687",
-        "ev-cf6a9fc9f3594b9bb0118a16f343042a"
+        "ev-d503e9207d3c41a9b241d12b79a779f1",
+        "ev-7887ce7cf7a14b479fa7009af87c7513"
       ],
       "delivery": {
         "stage": "integrated",

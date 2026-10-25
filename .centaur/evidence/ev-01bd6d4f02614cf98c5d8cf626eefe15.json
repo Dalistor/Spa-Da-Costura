@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "id": "ev-01bd6d4f02614cf98c5d8cf626eefe15",
+  "contract": "sistema@1",
+  "rule": "SIS-01",
+  "contract_hash": "67c2c67a03901dd912c682f243b82af6d943a979e8fe6028c044acee0722c8e6",
+  "method": "test",
+  "command": [
+    "sh",
+    "-c",
+    "! grep -rnE 'fetch\\(|XMLHttpRequest|WebSocket|axios' src App.tsx && ! grep -nE '\"(axios|apollo|firebase|@supabase)' package.json && npx jest __tests__/App.test.tsx"
+  ],
+  "result": "passed",
+  "exit_code": 0,
+  "at": "2026-10-25T00:03:39.235468+00:00",
+  "revision": "a4faac55fb0d251fba16df8714dfb57f1dc6207c",
+  "summary": "Checagem automática (reexecutada após master/0002): código sem fetch/XMLHttpRequest/WebSocket/axios e sem biblioteca de rede; dados lidos/gravados só pela porta Database sobre SQLite local, inclusive os repositórios de clientes. Teste do App migra e abre a navegação sem rede.",
+  "reference": "Comando executado no checkout; saída exibida no terminal",
+  "files": {
+    "App.tsx": "3e60bb7f9893bc71b3274b57e0d39c2e7733be2cb7d8a2039fb8c89ba97840e3",
+    "__tests__/App.test.tsx": "14ffae35039f9752abfd6e2fd91d9a3d23376844a756cc901f4b693ea8090f9d",
+    "package.json": "b5b827213107d576072f06943afc423b0eea34ed2fb57e3731334c612fde54fc",
+    "src/app/App.tsx": "ee069ee80f047155fa92c3aeb465bca089d1ebbb0095014e39c44fc79367a130",
+    "src/app/RepositoriesProvider.tsx": "0b8791832dc5e024a06d5bec39c21e18247878abb0e65182f16b4008b1e4bca7",
+    "src/app/useDatabaseStartup.ts": "09a9295a10097f3eda78974522cb2c3bcd388f9f70a4427a012de7fb00775f1b",
+    "src/customers/data/sqlCustomerRepository.ts": "98ac463bf0deba8e1a6cd7b6b214443e3d7e6e272aad5b6fc51cffce5876a432",
+    "src/customers/data/sqlMeasurementRepository.ts": "542b06e783c65fd0510d4ae4f2e9c99b4516b5801e0b626bbe131e41fc8b1930",
+    "src/database/openAppDatabase.ts": "71a56b09d43aa2e5ce28d8feed513d948de2789dccc7b007f19ad4b564f5d52a"
+  },
+  "sources_stable": true
+}

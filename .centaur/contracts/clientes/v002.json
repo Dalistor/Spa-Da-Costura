@@ -1,0 +1,143 @@
+{
+  "schema": 1,
+  "id": "clientes",
+  "version": 2,
+  "title": "Cadastro de clientes e medidas",
+  "scope": "master",
+  "status": "approved",
+  "intent": "A costureira cadastra clientes com nome, telefone e descrição opcionais e medidas livres (chave e valor), consulta e exclui clientes (soft delete) no aparelho.",
+  "extends": [],
+  "boundaries": [
+    "Respeitar os limites do contrato sistema (dados locais, sem servidor)"
+  ],
+  "autonomy": [
+    "Definir layout das telas de lista, cadastro e detalhe dentro da paleta do sistema"
+  ],
+  "decisions": [],
+  "rules": [
+    {
+      "id": "CLI-01",
+      "description": "Cadastrar e editar cliente com nome obrigatório e telefone e descrição opcionais",
+      "acceptance": [
+        "Salvar com nome preenchido cria o cliente e ele aparece na lista, com ou sem telefone e descrição",
+        "Salvar sem nome é recusado com mensagem e nada é gravado",
+        "Editar nome, telefone ou descrição reflete a mudança no detalhe do cliente"
+      ],
+      "depends_on": []
+    },
+    {
+      "id": "CLI-02",
+      "description": "Registrar, editar e remover medidas livres do cliente, cada uma com chave e valor escolhidos pela usuária",
+      "acceptance": [
+        "Adicionar uma medida com chave e valor (ex.: 'Cintura' = '72 cm') faz ela aparecer no detalhe do cliente após reabrir o app",
+        "Editar ou remover uma medida reflete a mudança no detalhe do cliente",
+        "Medida com chave vazia é recusada",
+        "Duas medidas com a mesma chave no mesmo cliente são recusadas, sem diferenciar maiúsculas e minúsculas (ex.: 'Cintura' e 'cintura')"
+      ],
+      "depends_on": []
+    },
+    {
+      "id": "CLI-03",
+      "description": "Listar e localizar clientes pelo nome",
+      "acceptance": [
+        "Buscar parte do nome mostra apenas os clientes correspondentes"
+      ],
+      "depends_on": []
+    },
+    {
+      "id": "CLI-04",
+      "description": "Excluir cliente, inclusive com histórico, por soft delete após confirmação",
+      "acceptance": [
+        "O app pede confirmação antes de excluir o cliente",
+        "Após excluir, o cliente, suas medidas, serviços e produtos vendidos não aparecem mais nas telas de clientes e histórico",
+        "O registro do cliente é marcado como excluído, não apagado do banco",
+        "Os pagamentos do cliente excluído continuam contando no fluxo de caixa"
+      ],
+      "depends_on": [
+        "clientes/CLI-01"
+      ]
+    }
+  ],
+  "specification": {
+    "actors": [
+      "Costureira"
+    ],
+    "exclusions": [
+      "Histórico de serviços, produtos e saldo do cliente (contratos servicos e financeiro)"
+    ],
+    "use_cases": [
+      {
+        "id": "UC-01",
+        "title": "Cadastrar cliente com medidas",
+        "actor": "Costureira",
+        "preconditions": [],
+        "main_flow": [
+          "Abrir lista de clientes",
+          "Escolher novo cliente",
+          "Informar nome e, se quiser, telefone e descrição",
+          "Adicionar medidas com chave e valor",
+          "Salvar"
+        ],
+        "alternatives": [
+          "Nome vazio: informar obrigatoriedade e manter o formulário",
+          "Chave de medida vazia ou repetida (sem diferenciar maiúsculas e minúsculas): indicar o campo e não salvar"
+        ],
+        "postconditions": [
+          "Cliente e medidas gravados localmente e visíveis no detalhe"
+        ],
+        "rules": [
+          "CLI-01",
+          "CLI-02"
+        ]
+      }
+    ],
+    "data_model": {
+      "entities": [
+        {
+          "name": "Cliente",
+          "attributes": [
+            "id",
+            "nome",
+            "telefone (opcional)",
+            "descricao (opcional)",
+            "excluido_em (opcional)"
+          ],
+          "invariants": [
+            "id único",
+            "nome não vazio",
+            "cliente com excluido_em preenchido não aparece nas listas"
+          ]
+        },
+        {
+          "name": "Medida",
+          "attributes": [
+            "id",
+            "cliente_id",
+            "chave",
+            "valor"
+          ],
+          "invariants": [
+            "chave não vazia",
+            "chave única por cliente, sem diferenciar maiúsculas e minúsculas",
+            "valor é texto livre"
+          ]
+        }
+      ],
+      "relationships": [
+        {
+          "from": "Cliente",
+          "to": "Medida",
+          "cardinality": "1:N",
+          "invariants": [
+            "Toda medida pertence a um cliente existente"
+          ]
+        }
+      ]
+    }
+  },
+  "approval": {
+    "by": "Diego",
+    "at": "2026-10-24",
+    "reference": "Sessão Claude Code f61330bd (2026-10-24): resposta '1 não, deve constar como mesmo' à pergunta se 'Cintura' e 'cintura' devem contar como a mesma medida"
+  }
+}
