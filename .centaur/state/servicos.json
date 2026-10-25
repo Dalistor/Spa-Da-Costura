@@ -1,0 +1,217 @@
+{
+  "schema": 1,
+  "contract": "servicos@1",
+  "rules": {
+    "SRV-01": {
+      "implementation": "implementada",
+      "sources": [
+        {
+          "path": "src/jobs/domain/job.ts",
+          "start": 1,
+          "end": 65,
+          "role": "Validação: descrição, valor em centavos, data"
+        },
+        {
+          "path": "src/jobs/data/sqlJobRepository.ts",
+          "start": 1,
+          "end": 106,
+          "role": "Gravação e leitura de serviços"
+        },
+        {
+          "path": "src/calendar/businessDate.ts",
+          "start": 1,
+          "end": 34,
+          "role": "Data local de hoje e formato"
+        },
+        {
+          "path": "src/jobs/screens/JobFormScreen.tsx",
+          "start": 1,
+          "end": 159,
+          "role": "Formulário com data padrão hoje"
+        },
+        {
+          "path": "src/jobs/screens/DateField.tsx",
+          "start": 1,
+          "end": 66,
+          "role": "Seletor de data"
+        },
+        {
+          "path": "src/jobs/screens/CustomerJobsSection.tsx",
+          "start": 1,
+          "end": 74,
+          "role": "Serviços no detalhe do cliente"
+        },
+        {
+          "path": "__tests__/jobs/jobRepository.test.ts",
+          "start": 1,
+          "end": 211,
+          "role": "Testes"
+        }
+      ],
+      "evidence": [
+        "ev-8a515033d7dc4df3aa89336ce89bd15f",
+        "ev-c5dc7d0abf7e40119517a2704100a0f6"
+      ],
+      "delivery": {
+        "stage": "local"
+      },
+      "specs": [
+        "master/0005"
+      ],
+      "notes": ""
+    },
+    "SRV-02": {
+      "implementation": "implementada",
+      "sources": [
+        {
+          "path": "src/jobs/data/sqlJobRepository.ts",
+          "start": 1,
+          "end": 106,
+          "role": "Editar e excluir"
+        },
+        {
+          "path": "src/jobs/screens/JobFormScreen.tsx",
+          "start": 1,
+          "end": 159,
+          "role": "Edição e exclusão com confirmação"
+        },
+        {
+          "path": "src/jobs/screens/JobsScreen.tsx",
+          "start": 1,
+          "end": 75,
+          "role": "Lista da aba"
+        },
+        {
+          "path": "src/jobs/screens/CustomerJobsSection.tsx",
+          "start": 1,
+          "end": 74,
+          "role": "Histórico do cliente"
+        },
+        {
+          "path": "__tests__/jobs/jobRepository.test.ts",
+          "start": 1,
+          "end": 211,
+          "role": "Testes"
+        }
+      ],
+      "evidence": [
+        "ev-a2cbedb62197491d8f46767c5046fe4b",
+        "ev-a2f92daaf0824d0d9fce008f9718f3ca"
+      ],
+      "delivery": {
+        "stage": "local"
+      },
+      "specs": [
+        "master/0005"
+      ],
+      "notes": ""
+    },
+    "SRV-03": {
+      "implementation": "implementada",
+      "sources": [
+        {
+          "path": "src/jobs/data/sqlJobRepository.ts",
+          "start": 1,
+          "end": 106,
+          "role": "Status inicial e mudança de status"
+        },
+        {
+          "path": "src/jobs/screens/StatusSelector.tsx",
+          "start": 1,
+          "end": 49,
+          "role": "Escolha de status"
+        },
+        {
+          "path": "src/jobs/screens/JobsScreen.tsx",
+          "start": 1,
+          "end": 75,
+          "role": "Status na lista"
+        },
+        {
+          "path": "__tests__/jobs/jobRepository.test.ts",
+          "start": 1,
+          "end": 211,
+          "role": "Testes"
+        }
+      ],
+      "evidence": [
+        "ev-15159a3779ea4f3d85fdf809b5d83e82",
+        "ev-6db19ebb0be54870acbac5070028ad57"
+      ],
+      "delivery": {
+        "stage": "local"
+      },
+      "specs": [
+        "master/0005"
+      ],
+      "notes": ""
+    },
+    "PRD-01": {
+      "implementation": "ausente",
+      "sources": [],
+      "evidence": [],
+      "delivery": {
+        "stage": "local"
+      },
+      "specs": [],
+      "notes": "Próxima spec de produtos."
+    },
+    "PRD-02": {
+      "implementation": "ausente",
+      "sources": [],
+      "evidence": [],
+      "delivery": {
+        "stage": "local"
+      },
+      "specs": [],
+      "notes": "Próxima spec de produtos."
+    },
+    "SRV-04": {
+      "implementation": "parcial",
+      "sources": [
+        {
+          "path": "src/jobs/screens/CustomerJobsSection.tsx",
+          "start": 1,
+          "end": 74,
+          "role": "Serviços no histórico do cliente"
+        }
+      ],
+      "evidence": [],
+      "delivery": {
+        "stage": "local"
+      },
+      "specs": [
+        "master/0005"
+      ],
+      "notes": "Serviços aparecem no detalhe do cliente; produtos vendidos dependem de PRD-02."
+    },
+    "SRV-05": {
+      "implementation": "implementada",
+      "sources": [
+        {
+          "path": "src/jobs/data/sqlJobRepository.ts",
+          "start": 1,
+          "end": 106,
+          "role": "listAll ignora clientes excluídos"
+        },
+        {
+          "path": "__tests__/jobs/jobRepository.test.ts",
+          "start": 1,
+          "end": 211,
+          "role": "Testes"
+        }
+      ],
+      "evidence": [
+        "ev-e9b6fb4e19014e3fac1a6c0f21579272",
+        "ev-7331ac367f334eb093071d492931c48b"
+      ],
+      "delivery": {
+        "stage": "local"
+      },
+      "specs": [
+        "master/0005"
+      ],
+      "notes": ""
+    }
+  }
+}

@@ -2,15 +2,14 @@ import { useNavigation } from '@react-navigation/native';
 import { useCallback, useState } from 'react';
 import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
 import { colors, spacing, typography } from '../../theme';
-import { Button, EmptyState, TextField } from '../../ui';
+import { Button, EmptyState, TextField, useFocusedLoad } from '../../ui';
 import { searchByName, type Customer } from '../domain';
 import { useCustomerRepositories } from './CustomerRepositories';
-import { useFocusedLoad } from './useFocusedLoad';
 
 export function CustomersScreen() {
   const navigation = useNavigation();
   const { customers: repository } = useCustomerRepositories();
-  const customers = useFocusedLoad(
+  const [customers] = useFocusedLoad(
     useCallback(() => repository.list(), [repository]),
   );
   const [query, setQuery] = useState('');

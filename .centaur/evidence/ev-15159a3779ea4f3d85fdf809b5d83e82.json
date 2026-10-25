@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "id": "ev-15159a3779ea4f3d85fdf809b5d83e82",
+  "contract": "servicos@1",
+  "rule": "SRV-03",
+  "contract_hash": "5648d07ee1746a922da05202d203f865a0d93ab9d32fcd4ce23e00b6ecd2005a",
+  "method": "test",
+  "command": [
+    "npx",
+    "jest",
+    "__tests__/jobs"
+  ],
+  "result": "passed",
+  "exit_code": 0,
+  "at": "2026-10-25T00:25:44.795740+00:00",
+  "revision": "b31b36b66da38965d6033ef39706129d751e8418",
+  "summary": "Repositório em node:sqlite: serviço novo começa pendente; mudar para pronto e entregue grava o novo status só naquele serviço.",
+  "reference": "Comando executado no checkout; saída exibida no terminal",
+  "files": {
+    "__tests__/jobs/jobRepository.test.ts": "ca6bf0db2f9630c71d9bf9b192c22bffb7e0f69f9874e3e64d74f38a735722f9",
+    "package.json": "c03329780e4ad4b5fbe452e29decf54658affa689e1a1cc57bca34c9d5c43e83",
+    "src/app/RepositoriesProvider.tsx": "e80bf46d4d4c6dceb27331edc661ecf23f3877eb87d41ab51f8b2382ca172cd2",
+    "src/app/navigation/Navigator.tsx": "8f0249c33273fe49e6b1df6cd31b7d418859b332194a25f95acb85d9a8443200",
+    "src/calendar/businessDate.ts": "5a13dfcf0975d3077df8345699c3d961044ac82762bf349f3ce72fa16fa28ac8",
+    "src/database/sqlNow.ts": "2906b09a8d4cd03e555d63da97ccad5165caba72138a7dfe45582c707c65e3a2",
+    "src/jobs/data/sqlJobRepository.ts": "d6707b805352f37ea557ac32f387b68476778bc96a02fd68148aa3eb4078f0d1",
+    "src/jobs/domain/job.ts": "f71b9da69a00e30122c0e57ea883bbaecffd649fe53583c93472c7c4cf2db8e1",
+    "src/jobs/domain/repository.ts": "f874dabc9360e6f478dd5f5fb1cd542985a9b19d799be571b288725120468010",
+    "src/jobs/screens/CustomerJobsSection.tsx": "507b87390eed3c56f6f1bec84747a4e2354c30246df38b4c282a0dd0269a3a4e",
+    "src/jobs/screens/DateField.tsx": "df069705d673a9bd4b47ffe840d9ad4d0176a6b32d84aeac814ea20d047c4827",
+    "src/jobs/screens/JobFormScreen.tsx": "9126aa0ec55b08a255b2b960263c01eb6b8f46e888bb3c32b0ec4b522f34e42b",
+    "src/jobs/screens/JobRepository.tsx": "a266ade0a63366e742a3da292391a34a9f996e01af1b6678ceaa3c4ca9ed4913",
+    "src/jobs/screens/JobSummary.tsx": "e984683b888308131adb45a3163413a3f297b1cb0f81b825e036a22b718de317",
+    "src/jobs/screens/JobsScreen.tsx": "51b9065bfef30d75c1ecf1ad2b7f9ceca96fdb3702910bf6856e60affdbb381e",
+    "src/jobs/screens/StatusSelector.tsx": "c6baf01a07d2bab17027c6a9d452390e20492efb0665f4f05e30eae45b7a3ed4",
+    "src/jobs/screens/labels.ts": "2b244934de49c9d67674386a3dd4db4de6e775536ef5f5ccdb6dfbaaa1b52788",
+    "src/ui/Button.tsx": "f4a2a1c092252cf9942235220c3d437de9438e466dcf4198f891e0f8fd0d332c",
+    "src/ui/TextField.tsx": "30fda5d2a3b2f0443818f413b4f56e6aff65c8f33314a5a0065b7b4c386ed5b4",
+    "src/ui/useFocusedLoad.ts": "a26bbd70d8bd9401d46f9ceb33dc2a207bd41972b8ad058e1d56ab6390313e03"
+  },
+  "sources_stable": true
+}

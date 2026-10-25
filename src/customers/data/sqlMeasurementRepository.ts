@@ -1,11 +1,10 @@
-import type { Database, Row } from '../../database';
+import { SQL_NOW as NOW, type Database, type Row } from '../../database';
 import {
   isSameKey,
   validateMeasurement,
   type Measurement,
   type MeasurementRepository,
 } from '../domain';
-import { NOW } from './timestamps';
 
 const COLUMNS = 'm.id, m.customer_id, m.key, m.value';
 // Measurements are reached only through customers that were not deleted.

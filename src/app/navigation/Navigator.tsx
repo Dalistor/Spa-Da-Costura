@@ -13,7 +13,7 @@ import {
   CustomersScreen,
   MeasurementFormScreen,
 } from '../../customers';
-import { JobsScreen } from '../../jobs';
+import { JobFormScreen, JobsScreen } from '../../jobs';
 import { SettingsScreen } from '../../backup';
 import { colors } from '../../theme';
 import { PendingScreen } from './PendingScreen';
@@ -102,7 +102,7 @@ export function Navigator() {
           />
           <Stack.Screen
             name="JobForm"
-            component={PendingScreen}
+            component={JobFormScreen}
             options={{ title: 'Serviço' }}
           />
           <Stack.Screen

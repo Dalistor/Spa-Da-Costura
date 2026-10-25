@@ -14,7 +14,7 @@
         {
           "path": "src/customers/data/sqlCustomerRepository.ts",
           "start": 1,
-          "end": 82,
+          "end": 81,
           "role": "Criar, editar, ler e listar clientes ativos no SQLite"
         },
         {
@@ -26,7 +26,7 @@
         {
           "path": "src/customers/screens/CustomerDetailScreen.tsx",
           "start": 1,
-          "end": 219,
+          "end": 218,
           "role": "Detalhe do cliente"
         },
         {
@@ -37,8 +37,8 @@
         }
       ],
       "evidence": [
-        "ev-7889bcf1080444849fe26a33da42f9e4",
-        "ev-884a59a072184ecbbb7766f849a9fc43"
+        "ev-b67c04652e674d899deed0ea1c0274f3",
+        "ev-25cf54d0aacd479480b81c64804fabab"
       ],
       "delivery": {
         "stage": "integrated",
@@ -64,7 +64,7 @@
         {
           "path": "src/customers/data/sqlMeasurementRepository.ts",
           "start": 1,
-          "end": 104,
+          "end": 103,
           "role": "Medidas no SQLite; chave repetida vira resultado do domínio"
         },
         {
@@ -76,7 +76,7 @@
         {
           "path": "src/customers/screens/CustomerDetailScreen.tsx",
           "start": 1,
-          "end": 219,
+          "end": 218,
           "role": "Lista, edição e remoção de medidas no detalhe"
         },
         {
@@ -93,8 +93,8 @@
         }
       ],
       "evidence": [
-        "ev-7647456810d8427c93b1f4fd16f3854b",
-        "ev-ff00e8da8738484aae9a398137549bd8"
+        "ev-c63311f16b99467f88269880829c3b07",
+        "ev-bee7d45458ad45e994028a76127d4a93"
       ],
       "delivery": {
         "stage": "integrated",
@@ -120,13 +120,13 @@
         {
           "path": "src/customers/screens/CustomersScreen.tsx",
           "start": 1,
-          "end": 122,
+          "end": 121,
           "role": "Lista com busca"
         },
         {
           "path": "src/customers/data/sqlCustomerRepository.ts",
           "start": 1,
-          "end": 82,
+          "end": 81,
           "role": "Lista de clientes ativos"
         },
         {
@@ -137,8 +137,8 @@
         }
       ],
       "evidence": [
-        "ev-afde34a28e9441e2892f1c58012a1b7c",
-        "ev-eb936d1851b54ae7815353cbe4cfd980"
+        "ev-7f56dd58d0684adca10899f561897050",
+        "ev-3f1f8aae539f4ee391c7d7b4f9ec01c7"
       ],
       "delivery": {
         "stage": "integrated",
@@ -158,19 +158,19 @@
         {
           "path": "src/customers/data/sqlCustomerRepository.ts",
           "start": 1,
-          "end": 82,
+          "end": 81,
           "role": "Soft delete (deleted_at) e leituras só de ativos"
         },
         {
           "path": "src/customers/data/sqlMeasurementRepository.ts",
           "start": 1,
-          "end": 104,
+          "end": 103,
           "role": "Medidas só de clientes ativos"
         },
         {
           "path": "src/customers/screens/CustomerDetailScreen.tsx",
           "start": 1,
-          "end": 219,
+          "end": 218,
           "role": "Excluir cliente com confirmação"
         },
         {
@@ -181,8 +181,8 @@
         }
       ],
       "evidence": [
-        "ev-d4e75e322324439ca459bcd6c18098e0",
-        "ev-c45f14036c7244f59b13748aaaacd98b"
+        "ev-ba6ca8c9e819443b9a76235873f3cb94",
+        "ev-c180f1692e5143048d1ed3d534c0e7e6"
       ],
       "delivery": {
         "stage": "integrated",

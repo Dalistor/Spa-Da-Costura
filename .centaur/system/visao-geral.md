@@ -20,7 +20,7 @@ Arquitetura proposta (ainda sem código): regras do domínio independentes da UI
 |---|---|---|
 | Sistema | Dados locais em SQLite, Android, paleta bege/marrom, backup e importação, migrações | [`sistema`](../contracts/sistema/v001.json) (aprovado) |
 | Clientes | Nome; telefone e descrição opcionais; medidas livres (chave e valor); exclusão permitida com histórico | [`clientes`](../contracts/clientes/v002.json) (aprovado, v2) |
-| Serviços e produtos | Serviço = conserto com status Pendente/Pronto/Entregue; produto = peça inteira do catálogo, vendida ao cliente com valor preenchido e editável | [`servicos`](../contracts/servicos/v001.json) |
+| Serviços e produtos | Serviço = conserto com status Pendente/Pronto/Entregue; produto = peça inteira do catálogo, vendida ao cliente com valor preenchido e editável | [`servicos`](../contracts/servicos/v001.json) (aprovado) |
 | Financeiro | Pagamentos ligados só ao cliente (aviso se passar do devido); despesas; fluxo de caixa; total pago e devido | [`financeiro`](../contracts/financeiro/v001.json) |
 
 ## Design
@@ -63,7 +63,8 @@ Paleta de cores em tons de **bege e marrom**. Valores exatos (tokens) delegados 
 18. (2026-10-24) Contrato `clientes@1` aprovado.
 19. (2026-10-24) Chave de medida sem diferenciar maiúsculas e minúsculas ("Cintura" = "cintura") → `clientes@2`.
 20. (2026-10-24) `servicos` (rascunho) ganhou SRV-05: serviços de clientes excluídos não aparecem na aba Serviços.
+21. (2026-10-24) Contrato `servicos@1` aprovado; serviço é criado a partir do cliente (UC-01).
 
 ## Lacunas abertas
 
-Nenhuma decisão material aberta nos contratos. Falta aprovar `servicos` e `financeiro`.
+Nenhuma decisão material aberta nos contratos. Falta aprovar `financeiro`.

@@ -3,7 +3,7 @@ import {
   useRoute,
   type RouteProp,
 } from '@react-navigation/native';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect } from 'react';
 import {
   Alert,
   Pressable,
@@ -13,10 +13,10 @@ import {
   View,
 } from 'react-native';
 import { colors, spacing, typography } from '../../theme';
-import { Button, EmptyState } from '../../ui';
+import { Button, EmptyState, useFocusedLoad } from '../../ui';
+import { CustomerJobsSection } from '../../jobs';
 import type { Measurement } from '../domain';
 import { useCustomerRepositories } from './CustomerRepositories';
-import { useFocusedLoad } from './useFocusedLoad';
 
 type Route = RouteProp<
   Pick<ReactNavigation.RootParamList, 'CustomerDetail'>,
@@ -27,17 +27,14 @@ export function CustomerDetailScreen() {
   const navigation = useNavigation();
   const { customerId } = useRoute<Route>().params;
   const { customers, measurements } = useCustomerRepositories();
-  // Bumped after changes made on this screen, which do not trigger a refocus.
-  const [revision, setRevision] = useState(0);
-  const detail = useFocusedLoad(
+  const [detail, reload] = useFocusedLoad(
     useCallback(async () => {
       const customer = await customers.get(customerId);
       return {
         customer,
         measurements: customer ? await measurements.listFor(customerId) : [],
-        revision,
       };
-    }, [customerId, customers, measurements, revision]),
+    }, [customerId, customers, measurements]),
   );
 
   useEffect(() => {
@@ -91,7 +88,7 @@ export function CustomerDetailScreen() {
           style: 'destructive',
           onPress: async () => {
             await measurements.remove(measurement.id);
-            setRevision(current => current + 1);
+            await reload();
           },
         },
       ],
@@ -145,6 +142,8 @@ export function CustomerDetailScreen() {
           onPress={() => navigation.navigate('MeasurementForm', { customerId })}
         />
       </View>
+
+      <CustomerJobsSection customerId={customerId} />
 
       <View style={styles.dangerZone}>
         <Button

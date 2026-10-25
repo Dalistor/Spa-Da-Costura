@@ -4,7 +4,7 @@
   "version": 1,
   "title": "Serviços (consertos) e produtos vendidos a clientes",
   "scope": "master",
-  "status": "draft",
+  "status": "approved",
   "intent": "A costureira registra serviços de costura (consertos) para clientes com status, mantém um catálogo de produtos (peças inteiras) com preço e vende produtos a clientes.",
   "extends": [],
   "boundaries": [
@@ -244,5 +244,10 @@
         }
       ]
     }
+  },
+  "approval": {
+    "by": "Diego",
+    "at": "2026-10-24",
+    "reference": "Sessão Claude Code f61330bd (2026-10-24): mensagem 'Também aprovo o contrato de serviços' em resposta ao pedido de aprovação de servicos@1 (inclui SRV-05)"
   }
 }

@@ -1,6 +1,6 @@
 # Arquitetura — Spa da Costura
 
-> Estado: **fundação implementada (2026-10-24)** em [master/0001](../specs/0001/README.md): banco, migração v1, tema e rotas; clientes e medidas em [master/0002](../specs/0002/README.md) [master/0003](../specs/0003/README.md) e [master/0004](../specs/0004/README.md) (migração 002); demais telas ainda vazias. Repositórios de cada funcionalidade chegam às telas por contexto declarado na própria funcionalidade e montado em `src/app/RepositoriesProvider`. A definição normativa vive nos contratos ([sistema](../contracts/sistema/v001.json), [clientes@2](../contracts/clientes/v002.json), [servicos](../contracts/servicos/v001.json), [financeiro](../contracts/financeiro/v001.json)); este documento explica como o código os atende. Código e testes prevalecem quando existirem.
+> Estado: **fundação implementada (2026-10-24)** em [master/0001](../specs/0001/README.md): banco, migração v1, tema e rotas; clientes e medidas em [master/0002](../specs/0002/README.md) [master/0003](../specs/0003/README.md) e [master/0004](../specs/0004/README.md) (migração 002); serviços em [master/0005](../specs/0005/README.md); demais telas ainda vazias. Repositórios de cada funcionalidade chegam às telas por contexto declarado na própria funcionalidade e montado em `src/app/RepositoriesProvider`. A definição normativa vive nos contratos ([sistema](../contracts/sistema/v001.json), [clientes@2](../contracts/clientes/v002.json), [servicos](../contracts/servicos/v001.json), [financeiro](../contracts/financeiro/v001.json)); este documento explica como o código os atende. Código e testes prevalecem quando existirem.
 
 ## Idioma
 
@@ -45,6 +45,7 @@ src/
     navigation/   routes.ts (tipos das rotas), Navigator.tsx
   theme/          tokens da paleta bege/marrom e tipografia
   money/          Cents: converter texto ⇄ centavos, somar, formatar R$
+  calendar/       datas de negócio locais (YYYY-MM-DD ⇄ DD/MM/AAAA), sem UTC
   database/       porta Database, adaptador SQLite do app, migrations/
   customers/      domain/ data/ screens/
   jobs/           domain/ data/ screens/

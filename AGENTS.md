@@ -1,7 +1,7 @@
 # Spa da Costura
 
 ## Visão Geral
-App Android em React Native CLI para gerenciar um ateliê de costura: clientes e medidas livres, serviços (consertos), produtos (peças) vendidos a clientes, pagamentos, despesas e saldo por cliente. Sem servidor: dados locais em SQLite, com backup/importação por arquivo (importar substitui tudo). Fundação (banco SQLite migrado, tema, navegação) e clientes com medidas (cadastro, busca, soft delete) implementados; serviços, produtos, financeiro e backup ainda não. Camadas, esquema e rotas em [arquitetura.md](.centaur/system/arquitetura.md). Detalhes e lacunas em [.centaur/system/visao-geral.md](.centaur/system/visao-geral.md).
+App Android em React Native CLI para gerenciar um ateliê de costura: clientes e medidas livres, serviços (consertos), produtos (peças) vendidos a clientes, pagamentos, despesas e saldo por cliente. Sem servidor: dados locais em SQLite, com backup/importação por arquivo (importar substitui tudo). Fundação (banco SQLite migrado, tema, navegação) e clientes com medidas (cadastro, busca, soft delete) e serviços (consertos com status) implementados; produtos, financeiro e backup ainda não. Camadas, esquema e rotas em [arquitetura.md](.centaur/system/arquitetura.md). Detalhes e lacunas em [.centaur/system/visao-geral.md](.centaur/system/visao-geral.md).
 
 ## Recuperação de contexto
 Priorize busca e símbolos do editor. Graphify é opcional para relações amplas; consulte `.centaur/graphify/graph.json` pelo adaptador da skill apenas quando útil. Confirme fontes atuais. Não indexe automaticamente após mudanças. Decisões e documentação gerada ficam em `.centaur/`; código e testes comprovam comportamento.
@@ -12,7 +12,7 @@ Backend `files` (em `.centaur/workspace.json`): registros em `.centaur/implement
 ## Contratos e realização
 Contratos em `.centaur/contracts/<id>/vNNN.json` definem o comportamento desejado e a autonomia. Estado em `.centaur/state/` e evidências em `.centaur/evidence/` registram a realização; o ciclo normativo de `graphify` define formatos e gates. Contratos aprovados são versionados, não reescritos. Antes de editar, consultar apenas as regras e limites pertinentes. Checklist de spec não comprova comportamento. Consulte specs, fontes e evidências diretamente no terminal. Apresente resultado, validação e próxima ação com links; detalhes ficam nos registros.
 
-Contratos atuais: [sistema](.centaur/contracts/sistema/v001.json) e [clientes@2](.centaur/contracts/clientes/v002.json) (aprovados); rascunho: [servicos](.centaur/contracts/servicos/v001.json), [financeiro](.centaur/contracts/financeiro/v001.json).
+Contratos atuais: [sistema](.centaur/contracts/sistema/v001.json), [clientes@2](.centaur/contracts/clientes/v002.json) e [servicos](.centaur/contracts/servicos/v001.json) (aprovados); rascunho: [financeiro](.centaur/contracts/financeiro/v001.json).
 
 ## Comandos essenciais
 Na raiz, com Node >= 22.11 e npm:

@@ -25,7 +25,7 @@
         }
       ],
       "evidence": [
-        "ev-01bd6d4f02614cf98c5d8cf626eefe15",
+        "ev-f1e7f0e4114042adbd0481111b90ce6f",
         "ev-2415f739fb5f4bd8871bed3b7cc21644"
       ],
       "delivery": {
@@ -51,18 +51,18 @@
         {
           "path": "src/customers/data/sqlCustomerRepository.ts",
           "start": 1,
-          "end": 82,
+          "end": 81,
           "role": "Primeira gravação de dados pela UI"
         },
         {
           "path": "src/customers/data/sqlMeasurementRepository.ts",
           "start": 1,
-          "end": 104,
+          "end": 103,
           "role": "Gravação de medidas"
         }
       ],
       "evidence": [
-        "ev-66664570b03b4bf8b352ef0449ff6ae4"
+        "ev-68e762e6afdc4f839c9a2943b7dbb87e"
       ],
       "delivery": {
         "stage": "integrated",
@@ -98,8 +98,8 @@
         }
       ],
       "evidence": [
-        "ev-66fb5b0ab07b4a889a318577d619748d",
-        "ev-c8c47ecca54f47c29dd0943c00d405b6"
+        "ev-3209b4d1ceec4095943cc141964ab7b8",
+        "ev-ee4a235855b9438c86f54c0ed8c9392b"
       ],
       "delivery": {
         "stage": "integrated",
@@ -153,7 +153,7 @@
         }
       ],
       "evidence": [
-        "ev-d503e9207d3c41a9b241d12b79a779f1",
+        "ev-54603a7602c142248630adbbadd2f867",
         "ev-7887ce7cf7a14b479fa7009af87c7513"
       ],
       "delivery": {

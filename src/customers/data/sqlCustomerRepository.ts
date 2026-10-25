@@ -1,11 +1,10 @@
-import type { Database, Row } from '../../database';
+import { SQL_NOW as NOW, type Database, type Row } from '../../database';
 import {
   compareByName,
   validateCustomer,
   type Customer,
   type CustomerRepository,
 } from '../domain';
-import { NOW } from './timestamps';
 
 const COLUMNS = 'id, name, phone, description';
 const ACTIVE = 'deleted_at IS NULL';
